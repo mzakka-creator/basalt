@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { IconInstagram, IconLinkedin, IconLocation, IconMail, IconPhone } from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
 import styles from './Footer.module.css';
 
 const productLinks = [
@@ -73,22 +75,31 @@ export default function Footer() {
           <h4 className={styles.colTitle}>Get In Touch</h4>
           <div className={styles.contactInfo}>
             <p className={styles.contactItem}>
-              <span className={styles.contactIcon}>✉</span>
+              <span className={styles.contactIcon}>
+                <IconMail className={iconStyles.svgIcon} aria-hidden />
+              </span>
               info@basalt.com.sa
             </p>
             <p className={styles.contactItem}>
-              <span className={styles.contactIcon}>✆</span>
+              <span className={styles.contactIcon}>
+                <IconPhone className={iconStyles.svgIcon} aria-hidden />
+              </span>
               +966 XX XXX XXXX
             </p>
             <p className={styles.contactItem}>
-              <span className={styles.contactIcon}>◎</span>
+              <span className={styles.contactIcon}>
+                <IconLocation className={iconStyles.svgIcon} aria-hidden />
+              </span>
               Kingdom of Saudi Arabia
             </p>
           </div>
           <div className={styles.social}>
-            <a href="#" className={styles.socialLink} aria-label="LinkedIn">in</a>
-            <a href="#" className={styles.socialLink} aria-label="Twitter">𝕏</a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">▣</a>
+            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+              <IconLinkedin className={iconStyles.svgIcon} aria-hidden />
+            </a>
+            <a href="#" className={styles.socialLink} aria-label="Instagram">
+              <IconInstagram className={iconStyles.svgIcon} aria-hidden />
+            </a>
           </div>
         </div>
       </div>

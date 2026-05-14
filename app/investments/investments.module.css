@@ -1,60 +1,4 @@
-/* ==================== PAGE HERO ==================== */
-.pageHero {
-  position: relative;
-  min-height: 70vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  padding-top: var(--navbar-height);
-}
-
-.pageHeroBg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(150deg, #050e05 0%, #0d1a0e 40%, #080808 100%);
-}
-
-.pageHeroBg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--stone-texture);
-  opacity: 0.8;
-}
-
-.pageHeroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 64px 28px 72px;
-  animation: fadeInUp 0.9s ease both;
-}
-
-.pageTitle {
-  font-family: var(--font-oswald);
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  margin: 12px 0 20px;
-}
-
-.heroAccent {
-  color: var(--green-accent);
-}
-
-.pageSubtitle {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.55);
-  max-width: 560px;
-  line-height: 1.7;
-  margin-bottom: 48px;
-}
-
+/* ==================== PAGE HERO STATS (inside PageHero) ==================== */
 .heroStats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -63,6 +7,8 @@
   border-radius: 4px;
   overflow: hidden;
   max-width: 860px;
+  margin-top: 24px;
+  width: 100%;
 }
 
 .heroStat {
@@ -104,6 +50,15 @@
 /* ==================== TIERS ==================== */
 .tiersSection {
   background: #111;
+}
+
+.tiersSectionHead {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.tiersSectionHead :global(.sectionTitle) {
+  text-align: center;
 }
 
 .tiersGrid {
@@ -201,10 +156,8 @@
 
 .benefitCheck {
   color: var(--green-accent);
-  font-size: 0.75rem;
   margin-top: 2px;
   flex-shrink: 0;
-  font-weight: 700;
 }
 
 .tierCta {
@@ -259,6 +212,8 @@
 
 .ctaArrow {
   transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
 }
 
 .tierCta:hover .ctaArrow,
@@ -269,6 +224,10 @@
 /* ==================== WHY INVEST ==================== */
 .whySection {
   background: var(--grey-dark);
+}
+
+.whyInvestHead {
+  margin-bottom: 56px;
 }
 
 .benefitsGrid {
@@ -293,8 +252,14 @@
 }
 
 .benefitIcon {
-  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
   margin-bottom: 12px;
+  color: var(--green-accent);
+}
+
+.benefitCard:hover .benefitIcon {
+  color: var(--white);
 }
 
 .benefitTitle {
@@ -324,8 +289,11 @@
 }
 
 .visionFlag {
-  font-size: 2.5rem;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-accent);
 }
 
 .visionTitle {
@@ -380,7 +348,9 @@
 }
 
 .sideIcon {
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--green-accent);
   flex-shrink: 0;
 }
@@ -389,6 +359,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
   padding: 12px 24px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 2px;
@@ -401,7 +372,6 @@
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease;
-  flex-wrap: wrap;
 }
 
 .brochureBtn:hover {
@@ -544,6 +514,16 @@
   transform: translateY(-2px);
 }
 
+.submitArrow {
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.submitBtn:hover .submitArrow {
+  transform: translateX(4px);
+}
+
 /* Success state */
 .successState {
   display: flex;
@@ -562,7 +542,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
   color: var(--white);
   margin-bottom: 8px;
 }

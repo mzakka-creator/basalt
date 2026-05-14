@@ -1,7 +1,29 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect } from 'react';
+import {
+  IconAnchor,
+  IconCheck,
+  IconConstruction,
+  IconDroplets,
+  IconFactory,
+  IconFlame,
+  IconGear,
+  IconLocation,
+  IconMountain,
+  IconRecycle,
+  IconRefreshCw,
+  IconRoute,
+  IconWind,
+  IconZap,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './factory.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -19,42 +41,42 @@ function useScrollAnimation() {
   }, []);
 }
 
-const processSteps = [
+const processSteps: { step: string; title: string; desc: string; Icon: SvgIcon }[] = [
   {
     step: '01',
     title: 'Raw Basalt Extraction',
     desc: 'High-purity basalt rock is sourced from certified quarries across the Arabian Shield — one of the world\'s richest basalt reserves.',
-    icon: '⛰',
+    Icon: IconMountain,
   },
   {
     step: '02',
     title: 'Crushing & Sorting',
     desc: 'Rock is crushed to precise sizes using jaw and cone crushers, then sorted by grade through vibrating screens and AI-assisted quality control.',
-    icon: '⚙',
+    Icon: IconGear,
   },
   {
     step: '03',
     title: 'Melting & Fiberization',
     desc: 'Sorted basalt is melted at 1,400–1,500°C in electric furnaces. The molten rock is drawn through platinum-rhodium bushings to form continuous fibers.',
-    icon: '🔥',
+    Icon: IconFlame,
   },
   {
     step: '04',
     title: 'Fiber Processing',
     desc: 'Continuous fibers are wound, chopped, or woven into various forms — rovings, mats, meshes — depending on the target product.',
-    icon: '🔄',
+    Icon: IconRefreshCw,
   },
   {
     step: '05',
     title: 'Product Manufacturing',
     desc: 'Fibers are combined with resins, formed into bars, panels, or meshes using pultrusion, compression molding, or wet lay-up processes.',
-    icon: '🏭',
+    Icon: IconFactory,
   },
   {
     step: '06',
     title: 'Quality Testing & Dispatch',
     desc: 'Every batch undergoes tensile, thermal, and chemical resistance testing against international standards before certification and dispatch.',
-    icon: '✓',
+    Icon: IconCheck,
   },
 ];
 
@@ -67,11 +89,18 @@ const equipment = [
   { name: 'Environmental Control', spec: 'Closed-loop emission filtration' },
 ];
 
-const envStandards = [
-  { icon: '💧', label: 'Zero liquid discharge', desc: 'Full water recycling system within the factory' },
-  { icon: '🌬', label: 'Air quality', desc: 'NCEC-compliant filtration on all production exhausts' },
-  { icon: '♻', label: 'Waste reduction', desc: '95%+ material utilization — near-zero production waste' },
-  { icon: '⚡', label: 'Energy efficiency', desc: 'Renewable energy target: 40% solar-powered by 2030' },
+const envStandards: { Icon: SvgIcon; label: string; desc: string }[] = [
+  { Icon: IconDroplets, label: 'Zero liquid discharge', desc: 'Full water recycling system within the factory' },
+  { Icon: IconWind, label: 'Air quality', desc: 'NCEC-compliant filtration on all production exhausts' },
+  { Icon: IconRecycle, label: 'Waste reduction', desc: '95%+ material utilization — near-zero production waste' },
+  { Icon: IconZap, label: 'Energy efficiency', desc: 'Renewable energy target: 40% solar-powered by 2030' },
+];
+
+const locationPoints: { Icon: SvgIcon; text: string }[] = [
+  { Icon: IconLocation, text: 'Saudi Arabia — exact site TBD' },
+  { Icon: IconMountain, text: 'Arabian Shield basalt reserves nearby' },
+  { Icon: IconRoute, text: 'Direct highway access to major cities' },
+  { Icon: IconAnchor, text: 'Export access via Red Sea / Arabian Gulf ports' },
 ];
 
 export default function FactoryPage() {
@@ -79,23 +108,25 @@ export default function FactoryPage() {
 
   return (
     <>
-      {/* PAGE HERO */}
-      <section className={styles.pageHero}>
-        <div className={styles.pageHeroBg} />
-        <div className={styles.pageHeroContent}>
-          <span className="sectionLabel">Factory & Technique</span>
-          <h1 className={styles.pageTitle}>Where Earth<br />Becomes Architecture</h1>
-          <p className={styles.pageSubtitle}>
-            A state-of-the-art facility designed to transform raw volcanic basalt into premium construction materials at industrial scale.
-          </p>
-        </div>
-        <div className={styles.constructionBanner}>
-          <span className={styles.bannerIcon}>🏗</span>
-          Under Development — Factory Opening 2028
-        </div>
-      </section>
+      <PageHero
+        tagline="Factory & Technique"
+        title={
+          <>
+            Where Earth<br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>Becomes Architecture</span>
+          </>
+        }
+        subtitle="A state-of-the-art facility designed to transform raw volcanic basalt into premium construction materials at industrial scale."
+        banner={
+          <div className={styles.constructionBanner}>
+            <span className={styles.bannerIcon}>
+              <IconConstruction className={iconStyles.svgIconMd} aria-hidden />
+            </span>
+            Under Development — Factory Opening 2028
+          </div>
+        }
+      />
 
-      {/* LOCATION */}
       <section className={`${styles.locationSection} section`}>
         <div className="container">
           <div className={styles.locationGrid}>
@@ -108,17 +139,17 @@ export default function FactoryPage() {
                 and proximity to major construction markets across the GCC.
               </p>
               <div className={styles.locationPoints}>
-                {[
-                  { icon: '◎', text: 'Saudi Arabia — exact site TBD' },
-                  { icon: '⛰', text: 'Arabian Shield basalt reserves nearby' },
-                  { icon: '🛣', text: 'Direct highway access to major cities' },
-                  { icon: '⚓', text: 'Export access via Red Sea / Arabian Gulf ports' },
-                ].map((pt) => (
-                  <div key={pt.text} className={styles.locationPoint}>
-                    <span className={styles.locationIcon}>{pt.icon}</span>
-                    <span>{pt.text}</span>
-                  </div>
-                ))}
+                {locationPoints.map((pt) => {
+                  const PtIcon = pt.Icon;
+                  return (
+                    <div key={pt.text} className={styles.locationPoint}>
+                      <span className={styles.locationIcon}>
+                        <PtIcon className={iconStyles.svgIcon} aria-hidden />
+                      </span>
+                      <span>{pt.text}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className={`${styles.locationMap} animate-on-scroll`}>
@@ -135,42 +166,45 @@ export default function FactoryPage() {
         </div>
       </section>
 
-      {/* PROCESS DIAGRAM */}
       <section className={`${styles.processSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ textAlign: 'center', marginBottom: '64px' }}>
+          <div className={`${styles.processSectionHead} animate-on-scroll`}>
             <span className="sectionLabel">Production Process</span>
-            <h2 className="sectionTitle" style={{ textAlign: 'center' }}>From Rock to Product</h2>
+            <h2 className="sectionTitle">From Rock to Product</h2>
             <p className={styles.processSectionDesc}>
               A six-stage precision manufacturing process — from raw stone extraction to certified product dispatch.
             </p>
           </div>
 
           <div className={styles.processFlow}>
-            {processSteps.map((step, index) => (
-              <div key={step.step} className={`${styles.processStep} animate-on-scroll`}>
-                <div className={styles.stepConnector}>
-                  <div className={styles.stepNumber}>{step.step}</div>
-                  {index < processSteps.length - 1 && (
-                    <div className={styles.stepLine} />
-                  )}
+            {processSteps.map((step, index) => {
+              const StepIcon = step.Icon;
+              return (
+                <div key={step.step} className={`${styles.processStep} animate-on-scroll`}>
+                  <div className={styles.stepConnector}>
+                    <div className={styles.stepNumber}>{step.step}</div>
+                    {index < processSteps.length - 1 && (
+                      <div className={styles.stepLine} />
+                    )}
+                  </div>
+                  <div className={styles.stepCard}>
+                    <div className={styles.stepIcon}>
+                      <StepIcon className={iconStyles.svgIconMd} aria-hidden />
+                    </div>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDesc}>{step.desc}</p>
+                  </div>
                 </div>
-                <div className={styles.stepCard}>
-                  <div className={styles.stepIcon}>{step.icon}</div>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDesc}>{step.desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* EQUIPMENT */}
       <section className={`${styles.equipSection} section`}>
         <div className="container">
           <div className={styles.equipGrid}>
-            <div className={`animate-on-scroll`}>
+            <div className="animate-on-scroll">
               <span className="sectionLabel">Technology</span>
               <h2 className="sectionTitle">Equipment & Technology</h2>
               <p className={styles.bodyText} style={{ marginBottom: '36px' }}>
@@ -218,10 +252,9 @@ export default function FactoryPage() {
         </div>
       </section>
 
-      {/* ENVIRONMENTAL */}
       <section className={`${styles.envSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ marginBottom: '56px' }}>
+          <div className={`${styles.envSectionHead} animate-on-scroll`}>
             <span className="sectionLabel">Environmental Standards</span>
             <h2 className="sectionTitle">Built Green from Day One</h2>
             <p className={styles.bodyText} style={{ maxWidth: '560px' }}>
@@ -230,11 +263,13 @@ export default function FactoryPage() {
             </p>
           </div>
           <div className={styles.envGrid}>
-            {envStandards.map((e) => (
-              <div key={e.label} className={`${styles.envCard} animate-on-scroll`}>
-                <div className={styles.envIcon}>{e.icon}</div>
-                <h4 className={styles.envLabel}>{e.label}</h4>
-                <p className={styles.envDesc}>{e.desc}</p>
+            {envStandards.map(({ Icon: EnvIcon, label, desc }) => (
+              <div key={label} className={`${styles.envCard} animate-on-scroll`}>
+                <div className={styles.envIcon}>
+                  <EnvIcon className={iconStyles.svgIconLg} aria-hidden />
+                </div>
+                <h4 className={styles.envLabel}>{label}</h4>
+                <p className={styles.envDesc}>{desc}</p>
               </div>
             ))}
           </div>

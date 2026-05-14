@@ -1,55 +1,27 @@
-/* ==================== PAGE HERO ==================== */
-.pageHero {
-  position: relative;
-  min-height: 52vh;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 72px;
-  overflow: hidden;
-  padding-top: var(--navbar-height);
+/* Page wrapper — prevent horizontal scroll on narrow viewports */
+.aboutRoot {
+  overflow-x: hidden;
+  width: 100%;
 }
 
-.pageHeroBg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, #080f08 0%, #111a11 40%, #0a0a0a 100%);
+/* Section heading blocks (replaces inline margins for responsive control) */
+.sectionIntro {
+  margin-bottom: 64px;
 }
 
-.pageHeroBg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--stone-texture);
-  opacity: 0.7;
+.sectionIntroCenter {
+  text-align: center;
 }
 
-.pageHeroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 28px;
-  animation: fadeInUp 0.9s ease both;
+.sectionIntroCenter :global(.sectionTitle) {
+  text-align: center;
 }
 
-.pageTitle {
-  font-family: var(--font-oswald);
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  margin: 12px 0 20px;
+.sectionIntroTight {
+  margin-bottom: 48px;
 }
 
-.pageSubtitle {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.55);
-  max-width: 560px;
-  line-height: 1.7;
-}
-
+/* ==================== VISION / MISSION ==================== */
 .sectionDesc {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.5);
@@ -58,7 +30,6 @@
   margin-top: -4px;
 }
 
-/* ==================== VISION / MISSION ==================== */
 .visionSection {
   background: #111;
 }
@@ -98,7 +69,9 @@
 }
 
 .vmIcon {
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   color: var(--green-accent);
   margin-bottom: 20px;
 }
@@ -312,7 +285,9 @@
 }
 
 .valueIcon {
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 18px;
   color: var(--green-accent);
 }
@@ -359,8 +334,10 @@
 }
 
 .propIcon {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
   margin-bottom: 12px;
+  color: var(--green-accent);
 }
 
 .propStat {
@@ -423,11 +400,7 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-}
-
-.avatarIcon {
-  font-size: 2rem;
-  color: rgba(67, 160, 71, 0.3);
+  color: rgba(67, 160, 71, 0.35);
 }
 
 .teamName {
@@ -489,6 +462,10 @@
     margin-left: 0;
   }
 
+  .timelineDesc {
+    max-width: none;
+  }
+
   .timelineNode {
     grid-column: 1;
     grid-row: 1;
@@ -502,13 +479,126 @@
   }
 }
 
-@media (max-width: 560px) {
-  .propertyGrid {
+@media (max-width: 640px) {
+  .aboutRoot :global(.container) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .sectionIntro {
+    margin-bottom: 40px;
+  }
+
+  .sectionIntroTight {
+    margin-bottom: 28px;
+  }
+
+  .visionSection:global(.section),
+  .timelineSection:global(.section),
+  .valuesSection:global(.section),
+  .whySection:global(.section),
+  .teamSection:global(.section) {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .sectionDesc {
+    font-size: 0.92rem;
+  }
+
+  .vmCard {
+    padding: 28px 20px;
+  }
+
+  .vmTitle {
+    font-size: 1.35rem;
+  }
+
+  .vmText {
+    font-size: 0.92rem;
+  }
+
+  .timelineLine {
+    left: 18px;
+  }
+
+  .timelineItem {
+    grid-template-columns: 36px 1fr;
+    min-height: 0;
+  }
+
+  .timelineNode {
+    padding-left: 8px;
+  }
+
+  .timelineLeft .timelineCard,
+  .timelineRight .timelineCard {
+    padding-left: 16px;
+  }
+
+  .timelineYear {
+    font-size: 2.25rem;
+  }
+
+  .timelineTitle {
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+
+  .timelinePhase {
+    letter-spacing: 0.12em;
+  }
+
+  .timelineDesc {
+    font-size: 0.84rem;
+  }
+
+  .timelineBadge {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+  }
+
+  .dotCurrent {
+    box-shadow: 0 0 0 4px rgba(67, 160, 71, 0.2), 0 0 0 8px rgba(67, 160, 71, 0.06);
+  }
+
+  .valuesGrid {
+    gap: 14px;
     grid-template-columns: 1fr;
   }
 
-  .valuesGrid,
+  .valueCard {
+    padding: 26px 18px;
+  }
+
+  .valueCard:hover {
+    transform: none;
+  }
+
+  .valueTitle {
+    font-size: 1.05rem;
+  }
+
+  .propertyGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .propertyCard:hover {
+    transform: none;
+  }
+
   .teamGrid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .teamCard {
+    padding: 28px 18px;
+  }
+
+  .teamNote {
+    font-size: 0.82rem;
+    padding: 0 4px;
   }
 }

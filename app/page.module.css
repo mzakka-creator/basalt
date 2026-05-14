@@ -1,140 +1,4 @@
-/* ==================== HERO ==================== */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.heroBackground {
-  position: absolute;
-  inset: 0;
-}
-
-.heroGradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    #0a0a0a 0%,
-    #111a11 25%,
-    #0d1a0e 50%,
-    #080f08 75%,
-    #000 100%
-  );
-}
-
-.heroTexture {
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
-      transparent 1px,
-      transparent 10px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0.01) 0px,
-      rgba(255, 255, 255, 0.01) 1px,
-      transparent 1px,
-      transparent 10px
-    );
-  animation: stoneShift 20s linear infinite;
-}
-
-.heroParticles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  background: var(--green-accent);
-  border-radius: 50%;
-  bottom: -10px;
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateY(-100vh) scale(0.3);
-    opacity: 0;
-  }
-}
-
-.heroContent {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 860px;
-  padding: 120px 28px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  animation: fadeInUp 1s ease both;
-}
-
-.heroTagline {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-source-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--green-accent);
-}
-
-.taglineDot {
-  width: 6px;
-  height: 6px;
-  background: var(--green-accent);
-  border-radius: 50%;
-}
-
-.heroHeadline {
-  font-family: var(--font-oswald);
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
-}
-
-.heroHeadlineAccent {
-  color: var(--green-accent);
-  display: block;
-}
-
-.heroSubheadline {
-  font-family: var(--font-source-sans);
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.65);
-  max-width: 560px;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-}
+/* Hero layout + CTA buttons (hero shell lives in PageHero) */
 
 .heroCtas {
   display: flex;
@@ -318,9 +182,37 @@
   transform: scaleX(1);
 }
 
-.featureIcon {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
+/* Stroke icon — shared sizing in icons.module.css (.svgIcon) */
+
+.featureIconWrap {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(67, 160, 71, 0.08);
+  border: 1px solid rgba(67, 160, 71, 0.16);
+  color: var(--green-accent);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.featureItem:hover .featureIconWrap {
+  transform: translateY(-5px) scale(1.06);
+  background: rgba(67, 160, 71, 0.2);
+  border-color: rgba(67, 160, 71, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.featureItem:hover .featureIconWrap .svgIcon,
+.featureItem:hover .featureIconWrap svg {
+  color: var(--white);
+  filter: drop-shadow(0 0 10px rgba(67, 160, 71, 0.45));
 }
 
 .featureStat {
@@ -342,6 +234,15 @@
 /* ==================== TEASER CARDS ==================== */
 .teasers {
   background: var(--grey-dark);
+}
+
+.teasersHead {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.teasersHead :global(.sectionTitle) {
+  text-align: center;
 }
 
 .teaserGrid {
@@ -371,11 +272,38 @@
   z-index: 2;
 }
 
-.teaserIcon {
-  font-size: 1.8rem;
+.teaserIconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background: rgba(67, 160, 71, 0.1);
+  border: 1px solid rgba(67, 160, 71, 0.22);
   color: var(--green-accent);
-  margin-bottom: 16px;
-  display: block;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.teaserCard:hover .teaserIconWrap {
+  background: rgba(67, 160, 71, 0.22);
+  border-color: var(--green-accent);
+  box-shadow:
+    0 0 0 1px rgba(67, 160, 71, 0.35),
+    0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px) scale(1.07);
+}
+
+.teaserCard:hover .teaserIconWrap .svgIcon,
+.teaserCard:hover .teaserIconWrap svg {
+  color: var(--white);
+  filter: drop-shadow(0 0 12px rgba(67, 160, 71, 0.5));
+  transform: rotate(-5deg) scale(1.08);
 }
 
 .teaserTitle {
@@ -403,11 +331,21 @@
   text-transform: uppercase;
   color: var(--green-accent);
   transition: letter-spacing 0.2s ease;
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teaserCtaArrow {
+  transition: transform 0.2s ease;
 }
 
 .teaserCard:hover .teaserCta {
   letter-spacing: 0.15em;
+}
+
+.teaserCard:hover .teaserCtaArrow {
+  transform: translateX(4px);
 }
 
 .teaserHoverBg {
@@ -467,6 +405,12 @@
   max-width: 480px;
 }
 
+.ctaBannerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1024px) {
   .teaserGrid {
@@ -479,6 +423,10 @@
 }
 
 @media (max-width: 640px) {
+  .teasersHead {
+    margin-bottom: 40px;
+  }
+
   .heroCtas {
     flex-direction: column;
     width: 100%;

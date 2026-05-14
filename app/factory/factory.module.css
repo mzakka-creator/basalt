@@ -1,58 +1,4 @@
-/* ==================== PAGE HERO ==================== */
-.pageHero {
-  position: relative;
-  min-height: 52vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding-bottom: 0;
-  overflow: hidden;
-  padding-top: var(--navbar-height);
-}
-
-.pageHeroBg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, #080808 0%, #0f1a10 40%, #080808 100%);
-}
-
-.pageHeroBg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--stone-texture);
-  opacity: 0.7;
-}
-
-.pageHeroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 28px 72px;
-  animation: fadeInUp 0.9s ease both;
-}
-
-.pageTitle {
-  font-family: var(--font-oswald);
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  margin: 12px 0 20px;
-}
-
-.pageSubtitle {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.55);
-  max-width: 540px;
-  line-height: 1.7;
-}
-
+/* ==================== PAGE HERO BANNER (under PageHero) ==================== */
 .constructionBanner {
   position: relative;
   z-index: 1;
@@ -72,7 +18,10 @@
 }
 
 .bannerIcon {
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFA726;
 }
 
 .bodyText {
@@ -115,11 +64,12 @@
 }
 
 .locationIcon {
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--green-accent);
   flex-shrink: 0;
-  width: 20px;
-  text-align: center;
+  width: 28px;
 }
 
 .locationMap {
@@ -189,6 +139,16 @@
   color: rgba(255, 255, 255, 0.5);
   max-width: 520px;
   margin: 0 auto;
+  text-align: center;
+  line-height: 1.75;
+}
+
+.processSectionHead {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.processSectionHead :global(.sectionTitle) {
   text-align: center;
 }
 
@@ -260,8 +220,14 @@
 }
 
 .stepIcon {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
   margin-bottom: 12px;
+  color: var(--green-accent);
+}
+
+.stepCard:hover .stepIcon {
+  color: var(--white);
 }
 
 .stepTitle {
@@ -400,6 +366,10 @@
   background: var(--grey-dark);
 }
 
+.envSectionHead {
+  margin-bottom: 56px;
+}
+
 .envGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -422,8 +392,14 @@
 }
 
 .envIcon {
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
   margin-bottom: 14px;
+  color: var(--green-accent);
+}
+
+.envCard:hover .envIcon {
+  color: var(--white);
 }
 
 .envLabel {

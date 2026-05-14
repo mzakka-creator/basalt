@@ -1,0 +1,27 @@
+/* Shared stroke-icon sizing (Lucide-style) — use with SiteIcons components */
+.svgIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  display: block;
+}
+
+.svgIconSm {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.svgIconMd {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.svgIconLg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.svgIconXl {
+  width: 2.25rem;
+  height: 2.25rem;
+}

@@ -1,7 +1,26 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect } from 'react';
+import {
+  IconAward,
+  IconFeather,
+  IconFlask,
+  IconLandmark,
+  IconLeaf,
+  IconRuler,
+  IconSparkles,
+  IconStrength,
+  IconTarget,
+  IconThermometer,
+  IconUserCircle,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './about.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -50,61 +69,61 @@ const timeline = [
   },
 ];
 
-const values = [
+const values: { Icon: SvgIcon; title: string; desc: string }[] = [
   {
-    icon: '◈',
+    Icon: IconSparkles,
     title: 'Innovation',
     desc: 'Applying the latest basalt fiber technologies and continuous R&D to stay ahead of global construction trends.',
   },
   {
-    icon: '♻',
+    Icon: IconLeaf,
     title: 'Sustainability',
     desc: 'Basalt is 100% natural. Our processes are designed to minimize carbon footprint and maximize material longevity.',
   },
   {
-    icon: '⬡',
+    Icon: IconAward,
     title: 'Quality',
     desc: 'Every product leaving our factory meets or exceeds international standards — zero compromise on performance.',
   },
   {
-    icon: '🇸🇦',
+    Icon: IconLandmark,
     title: 'Saudi Pride',
     desc: 'Built in Saudi Arabia, for Saudi Arabia. Proudly supporting Vision 2030 and the growth of domestic industry.',
   },
 ];
 
-const rockProperties = [
-  { icon: '🌡', title: 'Heat Resistance', stat: 'Up to 700°C', desc: 'Superior performance in high-temperature environments compared to steel or fiberglass.' },
-  { icon: '💪', title: 'Tensile Strength', stat: '4,840 MPa', desc: 'Basalt fiber offers exceptional tensile strength, surpassing fiberglass by up to 30%.' },
-  { icon: '⚡', title: 'Chemical Resistance', stat: 'pH 1–14', desc: 'Naturally resistant to acids, alkalis, and corrosive environments — ideal for infrastructure.' },
-  { icon: '🏋', title: 'Lightweight', stat: '2.7 g/cm³', desc: 'Lower density than steel, reducing structural load while maintaining superior strength.' },
-  { icon: '♻', title: 'Eco-Friendly', stat: '0 Toxic', desc: 'No binders, no toxic emissions during production. Fully natural volcanic rock origin.' },
-  { icon: '📐', title: 'Dimensional Stability', stat: '±0.01%', desc: 'Exceptional resistance to thermal expansion and contraction over its lifespan.' },
+const rockProperties: { Icon: SvgIcon; title: string; stat: string; desc: string }[] = [
+  { Icon: IconThermometer, title: 'Heat Resistance', stat: 'Up to 700°C', desc: 'Superior performance in high-temperature environments compared to steel or fiberglass.' },
+  { Icon: IconStrength, title: 'Tensile Strength', stat: '4,840 MPa', desc: 'Basalt fiber offers exceptional tensile strength, surpassing fiberglass by up to 30%.' },
+  { Icon: IconFlask, title: 'Chemical Resistance', stat: 'pH 1–14', desc: 'Naturally resistant to acids, alkalis, and corrosive environments — ideal for infrastructure.' },
+  { Icon: IconFeather, title: 'Lightweight', stat: '2.7 g/cm³', desc: 'Lower density than steel, reducing structural load while maintaining superior strength.' },
+  { Icon: IconLeaf, title: 'Eco-Friendly', stat: '0 Toxic', desc: 'No binders, no toxic emissions during production. Fully natural volcanic rock origin.' },
+  { Icon: IconRuler, title: 'Dimensional Stability', stat: '±0.01%', desc: 'Exceptional resistance to thermal expansion and contraction over its lifespan.' },
 ];
 
 export default function AboutPage() {
   useScrollAnimation();
 
   return (
-    <>
-      {/* PAGE HERO */}
-      <section className={styles.pageHero}>
-        <div className={styles.pageHeroBg} />
-        <div className={styles.pageHeroContent}>
-          <span className="sectionLabel">Who Are We</span>
-          <h1 className={styles.pageTitle}>Built on Vision,<br />Forged from the Earth</h1>
-          <p className={styles.pageSubtitle}>
-            A future-forward Saudi company transforming volcanic basalt rock into the building blocks of tomorrow&rsquo;s infrastructure.
-          </p>
-        </div>
-      </section>
+    <div className={styles.aboutRoot}>
+      <PageHero
+        tagline="Who Are We"
+        title={
+          <>
+            Built on Vision,<br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>Forged from the Earth</span>
+          </>
+        }
+        subtitle="A future-forward Saudi company transforming volcanic basalt rock into the building blocks of tomorrow&rsquo;s infrastructure."
+      />
 
-      {/* VISION & MISSION */}
       <section className={`${styles.visionSection} section`}>
         <div className="container">
           <div className={styles.vmGrid}>
             <div className={`${styles.vmCard} animate-on-scroll`}>
-              <div className={styles.vmIcon}>◈</div>
+              <div className={styles.vmIcon}>
+                <IconSparkles className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h2 className={styles.vmTitle}>Our Vision</h2>
               <p className={styles.vmText}>
                 To become the Middle East&rsquo;s leading producer of basalt construction materials —
@@ -113,7 +132,9 @@ export default function AboutPage() {
               </p>
             </div>
             <div className={`${styles.vmCard} ${styles.vmCardAccent} animate-on-scroll`}>
-              <div className={styles.vmIcon}>⬡</div>
+              <div className={styles.vmIcon}>
+                <IconTarget className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h2 className={styles.vmTitle}>Our Mission</h2>
               <p className={styles.vmText}>
                 To harness Saudi Arabia&rsquo;s abundant basalt rock reserves and transform them into
@@ -125,10 +146,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* TIMELINE */}
       <section className={`${styles.timelineSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ marginBottom: '64px' }}>
+          <div className={`${styles.sectionIntro} animate-on-scroll`}>
             <span className="sectionLabel">Roadmap</span>
             <h2 className="sectionTitle">3-Year Journey to Launch</h2>
             <p className={styles.sectionDesc}>
@@ -153,7 +173,8 @@ export default function AboutPage() {
                   )}
                   {item.status === 'target' && (
                     <div className={`${styles.timelineBadge} ${styles.badgeTarget}`}>
-                      🎯 Launch Target
+                      <IconTarget className={iconStyles.svgIconSm} aria-hidden />
+                      <span>Launch Target</span>
                     </div>
                   )}
                 </div>
@@ -166,29 +187,32 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* VALUES */}
       <section className={`${styles.valuesSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className={`${styles.sectionIntro} ${styles.sectionIntroCenter} animate-on-scroll`}>
             <span className="sectionLabel">Core Values</span>
-            <h2 className="sectionTitle" style={{ textAlign: 'center' }}>What We Stand For</h2>
+            <h2 className="sectionTitle">What We Stand For</h2>
           </div>
           <div className={styles.valuesGrid}>
-            {values.map((v) => (
-              <div key={v.title} className={`${styles.valueCard} animate-on-scroll`}>
-                <div className={styles.valueIcon}>{v.icon}</div>
-                <h3 className={styles.valueTitle}>{v.title}</h3>
-                <p className={styles.valueDesc}>{v.desc}</p>
-              </div>
-            ))}
+            {values.map((v) => {
+              const ValueIcon = v.Icon;
+              return (
+                <div key={v.title} className={`${styles.valueCard} animate-on-scroll`}>
+                  <div className={styles.valueIcon}>
+                    <ValueIcon className={iconStyles.svgIconLg} aria-hidden />
+                  </div>
+                  <h3 className={styles.valueTitle}>{v.title}</h3>
+                  <p className={styles.valueDesc}>{v.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* WHY BASALT */}
       <section className={`${styles.whySection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ marginBottom: '56px' }}>
+          <div className={`${styles.sectionIntro} animate-on-scroll`}>
             <span className="sectionLabel">The Material</span>
             <h2 className="sectionTitle">Why Basalt?</h2>
             <p className={styles.sectionDesc}>
@@ -197,22 +221,26 @@ export default function AboutPage() {
             </p>
           </div>
           <div className={styles.propertyGrid}>
-            {rockProperties.map((p) => (
-              <div key={p.title} className={`${styles.propertyCard} animate-on-scroll`}>
-                <div className={styles.propIcon}>{p.icon}</div>
-                <div className={styles.propStat}>{p.stat}</div>
-                <h4 className={styles.propTitle}>{p.title}</h4>
-                <p className={styles.propDesc}>{p.desc}</p>
-              </div>
-            ))}
+            {rockProperties.map((p) => {
+              const PropertyIcon = p.Icon;
+              return (
+                <div key={p.title} className={`${styles.propertyCard} animate-on-scroll`}>
+                  <div className={styles.propIcon}>
+                    <PropertyIcon className={iconStyles.svgIconMd} aria-hidden />
+                  </div>
+                  <div className={styles.propStat}>{p.stat}</div>
+                  <h4 className={styles.propTitle}>{p.title}</h4>
+                  <p className={styles.propDesc}>{p.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* TEAM PLACEHOLDER */}
       <section className={`${styles.teamSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ marginBottom: '48px' }}>
+          <div className={`${styles.sectionIntroTight} animate-on-scroll`}>
             <span className="sectionLabel">Leadership</span>
             <h2 className="sectionTitle">The Team Behind Basalt</h2>
           </div>
@@ -220,7 +248,7 @@ export default function AboutPage() {
             {['Chief Executive Officer', 'Chief Technology Officer', 'VP of Operations', 'Head of Investments'].map((role) => (
               <div key={role} className={`${styles.teamCard} animate-on-scroll`}>
                 <div className={styles.teamAvatar}>
-                  <div className={styles.avatarIcon}>◎</div>
+                  <IconUserCircle className={iconStyles.svgIconXl} aria-hidden />
                 </div>
                 <div className={styles.teamName}>Coming Soon</div>
                 <div className={styles.teamRole}>{role}</div>
@@ -230,6 +258,6 @@ export default function AboutPage() {
           <p className={styles.teamNote}>Leadership team announcements coming in 2026</p>
         </div>
       </section>
-    </>
+    </div>
   );
 }

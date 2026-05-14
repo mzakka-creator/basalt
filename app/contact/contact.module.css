@@ -1,55 +1,3 @@
-/* ==================== PAGE HERO ==================== */
-.pageHero {
-  position: relative;
-  min-height: 48vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  padding-top: var(--navbar-height);
-}
-
-.pageHeroBg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, #080f08 0%, #111a11 40%, #0a0a0a 100%);
-}
-
-.pageHeroBg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--stone-texture);
-  opacity: 0.7;
-}
-
-.pageHeroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 28px 72px;
-  animation: fadeInUp 0.9s ease both;
-}
-
-.pageTitle {
-  font-family: var(--font-oswald);
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  margin: 12px 0 20px;
-}
-
-.pageSubtitle {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.55);
-  max-width: 520px;
-  line-height: 1.7;
-}
-
 /* ==================== INFO CARDS ==================== */
 .infoSection {
   background: #111;
@@ -83,7 +31,8 @@
 }
 
 .infoIcon {
-  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
   color: var(--green-accent);
   margin-bottom: 6px;
   line-height: 1;
@@ -120,9 +69,12 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--green-accent);
-  transition: letter-spacing 0.2s ease;
+  transition: letter-spacing 0.2s ease, gap 0.2s ease;
   margin-top: 4px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .infoLink:hover {
@@ -274,12 +226,14 @@
 
 .selectArrow {
   position: absolute;
-  right: 14px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.35);
   pointer-events: none;
-  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .submitBtn {
@@ -310,6 +264,8 @@
 
 .submitArrow {
   transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
 }
 
 .submitBtn:hover .submitArrow {
@@ -334,7 +290,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
   color: var(--white);
   margin-bottom: 8px;
 }
@@ -521,8 +476,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55);
   flex-shrink: 0;
 }
 
@@ -549,8 +503,11 @@
 }
 
 .trustIcon {
-  font-size: 1.8rem;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-accent);
 }
 
 .trustTitle {

@@ -1,7 +1,29 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useState } from 'react';
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconCoins,
+  IconGrid3x3,
+  IconHexagon,
+  IconLandmark,
+  IconLayers,
+  IconLeaf,
+  IconMesh,
+  IconPanel,
+  IconScale,
+  IconShield,
+  IconThermometer,
+  IconWrench,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './products.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -19,10 +41,18 @@ function useScrollAnimation() {
   }, []);
 }
 
-const products = [
+const products: {
+  id: number;
+  Icon: SvgIcon;
+  name: string;
+  category: string;
+  desc: string;
+  specs: string[];
+  highlight: string;
+}[] = [
   {
     id: 1,
-    icon: '⊞',
+    Icon: IconGrid3x3,
     name: 'Basalt Fiber Reinforced Polymer (BFRP) Bars',
     category: 'Reinforcement',
     desc: 'Next-generation rebar alternative offering 2× the tensile strength of steel at one-quarter the weight. Completely corrosion-proof — ideal for bridges, tunnels, and marine infrastructure.',
@@ -31,7 +61,7 @@ const products = [
   },
   {
     id: 2,
-    icon: '◻',
+    Icon: IconLayers,
     name: 'Basalt Crushed Stone & Aggregates',
     category: 'Aggregates',
     desc: 'High-purity crushed basalt stone for road construction, concrete mixes, and ballast. Superior hardness and abrasion resistance versus limestone or granite alternatives.',
@@ -40,7 +70,7 @@ const products = [
   },
   {
     id: 3,
-    icon: '▦',
+    Icon: IconPanel,
     name: 'Basalt Fiber Insulation Panels',
     category: 'Insulation',
     desc: 'Thermal and acoustic insulation panels woven from basalt fiber. Superior fire resistance (non-combustible at 700°C+), moisture-proof, and eco-friendly. No chemical binders required.',
@@ -49,7 +79,7 @@ const products = [
   },
   {
     id: 4,
-    icon: '⊟',
+    Icon: IconMesh,
     name: 'Basalt Rebar & Mesh',
     category: 'Reinforcement',
     desc: 'Continuous basalt fiber rebar and welded mesh grids for concrete slab reinforcement. Replaces conventional steel mesh with lighter, corrosion-free, long-lasting alternatives.',
@@ -58,13 +88,22 @@ const products = [
   },
   {
     id: 5,
-    icon: '◈',
+    Icon: IconWrench,
     name: 'Custom Construction Solutions',
     category: 'Custom',
     desc: 'Bespoke basalt-based construction components engineered to your project specifications. From geogrids to chopped fiber additives for concrete mixes — we engineer to your requirements.',
     specs: ['Custom dimensions on request', 'Project-specific engineering', 'Full technical support', 'Prototype to production'],
     highlight: 'Tailored to your project',
   },
+];
+
+const advantages: { Icon: SvgIcon; title: string; desc: string }[] = [
+  { Icon: IconShield, title: 'Corrosion-Free', desc: 'Unlike steel, basalt fiber products never rust — ideal for coastal, saline, and humid environments.' },
+  { Icon: IconThermometer, title: 'Fire Resistant', desc: 'Class A1 non-combustible. Stable performance from -260°C to +700°C — no toxic fumes.' },
+  { Icon: IconScale, title: 'Lighter than Steel', desc: 'At 2.1–2.7 g/cm³ vs steel\'s 7.8 g/cm³, basalt materials reduce structural load significantly.' },
+  { Icon: IconLeaf, title: 'Eco-Friendly', desc: '100% natural volcanic rock origin. No synthetic binders. Significantly lower carbon footprint.' },
+  { Icon: IconCoins, title: 'Long-Term Value', desc: 'Higher upfront savings in infrastructure with 50+ year service life vs 15–20 years for steel.' },
+  { Icon: IconLandmark, title: 'Local Supply Chain', desc: 'Saudi-manufactured means shorter supply chains, lower import costs, and Vision 2030 compliance.' },
 ];
 
 const categories = ['All', 'Reinforcement', 'Aggregates', 'Insulation', 'Custom'];
@@ -85,23 +124,23 @@ export default function ProductsPage() {
 
   return (
     <>
-      {/* PAGE HERO */}
-      <section className={styles.pageHero}>
-        <div className={styles.pageHeroBg} />
-        <div className={styles.pageHeroContent}>
-          <span className="sectionLabel">Our Products</span>
-          <h1 className={styles.pageTitle}>Basalt-Based<br />Construction Materials</h1>
-          <p className={styles.pageSubtitle}>
-            Five core product lines engineered from volcanic basalt rock — stronger, lighter, and more durable than conventional alternatives.
-          </p>
-        </div>
-        <div className={styles.comingSoonBanner}>
-          <span className={styles.bannerPulse} />
-          Products Available Upon Factory Opening — 2028
-        </div>
-      </section>
+      <PageHero
+        tagline="Our Products"
+        title={
+          <>
+            Basalt-Based<br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>Construction Materials</span>
+          </>
+        }
+        subtitle="Five core product lines engineered from volcanic basalt rock — stronger, lighter, and more durable than conventional alternatives."
+        banner={
+          <div className={styles.comingSoonBanner}>
+            <span className={styles.bannerPulse} />
+            Products Available Upon Factory Opening — 2028
+          </div>
+        }
+      />
 
-      {/* FILTER */}
       <section className={styles.filterSection}>
         <div className={styles.filterInner}>
           <span className={styles.filterLabel}>Filter by category:</span>
@@ -109,6 +148,7 @@ export default function ProductsPage() {
             {categories.map((cat) => (
               <button
                 key={cat}
+                type="button"
                 className={`${styles.filterTab} ${activeCategory === cat ? styles.tabActive : ''}`}
                 onClick={() => handleCategoryChange(cat)}
               >
@@ -119,18 +159,18 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* PRODUCT GRID */}
       <section className={`${styles.productsSection} section`}>
         <div className="container">
           <div className={styles.productGrid}>
-            {filtered.map((product, index) => (
+            {filtered.map((product, index) => {
+              const ProductIcon = product.Icon;
+              return (
               <div
                 key={product.id}
                 className={`${styles.productCard} ${flipped === product.id ? styles.flipped : ''}`}
                 style={{ animationDelay: `${index * 0.07}s` }}
                 onClick={() => setFlipped(flipped === product.id ? null : product.id)}
               >
-                {/* Coming Soon Overlay */}
                 <div className={styles.comingSoonOverlay}>
                   <div className={styles.comingSoonBadge}>
                     <span className={styles.csBadgePulse} />
@@ -138,23 +178,25 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                {/* Front */}
                 <div className={styles.cardFront}>
                   <div className={styles.cardCategory}>{product.category}</div>
-                  <div className={styles.cardIcon}>{product.icon}</div>
+                  <div className={styles.cardIcon}>
+                    <ProductIcon className={iconStyles.svgIconLg} aria-hidden />
+                  </div>
                   <h3 className={styles.cardName}>{product.name}</h3>
                   <p className={styles.cardDesc}>{product.desc}</p>
                   <div className={styles.cardHighlight}>
-                    <span className={styles.highlightDot}>◆</span>
+                    <IconHexagon className={`${iconStyles.svgIconSm} ${styles.highlightIcon}`} aria-hidden />
                     {product.highlight}
                   </div>
-                  <button className={styles.learnMoreBtn}>
+                  <button type="button" className={styles.learnMoreBtn}>
                     View Specs
-                    <span className={styles.learnArrow}>→</span>
+                    <span className={styles.learnArrow}>
+                      <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                    </span>
                   </button>
                 </div>
 
-                {/* Back (specs) */}
                 <div className={styles.cardBack}>
                   <div className={styles.cardCategory}>{product.category}</div>
                   <h3 className={styles.cardName}>{product.name}</h3>
@@ -162,41 +204,39 @@ export default function ProductsPage() {
                     <p className={styles.specsTitle}>Technical Specifications</p>
                     {product.specs.map((spec) => (
                       <div key={spec} className={styles.specItem}>
-                        <span className={styles.specDot}>→</span>
+                        <span className={styles.specDot}>
+                          <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                        </span>
                         {spec}
                       </div>
                     ))}
                   </div>
-                  <button className={styles.backBtn}>
-                    ← Back
+                  <button type="button" className={styles.backBtn}>
+                    <IconArrowLeft className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                    Back
                   </button>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* WHY OUR PRODUCTS */}
       <section className={`${styles.whySection} section`}>
         <div className="container">
-          <div className={`animate-on-scroll`} style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className={`${styles.whySectionHead} animate-on-scroll`}>
             <span className="sectionLabel">Advantages</span>
-            <h2 className="sectionTitle" style={{ textAlign: 'center' }}>Why Choose Basalt Materials?</h2>
+            <h2 className="sectionTitle">Why Choose Basalt Materials?</h2>
           </div>
           <div className={styles.advantageGrid}>
-            {[
-              { icon: '⚡', title: 'Corrosion-Free', desc: 'Unlike steel, basalt fiber products never rust — ideal for coastal, saline, and humid environments.' },
-              { icon: '🌡', title: 'Fire Resistant', desc: 'Class A1 non-combustible. Stable performance from -260°C to +700°C — no toxic fumes.' },
-              { icon: '⚖', title: 'Lighter than Steel', desc: 'At 2.1–2.7 g/cm³ vs steel\'s 7.8 g/cm³, basalt materials reduce structural load significantly.' },
-              { icon: '♻', title: 'Eco-Friendly', desc: '100% natural volcanic rock origin. No synthetic binders. Significantly lower carbon footprint.' },
-              { icon: '💰', title: 'Long-Term Value', desc: 'Higher upfront savings in infrastructure with 50+ year service life vs 15–20 years for steel.' },
-              { icon: '🇸🇦', title: 'Local Supply Chain', desc: 'Saudi-manufactured means shorter supply chains, lower import costs, and Vision 2030 compliance.' },
-            ].map((a) => (
-              <div key={a.title} className={`${styles.advantageItem} animate-on-scroll`}>
-                <div className={styles.advIcon}>{a.icon}</div>
-                <h4 className={styles.advTitle}>{a.title}</h4>
-                <p className={styles.advDesc}>{a.desc}</p>
+            {advantages.map(({ Icon: AdvIcon, title, desc }) => (
+              <div key={title} className={`${styles.advantageItem} animate-on-scroll`}>
+                <div className={styles.advIcon}>
+                  <AdvIcon className={iconStyles.svgIconLg} aria-hidden />
+                </div>
+                <h4 className={styles.advTitle}>{title}</h4>
+                <p className={styles.advDesc}>{desc}</p>
               </div>
             ))}
           </div>

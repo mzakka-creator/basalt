@@ -1,7 +1,27 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useState } from 'react';
+import {
+  IconArrowRight,
+  IconCheck,
+  IconClock,
+  IconDownload,
+  IconFileText,
+  IconHexagon,
+  IconLandmark,
+  IconLeaf,
+  IconLock,
+  IconScale,
+  IconTarget,
+  IconTrendingUp,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './investments.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -75,13 +95,13 @@ const marketStats = [
   { value: '0', label: 'Domestic basalt manufacturers in Saudi Arabia currently' },
 ];
 
-const benefits = [
-  { icon: '◎', title: 'First-Mover Advantage', desc: 'Be part of the only dedicated basalt factory in Saudi Arabia — before the market matures.' },
-  { icon: '🇸🇦', title: 'Vision 2030 Aligned', desc: 'NEOM, Red Sea, Diriyah Gate — all require massive construction materials locally sourced.' },
-  { icon: '📈', title: 'High-Growth Sector', desc: 'The global basalt fiber market is forecast to reach USD 4.2 billion by 2032 at 14% CAGR.' },
-  { icon: '♻', title: 'ESG Credentials', desc: 'Green material credentials support ESG mandates for institutional and sovereign investors.' },
-  { icon: '⚖', title: 'Import Substitution', desc: 'Saudi Arabia imports 100% of its basalt materials. We eliminate that dependency.' },
-  { icon: '⬡', title: 'Diversified Revenue', desc: 'Multiple product lines across aggregates, fiber products, and custom solutions reduce risk.' },
+const benefits: { Icon: SvgIcon; title: string; desc: string }[] = [
+  { Icon: IconTarget, title: 'First-Mover Advantage', desc: 'Be part of the only dedicated basalt factory in Saudi Arabia — before the market matures.' },
+  { Icon: IconLandmark, title: 'Vision 2030 Aligned', desc: 'NEOM, Red Sea, Diriyah Gate — all require massive construction materials locally sourced.' },
+  { Icon: IconTrendingUp, title: 'High-Growth Sector', desc: 'The global basalt fiber market is forecast to reach USD 4.2 billion by 2032 at 14% CAGR.' },
+  { Icon: IconLeaf, title: 'ESG Credentials', desc: 'Green material credentials support ESG mandates for institutional and sovereign investors.' },
+  { Icon: IconScale, title: 'Import Substitution', desc: 'Saudi Arabia imports 100% of its basalt materials. We eliminate that dependency.' },
+  { Icon: IconHexagon, title: 'Diversified Revenue', desc: 'Multiple product lines across aggregates, fiber products, and custom solutions reduce risk.' },
 ];
 
 type FormState = {
@@ -129,36 +149,32 @@ export default function InvestmentsPage() {
 
   return (
     <>
-      {/* PAGE HERO */}
-      <section className={styles.pageHero}>
-        <div className={styles.pageHeroBg} />
-        <div className={styles.pageHeroContent}>
-          <span className="sectionLabel">Investments & Partnerships</span>
-          <h1 className={styles.pageTitle}>
+      <PageHero
+        tagline="Investments & Partnerships"
+        title={
+          <>
             Partner With the<br />
-            <span className={styles.heroAccent}>Future of Construction</span>
-          </h1>
-          <p className={styles.pageSubtitle}>
-            Secure your position as a founding partner in Saudi Arabia&rsquo;s first basalt materials factory.
-            Opportunities are limited and selective.
-          </p>
-          <div className={styles.heroStats}>
-            {marketStats.map((s) => (
-              <div key={s.label} className={styles.heroStat}>
-                <div className={styles.heroStatValue}>{s.value}</div>
-                <div className={styles.heroStatLabel}>{s.label}</div>
-              </div>
-            ))}
-          </div>
+            <span className={pageHeroStyles.heroHeadlineAccent}>Future of Construction</span>
+          </>
+        }
+        subtitle="Secure your position as a founding partner in Saudi Arabia&rsquo;s first basalt materials factory. Opportunities are limited and selective."
+      >
+        <div className={styles.heroStats}>
+          {marketStats.map((s) => (
+            <div key={s.label} className={styles.heroStat}>
+              <div className={styles.heroStatValue}>{s.value}</div>
+              <div className={styles.heroStatLabel}>{s.label}</div>
+            </div>
+          ))}
         </div>
-      </section>
+      </PageHero>
 
       {/* TIERS */}
       <section className={`${styles.tiersSection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className={`${styles.tiersSectionHead} animate-on-scroll`}>
             <span className="sectionLabel">Partnership Tiers</span>
-            <h2 className="sectionTitle" style={{ textAlign: 'center' }}>Three Ways to Partner</h2>
+            <h2 className="sectionTitle">Three Ways to Partner</h2>
             <p className={styles.sectionDesc}>
               Choose the partnership model that best fits your strategic or financial objectives.
             </p>
@@ -175,7 +191,7 @@ export default function InvestmentsPage() {
                 <ul className={styles.tierBenefits}>
                   {tier.benefits.map((b) => (
                     <li key={b} className={styles.tierBenefit}>
-                      <span className={styles.benefitCheck}>✓</span>
+                      <IconCheck className={`${iconStyles.svgIconSm} ${styles.benefitCheck}`} aria-hidden />
                       {b}
                     </li>
                   ))}
@@ -188,7 +204,9 @@ export default function InvestmentsPage() {
                   }}
                 >
                   {tier.cta}
-                  <span className={styles.ctaArrow}>→</span>
+                  <span className={styles.ctaArrow}>
+                    <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                  </span>
                 </button>
               </div>
             ))}
@@ -199,21 +217,25 @@ export default function InvestmentsPage() {
       {/* WHY INVEST */}
       <section className={`${styles.whySection} section`}>
         <div className="container">
-          <div className="animate-on-scroll" style={{ marginBottom: '56px' }}>
+          <div className={`${styles.whyInvestHead} animate-on-scroll`}>
             <span className="sectionLabel">Why Invest</span>
             <h2 className="sectionTitle">The Investment Case</h2>
           </div>
           <div className={styles.benefitsGrid}>
-            {benefits.map((b) => (
-              <div key={b.title} className={`${styles.benefitCard} animate-on-scroll`}>
-                <div className={styles.benefitIcon}>{b.icon}</div>
-                <h4 className={styles.benefitTitle}>{b.title}</h4>
-                <p className={styles.benefitDesc}>{b.desc}</p>
+            {benefits.map(({ Icon: BenefitIcon, title, desc }) => (
+              <div key={title} className={`${styles.benefitCard} animate-on-scroll`}>
+                <div className={styles.benefitIcon}>
+                  <BenefitIcon className={iconStyles.svgIconLg} aria-hidden />
+                </div>
+                <h4 className={styles.benefitTitle}>{title}</h4>
+                <p className={styles.benefitDesc}>{desc}</p>
               </div>
             ))}
           </div>
           <div className={`${styles.vision2030Banner} animate-on-scroll`}>
-            <div className={styles.visionFlag}>🇸🇦</div>
+            <div className={styles.visionFlag}>
+              <IconLandmark className={iconStyles.svgIconXl} aria-hidden />
+            </div>
             <div>
               <h3 className={styles.visionTitle}>Saudi Vision 2030</h3>
               <p className={styles.visionDesc}>
@@ -239,20 +261,27 @@ export default function InvestmentsPage() {
               </p>
               <div className={styles.formSideInfo}>
                 <div className={styles.sideInfoItem}>
-                  <span className={styles.sideIcon}>🔒</span>
+                  <span className={styles.sideIcon}>
+                    <IconLock className={iconStyles.svgIcon} aria-hidden />
+                  </span>
                   <span>All enquiries are strictly confidential</span>
                 </div>
                 <div className={styles.sideInfoItem}>
-                  <span className={styles.sideIcon}>⏱</span>
+                  <span className={styles.sideIcon}>
+                    <IconClock className={iconStyles.svgIcon} aria-hidden />
+                  </span>
                   <span>Response within 48 business hours</span>
                 </div>
                 <div className={styles.sideInfoItem}>
-                  <span className={styles.sideIcon}>📄</span>
+                  <span className={styles.sideIcon}>
+                    <IconFileText className={iconStyles.svgIcon} aria-hidden />
+                  </span>
                   <span>Investment deck available upon request</span>
                 </div>
               </div>
-              <button className={styles.brochureBtn}>
-                ⬇ Download Investment Brochure
+              <button type="button" className={styles.brochureBtn}>
+                <IconDownload className={iconStyles.svgIcon} aria-hidden />
+                Download Investment Brochure
                 <span className={styles.brochureNote}>(Coming Soon)</span>
               </button>
             </div>
@@ -260,7 +289,9 @@ export default function InvestmentsPage() {
             <div className={`${styles.formCard} animate-on-scroll`}>
               {submitted ? (
                 <div className={styles.successState}>
-                  <div className={styles.successIcon}>✓</div>
+                  <div className={styles.successIcon}>
+                    <IconCheck className={iconStyles.svgIconLg} aria-hidden />
+                  </div>
                   <h3 className={styles.successTitle}>Inquiry Received</h3>
                   <p className={styles.successText}>
                     Thank you for your interest in partnering with Basalt Co.
@@ -336,7 +367,9 @@ export default function InvestmentsPage() {
 
                   <button className={styles.submitBtn} onClick={handleSubmit}>
                     Submit Partnership Inquiry
-                    <span>→</span>
+                    <span className={styles.submitArrow}>
+                      <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                    </span>
                   </button>
                 </>
               )}

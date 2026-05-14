@@ -1,8 +1,25 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import {
+  IconAbout,
+  IconArrowRight,
+  IconFactory,
+  IconInvestments,
+  IconLeaf,
+  IconLocation,
+  IconProducts,
+  IconStrength,
+  IconThermometer,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './page.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -58,101 +75,76 @@ function AnimatedCounter({ target, suffix = '', label }: { target: number; suffi
   );
 }
 
-const teaserCards = [
+const teaserCards: {
+  href: string;
+  Icon: SvgIcon;
+  title: string;
+  desc: string;
+  accent: string;
+}[] = [
   {
     href: '/about',
-    icon: '◈',
+    Icon: IconAbout,
     title: 'Who Are We',
     desc: 'Discover our vision, mission, and the 3-year roadmap to becoming Saudi Arabia\'s premier basalt manufacturer.',
-    accent: 'Our Story →',
+    accent: 'Our Story',
   },
   {
     href: '/products',
-    icon: '⬡',
+    Icon: IconProducts,
     title: 'Our Products',
     desc: 'From BFRP bars to insulation panels — cutting-edge basalt construction materials engineered for modern infrastructure.',
-    accent: 'View Products →',
+    accent: 'View Products',
   },
   {
     href: '/factory',
-    icon: '⚙',
+    Icon: IconFactory,
     title: 'The Factory',
     desc: 'Explore our planned facility, production process, and the advanced technology that sets us apart.',
-    accent: 'See Factory →',
+    accent: 'See Factory',
   },
   {
     href: '/investments',
-    icon: '◎',
+    Icon: IconInvestments,
     title: 'Investments',
     desc: 'Partner with a Vision 2030-aligned opportunity. Explore strategic, distribution, and financial partnership tiers.',
-    accent: 'Invest Now →',
+    accent: 'Invest Now',
   },
 ];
 
-type Particle = {
-  left: string;
-  animationDelay: string;
-  animationDuration: string;
-  width: string;
-  height: string;
-  opacity: number;
-};
+const introFeatures: { Icon: SvgIcon; stat: string; label: string }[] = [
+  { Icon: IconThermometer, stat: '700°C', label: 'Heat resistance threshold' },
+  { Icon: IconStrength, stat: '3×', label: 'Stronger than fiberglass' },
+  { Icon: IconLeaf, stat: '100%', label: 'Natural, non-toxic material' },
+  { Icon: IconLocation, stat: '2028', label: 'Factory opening, Saudi Arabia' },
+];
 
 export default function HomePage() {
   useScrollAnimation();
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 20 }, () => ({
-        left: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * 8}s`,
-        animationDuration: `${6 + Math.random() * 6}s`,
-        width: `${2 + Math.random() * 3}px`,
-        height: `${2 + Math.random() * 3}px`,
-        opacity: 0.3 + Math.random() * 0.4,
-      }))
-    );
-  }, []);
 
   return (
     <>
-      {/* HERO */}
-      <section className={styles.hero}>
-        <div className={styles.heroBackground}>
-          <div className={styles.heroGradient} />
-          <div className={styles.heroTexture} />
-          <div className={styles.heroParticles}>
-            {particles.map((p, i) => (
-              <div key={i} className={styles.particle} style={p} />
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.heroContent}>
-          <div className={styles.heroTagline}>
-            <span className={styles.taglineDot} />
-            Saudi Arabia — Est. 2028
-          </div>
-          <h1 className={styles.heroHeadline}>
+      <PageHero
+        tagline="Saudi Arabia — Est. 2028"
+        title={
+          <>
             Building Tomorrow,<br />
-            <span className={styles.heroHeadlineAccent}>From the Earth&rsquo;s Core</span>
-          </h1>
-          <p className={styles.heroSubheadline}>
-            Saudi Arabia&rsquo;s upcoming premium basalt construction materials manufacturer
-          </p>
-          <div className={styles.heroCtas}>
-            <Link href="/products" className={styles.ctaPrimary}>
-              Explore Products
-              <span className={styles.ctaArrow}>→</span>
-            </Link>
-            <Link href="/investments" className={styles.ctaOutline}>
-              Investment Opportunities
-              <span className={styles.ctaArrow}>→</span>
-            </Link>
-          </div>
+            <span className={pageHeroStyles.heroHeadlineAccent}>From the Earth&rsquo;s Core</span>
+          </>
+        }
+        subtitle="Saudi Arabia&rsquo;s upcoming premium basalt construction materials manufacturer"
+      >
+        <div className={styles.heroCtas}>
+          <Link href="/products" className={styles.ctaPrimary}>
+            Explore Products
+            <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
+          </Link>
+          <Link href="/investments" className={styles.ctaOutline}>
+            Investment Opportunities
+            <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
+          </Link>
         </div>
-      </section>
+      </PageHero>
 
       {/* COUNTERS */}
       <section className={styles.counters}>
@@ -185,18 +177,18 @@ export default function HomePage() {
           </div>
 
           <div className={styles.introFeatures}>
-            {[
-              { icon: '🌡', stat: '700°C', label: 'Heat resistance threshold' },
-              { icon: '⚖', stat: '3×', label: 'Stronger than fiberglass' },
-              { icon: '♻', stat: '100%', label: 'Natural, non-toxic material' },
-              { icon: '🇸🇦', stat: '2028', label: 'Factory opening, Saudi Arabia' },
-            ].map((f) => (
-              <div key={f.label} className={`${styles.featureItem} animate-on-scroll`}>
-                <div className={styles.featureIcon}>{f.icon}</div>
-                <div className={styles.featureStat}>{f.stat}</div>
-                <div className={styles.featureLabel}>{f.label}</div>
-              </div>
-            ))}
+            {introFeatures.map((f) => {
+              const FeatureIcon = f.Icon;
+              return (
+                <div key={f.label} className={`${styles.featureItem} animate-on-scroll`}>
+                  <div className={styles.featureIconWrap}>
+                    <FeatureIcon className={iconStyles.svgIcon} aria-hidden />
+                  </div>
+                  <div className={styles.featureStat}>{f.stat}</div>
+                  <div className={styles.featureLabel}>{f.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -204,22 +196,30 @@ export default function HomePage() {
       {/* TEASER CARDS */}
       <section className={`${styles.teasers} section`}>
         <div className="container">
-          <div className={`animate-on-scroll`} style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className={`${styles.teasersHead} animate-on-scroll`}>
             <span className="sectionLabel">Explore Basalt</span>
-            <h2 className="sectionTitle" style={{ textAlign: 'center' }}>Everything You Need to Know</h2>
+            <h2 className="sectionTitle">Everything You Need to Know</h2>
           </div>
           <div className={styles.teaserGrid}>
-            {teaserCards.map((card) => (
-              <Link key={card.href} href={card.href} className={`${styles.teaserCard} animate-on-scroll`}>
-                <div className={styles.teaserCardInner}>
-                  <div className={styles.teaserIcon}>{card.icon}</div>
-                  <h3 className={styles.teaserTitle}>{card.title}</h3>
-                  <p className={styles.teaserDesc}>{card.desc}</p>
-                  <span className={styles.teaserCta}>{card.accent}</span>
-                </div>
-                <div className={styles.teaserHoverBg} />
-              </Link>
-            ))}
+            {teaserCards.map((card) => {
+              const TeaserIcon = card.Icon;
+              return (
+                <Link key={card.href} href={card.href} className={`${styles.teaserCard} animate-on-scroll`}>
+                  <div className={styles.teaserCardInner}>
+                    <div className={styles.teaserIconWrap} aria-hidden>
+                      <TeaserIcon className={iconStyles.svgIcon} />
+                    </div>
+                    <h3 className={styles.teaserTitle}>{card.title}</h3>
+                    <p className={styles.teaserDesc}>{card.desc}</p>
+                    <span className={styles.teaserCta}>
+                      {card.accent}
+                      <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.teaserCtaArrow}`} aria-hidden />
+                    </span>
+                  </div>
+                  <div className={styles.teaserHoverBg} />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -236,9 +236,9 @@ export default function HomePage() {
             Secure your position as a strategic partner before our factory opens in 2028.
             Investment opportunities are limited and selective.
           </p>
-          <Link href="/investments" className={styles.ctaPrimary} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <Link href="/investments" className={`${styles.ctaPrimary} ${styles.ctaBannerLink}`}>
             Explore Investment Tiers
-            <span>→</span>
+            <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
           </Link>
         </div>
       </section>

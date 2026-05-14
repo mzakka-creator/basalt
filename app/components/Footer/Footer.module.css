@@ -136,8 +136,10 @@
 }
 
 .contactIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--green-accent);
-  font-size: 0.9rem;
   flex-shrink: 0;
   margin-top: 1px;
 }

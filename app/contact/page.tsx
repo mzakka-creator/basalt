@@ -1,7 +1,27 @@
 'use client';
 
+import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useState } from 'react';
+import {
+  IconArrowRight,
+  IconCheck,
+  IconChevronDown,
+  IconClock,
+  IconInstagram,
+  IconLandmark,
+  IconLinkedin,
+  IconLocation,
+  IconMail,
+  IconPhone,
+  IconTwitter,
+  IconYoutube,
+} from '@/app/components/icons/SiteIcons';
+import iconStyles from '@/app/components/icons/icons.module.css';
+import PageHero from '@/app/components/PageHero/PageHero';
+import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import styles from './contact.module.css';
+
+type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -37,6 +57,13 @@ type FormState = {
   subject: string;
   message: string;
 };
+
+const socialLinks: { label: string; url: string; Icon: SvgIcon }[] = [
+  { label: 'LinkedIn', url: '#', Icon: IconLinkedin },
+  { label: 'X (Twitter)', url: '#', Icon: IconTwitter },
+  { label: 'Instagram', url: '#', Icon: IconInstagram },
+  { label: 'YouTube', url: '#', Icon: IconYoutube },
+];
 
 export default function ContactPage() {
   useScrollAnimation();
@@ -75,46 +102,58 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* PAGE HERO */}
-      <section className={styles.pageHero}>
-        <div className={styles.pageHeroBg} />
-        <div className={styles.pageHeroContent}>
-          <span className="sectionLabel">Contact Us</span>
-          <h1 className={styles.pageTitle}>Let&rsquo;s Start<br />a Conversation</h1>
-          <p className={styles.pageSubtitle}>
-            Have a question, investment inquiry, or just want to know more?
-            Our team is ready to respond within 48 hours.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        tagline="Contact Us"
+        title={
+          <>
+            Let&rsquo;s Start<br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>a Conversation</span>
+          </>
+        }
+        subtitle="Have a question, investment inquiry, or just want to know more? Our team is ready to respond within 48 hours."
+      />
 
       {/* CONTACT INFO CARDS */}
       <section className={`${styles.infoSection} section`}>
         <div className="container">
           <div className={styles.infoGrid}>
             <div className={`${styles.infoCard} animate-on-scroll`}>
-              <div className={styles.infoIcon}>✉</div>
+              <div className={styles.infoIcon}>
+                <IconMail className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h3 className={styles.infoTitle}>Email</h3>
               <p className={styles.infoValue}>info@basalt.com.sa</p>
               <p className={styles.infoSub}>For general inquiries</p>
-              <a href="mailto:info@basalt.com.sa" className={styles.infoLink}>Send Email →</a>
+              <a href="mailto:info@basalt.com.sa" className={styles.infoLink}>
+                Send Email
+                <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+              </a>
             </div>
             <div className={`${styles.infoCard} animate-on-scroll`}>
-              <div className={styles.infoIcon}>✆</div>
+              <div className={styles.infoIcon}>
+                <IconPhone className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h3 className={styles.infoTitle}>Phone</h3>
               <p className={styles.infoValue}>+966 XX XXX XXXX</p>
               <p className={styles.infoSub}>Sun – Thu, 9:00 AM – 5:00 PM AST</p>
-              <a href="tel:+966XXXXXXXX" className={styles.infoLink}>Call Us →</a>
+              <a href="tel:+966XXXXXXXX" className={styles.infoLink}>
+                Call Us
+                <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+              </a>
             </div>
             <div className={`${styles.infoCard} animate-on-scroll`}>
-              <div className={styles.infoIcon}>◎</div>
+              <div className={styles.infoIcon}>
+                <IconLocation className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h3 className={styles.infoTitle}>Location</h3>
               <p className={styles.infoValue}>Kingdom of Saudi Arabia</p>
               <p className={styles.infoSub}>Factory site — to be announced</p>
               <span className={styles.infoLink}>Riyadh Registered Office</span>
             </div>
             <div className={`${styles.infoCard} ${styles.infoCardHighlight} animate-on-scroll`}>
-              <div className={styles.infoIcon}>⏱</div>
+              <div className={styles.infoIcon}>
+                <IconClock className={iconStyles.svgIconLg} aria-hidden />
+              </div>
               <h3 className={styles.infoTitle}>Response Time</h3>
               <p className={styles.infoValue}>Within 48 Hours</p>
               <p className={styles.infoSub}>We respond to every inquiry</p>
@@ -140,7 +179,9 @@ export default function ContactPage() {
 
               {submitted ? (
                 <div className={styles.successState}>
-                  <div className={styles.successIcon}>✓</div>
+                  <div className={styles.successIcon}>
+                    <IconCheck className={iconStyles.svgIconLg} aria-hidden />
+                  </div>
                   <h3 className={styles.successTitle}>Message Sent!</h3>
                   <p className={styles.successText}>
                     Thank you for reaching out. We&rsquo;ll get back to you within 48 hours.
@@ -214,7 +255,9 @@ export default function ContactPage() {
                           <option key={s} value={s}>{s}</option>
                         ))}
                       </select>
-                      <span className={styles.selectArrow}>▾</span>
+                      <span className={styles.selectArrow}>
+                        <IconChevronDown className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                      </span>
                     </div>
                   </div>
 
@@ -232,7 +275,9 @@ export default function ContactPage() {
 
                   <button className={styles.submitBtn} onClick={handleSubmit}>
                     Send Message
-                    <span className={styles.submitArrow}>→</span>
+                    <span className={styles.submitArrow}>
+                      <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                    </span>
                   </button>
                 </div>
               )}
@@ -261,15 +306,12 @@ export default function ContactPage() {
                   Stay updated on factory progress, product launches, and investment opportunities.
                 </p>
                 <div className={styles.socialLinks}>
-                  {[
-                    { label: 'LinkedIn', icon: 'in', url: '#' },
-                    { label: 'X (Twitter)', icon: '𝕏', url: '#' },
-                    { label: 'Instagram', icon: '▣', url: '#' },
-                    { label: 'YouTube', icon: '▶', url: '#' },
-                  ].map((s) => (
-                    <a key={s.label} href={s.url} className={styles.socialItem}>
-                      <span className={styles.socialIcon}>{s.icon}</span>
-                      <span className={styles.socialName}>{s.label}</span>
+                  {socialLinks.map(({ label, url, Icon: SocialIcon }) => (
+                    <a key={label} href={url} className={styles.socialItem}>
+                      <span className={styles.socialIcon}>
+                        <SocialIcon className={iconStyles.svgIcon} aria-hidden />
+                      </span>
+                      <span className={styles.socialName}>{label}</span>
                     </a>
                   ))}
                 </div>
@@ -278,7 +320,9 @@ export default function ContactPage() {
               {/* Trust Badge */}
               <div className={`${styles.trustCard} animate-on-scroll`}>
                 <div className={styles.trustContent}>
-                  <span className={styles.trustIcon}>🇸🇦</span>
+                  <span className={styles.trustIcon}>
+                    <IconLandmark className={iconStyles.svgIconLg} aria-hidden />
+                  </span>
                   <div>
                     <div className={styles.trustTitle}>Registered in Saudi Arabia</div>
                     <div className={styles.trustSub}>Fully compliant with Saudi commercial law</div>
