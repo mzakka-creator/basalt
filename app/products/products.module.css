@@ -1,0 +1,460 @@
+/* ==================== PAGE HERO ==================== */
+.pageHero {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-bottom: 72px;
+  overflow: hidden;
+  padding-top: var(--navbar-height);
+}
+
+.pageHeroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #080f08 0%, #111a11 40%, #0a0a0a 100%);
+}
+
+.pageHeroBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--stone-texture);
+  opacity: 0.7;
+}
+
+.pageHeroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+  animation: fadeInUp 0.9s ease both;
+}
+
+.pageTitle {
+  font-family: var(--font-oswald);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  margin: 12px 0 20px;
+}
+
+.pageSubtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+.comingSoonBanner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: rgba(67, 160, 71, 0.12);
+  border-top: 1px solid rgba(67, 160, 71, 0.25);
+  padding: 14px 28px;
+  font-family: var(--font-oswald);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.bannerPulse {
+  width: 8px;
+  height: 8px;
+  background: var(--green-accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ==================== FILTER ==================== */
+.filterSection {
+  background: #111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 20px 0;
+  position: sticky;
+  top: var(--navbar-height);
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.filterInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-family: var(--font-source-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterTab {
+  font-family: var(--font-oswald);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 7px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.filterTab:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.filterTab.tabActive {
+  color: var(--white);
+  background: var(--green-accent);
+  border-color: var(--green-accent);
+}
+
+/* ==================== PRODUCTS SECTION ==================== */
+.productsSection {
+  background: var(--grey-dark);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Card flip container */
+.productCard {
+  position: relative;
+  height: 460px;
+  perspective: 1200px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  animation: cardAppear 0.4s ease both;
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 32px 28px;
+  backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.cardFront {
+  background: #151515;
+  transform: rotateY(0deg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardFront::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover .cardFront::after {
+  transform: scaleX(1);
+}
+
+.cardBack {
+  background: linear-gradient(160deg, #0d1a0e, #111);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.productCard.flipped .cardFront {
+  transform: rotateY(-180deg);
+}
+
+.productCard.flipped .cardBack {
+  transform: rotateY(0deg);
+}
+
+/* Coming Soon Overlay */
+.comingSoonOverlay {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+}
+
+.comingSoonBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(67, 160, 71, 0.4);
+  border-radius: 2px;
+  font-family: var(--font-oswald);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  backdrop-filter: blur(4px);
+}
+
+.csBadgePulse {
+  width: 5px;
+  height: 5px;
+  background: var(--green-accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.cardCategory {
+  font-family: var(--font-source-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-accent);
+}
+
+.cardIcon {
+  font-size: 2.2rem;
+  color: rgba(67, 160, 71, 0.7);
+  line-height: 1;
+}
+
+.cardName {
+  font-family: var(--font-oswald);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.cardHighlight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-source-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+
+.highlightDot {
+  font-size: 0.5rem;
+  color: var(--green-accent);
+}
+
+.learnMoreBtn,
+.backBtn {
+  font-family: var(--font-oswald);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  margin-top: auto;
+  transition: gap 0.2s ease;
+}
+
+.learnMoreBtn:hover,
+.backBtn:hover {
+  gap: 10px;
+}
+
+.learnArrow {
+  transition: transform 0.2s ease;
+}
+
+.learnMoreBtn:hover .learnArrow {
+  transform: translateX(4px);
+}
+
+/* Back of card */
+.specsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.specsTitle {
+  font-family: var(--font-oswald);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 4px;
+}
+
+.specItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.specDot {
+  color: var(--green-accent);
+  font-size: 0.75rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ==================== WHY SECTION ==================== */
+.whySection {
+  background: #0d1a0e;
+}
+
+.advantageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.advantageItem {
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.advantageItem:hover {
+  background: rgba(67, 160, 71, 0.06);
+  border-color: rgba(67, 160, 71, 0.2);
+  transform: translateY(-4px);
+}
+
+.advIcon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+
+.advTitle {
+  font-family: var(--font-oswald);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.advDesc {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .advantageGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productCard {
+    height: auto;
+    perspective: none;
+  }
+
+  .cardFront,
+  .cardBack {
+    position: static;
+    backface-visibility: visible;
+    transform: none !important;
+    transition: none;
+  }
+
+  .productCard.flipped .cardFront {
+    display: none;
+  }
+
+  .productCard:not(.flipped) .cardBack {
+    display: none;
+  }
+
+  .advantageGrid {
+    grid-template-columns: 1fr;
+  }
+}
