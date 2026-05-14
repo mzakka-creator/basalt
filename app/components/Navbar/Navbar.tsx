@@ -18,7 +18,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState<'EN' | 'AR'>('EN');
   const pathname = usePathname();
 
   useEffect(() => {
@@ -70,16 +69,6 @@ export default function Navbar() {
           {/* Right Controls */}
           <div className={styles.controls}>
             <button
-              className={styles.langToggle}
-              onClick={() => setLang(lang === 'EN' ? 'AR' : 'EN')}
-              aria-label="Toggle language"
-            >
-              <span className={lang === 'EN' ? styles.langActive : ''}>EN</span>
-              <span className={styles.langSep}>|</span>
-              <span className={lang === 'AR' ? styles.langActive : ''}>AR</span>
-            </button>
-
-            <button
               className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
@@ -122,14 +111,6 @@ export default function Navbar() {
           ))}
         </ul>
         <div className={styles.drawerFooter}>
-          <button
-            className={styles.langToggle}
-            onClick={() => setLang(lang === 'EN' ? 'AR' : 'EN')}
-          >
-            <span className={lang === 'EN' ? styles.langActive : ''}>EN</span>
-            <span className={styles.langSep}>|</span>
-            <span className={lang === 'AR' ? styles.langActive : ''}>AR</span>
-          </button>
           <p className={styles.drawerBadge}>Opening 2028</p>
         </div>
       </div>

@@ -200,30 +200,6 @@
   transform: translateX(4px);
 }
 
-.heroScroll {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-source-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
-  animation: fadeIn 2s 1.5s both;
-}
-
-.scrollLine {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, transparent, var(--green-accent));
-  animation: pulse 2s ease-in-out infinite;
-}
-
 /* ==================== COUNTERS ==================== */
 .counters {
   background: linear-gradient(90deg, var(--green-dark) 0%, var(--green-mid) 50%, var(--green-dark) 100%);

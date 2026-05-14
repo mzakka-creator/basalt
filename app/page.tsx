@@ -151,10 +151,6 @@ export default function HomePage() {
               <span className={styles.ctaArrow}>→</span>
             </Link>
           </div>
-          <div className={styles.heroScroll}>
-            <div className={styles.scrollLine} />
-            <span>Scroll to discover</span>
-          </div>
         </div>
       </section>
 
