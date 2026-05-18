@@ -37,7 +37,8 @@ export default function PageHero({ tagline, title, subtitle, children, banner }:
   }, []);
 
   return (
-    <section className={styles.hero}>
+    <section className={`rock-surface ${styles.hero}`}>
+      <div className="rock-surface-highlight" aria-hidden />
       <div className={styles.heroBackground}>
         <div className={styles.heroGradient} />
         <div className={styles.heroTexture} />

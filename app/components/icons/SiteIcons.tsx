@@ -276,6 +276,21 @@ export function IconRecycle(props: IconProps) {
   );
 }
 
+/** Material utilization — near-zero waste (factory environmental card) */
+export function IconWasteReduction(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 4 7.5 7v4h9V7z" />
+      <path d="M12 4 7.5 7" />
+      <path d="M12 4l4.5 3" />
+      <path d="M12 7v4" />
+      <path d="M4 15.5h16v3H4z" />
+      <path d="M4 16.25h14.75" />
+      <path d="M18.75 16.5v2.5" />
+    </svg>
+  );
+}
+
 export function IconDroplets(props: IconProps) {
   return (
     <svg {...base} {...props}>

@@ -226,7 +226,6 @@ export default function HomePage() {
 
       {/* CTA BANNER */}
       <section className={styles.ctaBanner}>
-        <div className={styles.ctaBannerTexture} />
         <div className={`${styles.ctaBannerContent} animate-on-scroll`}>
           <span className="sectionLabel">Partner With Us</span>
           <h2 className={styles.ctaBannerTitle}>

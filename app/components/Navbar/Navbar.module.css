@@ -5,18 +5,51 @@
   right: 0;
   z-index: 100;
   height: var(--navbar-height);
-  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-  background: rgba(27, 94, 32, 0.08);
+  transition: box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  background: transparent;
+}
+
+/* Let logo rock texture show through at top of hero */
+.navbar::before {
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+
+.navbar::after {
+  opacity: 0.4;
+  transition: opacity 0.35s ease;
+}
+
+.navbar :global(.rock-surface-highlight) {
+  opacity: 0.5;
+  transition: opacity 0.35s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(27, 27, 27, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 2px 24px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(232, 236, 239, 0.12),
+    inset 0 -1px 0 rgba(42, 50, 56, 0.4);
+  border-bottom: 1px solid rgba(154, 163, 173, 0.2);
+}
+
+.navbar.scrolled::before {
+  opacity: 0.92;
+}
+
+.navbar.scrolled::after {
+  opacity: 0.65;
+}
+
+.navbar.scrolled :global(.rock-surface-highlight) {
+  opacity: 1;
 }
 
 .inner {
+  position: relative;
+  z-index: 3;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 28px;
@@ -194,14 +227,31 @@
   right: 0;
   width: min(320px, 85vw);
   height: 100dvh;
-  background: #111;
+  background: #2a3238;
   z-index: 200;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   padding: 28px 24px;
-  border-left: 1px solid rgba(67, 160, 71, 0.2);
+  border-left: 1px solid rgba(154, 163, 173, 0.25);
+}
+
+.mobileDrawer::before {
+  opacity: 0.9;
+}
+
+.mobileDrawer::after {
+  opacity: 0.6;
+}
+
+.mobileDrawer :global(.rock-surface-highlight) {
+  opacity: 0.9;
+}
+
+.mobileDrawer > *:not(:global(.rock-surface-highlight)) {
+  position: relative;
+  z-index: 3;
 }
 
 .mobileDrawer.drawerOpen {

@@ -12,8 +12,8 @@ import {
   IconGear,
   IconLocation,
   IconMountain,
-  IconRecycle,
   IconRefreshCw,
+  IconWasteReduction,
   IconRoute,
   IconWind,
   IconZap,
@@ -92,7 +92,7 @@ const equipment = [
 const envStandards: { Icon: SvgIcon; label: string; desc: string }[] = [
   { Icon: IconDroplets, label: 'Zero liquid discharge', desc: 'Full water recycling system within the factory' },
   { Icon: IconWind, label: 'Air quality', desc: 'NCEC-compliant filtration on all production exhausts' },
-  { Icon: IconRecycle, label: 'Waste reduction', desc: '95%+ material utilization — near-zero production waste' },
+  { Icon: IconWasteReduction, label: 'Waste reduction', desc: '95%+ material utilization — near-zero production waste' },
   { Icon: IconZap, label: 'Energy efficiency', desc: 'Renewable energy target: 40% solar-powered by 2030' },
 ];
 
@@ -117,14 +117,6 @@ export default function FactoryPage() {
           </>
         }
         subtitle="A state-of-the-art facility designed to transform raw volcanic basalt into premium construction materials at industrial scale."
-        banner={
-          <div className={styles.constructionBanner}>
-            <span className={styles.bannerIcon}>
-              <IconConstruction className={iconStyles.svgIconMd} aria-hidden />
-            </span>
-            Under Development — Factory Opening 2028
-          </div>
-        }
       />
 
       <section className={`${styles.locationSection} section`}>
@@ -207,7 +199,7 @@ export default function FactoryPage() {
             <div className="animate-on-scroll">
               <span className="sectionLabel">Technology</span>
               <h2 className="sectionTitle">Equipment & Technology</h2>
-              <p className={styles.bodyText} style={{ marginBottom: '36px' }}>
+              <p className={`${styles.bodyText} ${styles.equipIntro}`}>
                 Our facility will be equipped with industry-leading European and Asian machinery,
                 combining proven technology with cutting-edge automation.
               </p>

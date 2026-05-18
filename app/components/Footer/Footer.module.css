@@ -1,16 +1,18 @@
 .footer {
-  background: #0d1a0e;
+  background: linear-gradient(180deg, #0d1a0e 0%, #0a120b 100%);
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(67, 160, 71, 0.15);
 }
 
-.texture {
+.footer::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: var(--stone-texture);
-  opacity: 0.6;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green-accent);
+  z-index: 2;
 }
 
 .inner {

@@ -1,0 +1,91 @@
+/**
+ * Basalt logo rock identity — light grey stone, directional gradient,
+ * and fine grain. Apply via .rock-surface (nav + hero only).
+ */
+
+:root {
+  /* Logo-matched stone palette */
+  --stone-highlight: #e8ecef;
+  --stone-light: #c4c9ce;
+  --stone-mid: #8a939c;
+  --stone-dark: #4a545c;
+  --stone-shadow: #2a3238;
+
+  /* Directional lighting — top-left highlight like the logo */
+  --stone-gradient: linear-gradient(
+    145deg,
+    var(--stone-highlight) 0%,
+    var(--stone-light) 22%,
+    var(--stone-mid) 55%,
+    var(--stone-dark) 82%,
+    var(--stone-shadow) 100%
+  );
+
+  --stone-gradient-subtle: linear-gradient(
+    155deg,
+    rgba(232, 236, 239, 0.14) 0%,
+    rgba(154, 163, 173, 0.08) 40%,
+    rgba(74, 84, 92, 0.12) 100%
+  );
+
+  --stone-base: linear-gradient(
+    160deg,
+    #3a4248 0%,
+    #4f5860 18%,
+    #6b7580 42%,
+    #8d97a0 58%,
+    #b5bcc4 72%,
+    #9aa3ab 85%,
+    #5c656d 100%
+  );
+
+  /* Fine pitting / grain */
+  --stone-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+
+  --stone-texture: var(--stone-grain);
+  --stone-texture-size: 128px 128px;
+}
+
+/* Shared rock surface — nav bar & hero backgrounds only */
+.rock-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.rock-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--stone-base);
+  opacity: 1;
+}
+
+.rock-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--stone-grain);
+  background-size: var(--stone-texture-size);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  animation: stoneShift 32s linear infinite;
+}
+
+/* Directional highlight overlay (logo top-left light) */
+.rock-surface-highlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 236, 239, 0.22) 0%,
+    rgba(196, 201, 206, 0.06) 35%,
+    transparent 55%,
+    rgba(42, 50, 56, 0.25) 100%
+  );
+}

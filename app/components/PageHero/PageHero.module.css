@@ -11,41 +11,47 @@
 .heroBackground {
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
+}
+
+/* Logo rock base + green atmosphere — layered under .rock-surface grain */
+.hero::before {
+  opacity: 0.55;
+}
+
+.hero::after {
+  opacity: 0.7;
+}
+
+.hero :global(.rock-surface-highlight) {
+  opacity: 0.85;
+  z-index: 1;
 }
 
 .heroGradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    160deg,
-    #0a0a0a 0%,
-    #111a11 25%,
-    #0d1a0e 50%,
-    #080f08 75%,
-    #000 100%
-  );
+  z-index: 0;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(10, 12, 14, 0.75) 0%,
+      rgba(13, 26, 14, 0.65) 30%,
+      rgba(8, 15, 8, 0.8) 60%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
 }
 
 .heroTexture {
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
-      transparent 1px,
-      transparent 10px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0.01) 0px,
-      rgba(255, 255, 255, 0.01) 1px,
-      transparent 1px,
-      transparent 10px
-    );
-  animation: stoneShift 20s linear infinite;
+  z-index: 0;
+  background: var(--stone-grain);
+  background-size: 160px 160px;
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+  animation: stoneShift 28s linear infinite;
 }
 
 .heroParticles {
@@ -81,7 +87,7 @@
 
 .heroForeground {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   flex: 1;
   width: 100%;
   min-height: 100vh;

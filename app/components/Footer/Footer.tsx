@@ -22,8 +22,6 @@ const companyLinks = [
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.texture} />
-
       <div className={styles.inner}>
         {/* Brand Column */}
         <div className={styles.brand}>

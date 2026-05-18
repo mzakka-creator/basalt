@@ -133,12 +133,6 @@ export default function ProductsPage() {
           </>
         }
         subtitle="Five core product lines engineered from volcanic basalt rock — stronger, lighter, and more durable than conventional alternatives."
-        banner={
-          <div className={styles.comingSoonBanner}>
-            <span className={styles.bannerPulse} />
-            Products Available Upon Factory Opening — 2028
-          </div>
-        }
       />
 
       <section className={styles.filterSection}>

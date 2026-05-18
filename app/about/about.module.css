@@ -57,11 +57,20 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--green-accent);
+  opacity: 0.5;
+  box-shadow: inset 0 1px 0 rgba(232, 236, 239, 0.25);
 }
 
 .vmCardAccent::before {
-  background: var(--green-accent);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--green-accent) 35%,
+    var(--green-accent) 65%,
+    transparent 100%
+  );
+  opacity: 1;
 }
 
 .vmCard:hover {
@@ -440,13 +449,25 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .timeline {
+    gap: 20px;
+    padding-top: 4px;
+  }
+
   .timelineLine {
-    left: 24px;
+    left: 23px;
+    transform: none;
   }
 
   .timelineItem {
     grid-template-columns: 48px 1fr;
     grid-template-rows: auto;
+    align-items: start;
+    min-height: 0;
+  }
+
+  .timelineCard {
+    padding: 0;
   }
 
   .timelineLeft .timelineCard,
@@ -454,8 +475,11 @@
     grid-column: 2;
     grid-row: 1;
     text-align: left;
-    padding-left: 24px;
-    padding-right: 0;
+    padding: 20px;
+    margin: 0;
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 4px;
   }
 
   .timelineLeft .timelineDesc {
@@ -470,9 +494,12 @@
     grid-column: 1;
     grid-row: 1;
     justify-content: flex-start;
-    padding-left: 14px;
+    align-self: start;
+    padding-left: 15px;
+    padding-top: 26px;
   }
 
+  .timelineLeft .timelineNode,
   .timelineRight .timelineNode {
     grid-column: 1;
     grid-row: 1;
@@ -518,44 +545,60 @@
     font-size: 0.92rem;
   }
 
+  .timeline {
+    gap: 14px;
+  }
+
   .timelineLine {
-    left: 18px;
+    left: 17px;
   }
 
   .timelineItem {
-    grid-template-columns: 36px 1fr;
-    min-height: 0;
+    grid-template-columns: 34px 1fr;
   }
 
   .timelineNode {
-    padding-left: 8px;
+    padding-left: 7px;
+    padding-top: 22px;
+  }
+
+  .timelineDot {
+    width: 16px;
+    height: 16px;
   }
 
   .timelineLeft .timelineCard,
   .timelineRight .timelineCard {
-    padding-left: 16px;
+    padding: 16px;
   }
 
   .timelineYear {
-    font-size: 2.25rem;
+    font-size: 2rem;
+    margin-bottom: 2px;
   }
 
   .timelineTitle {
-    font-size: 1.05rem;
+    font-size: 1rem;
     letter-spacing: 0.03em;
+    margin-bottom: 8px;
   }
 
   .timelinePhase {
+    font-size: 0.68rem;
     letter-spacing: 0.12em;
+    margin-bottom: 4px;
   }
 
   .timelineDesc {
     font-size: 0.84rem;
+    line-height: 1.6;
   }
 
   .timelineBadge {
     font-size: 0.65rem;
     letter-spacing: 0.06em;
+    margin-top: 10px;
+    flex-wrap: wrap;
   }
 
   .dotCurrent {
@@ -600,5 +643,33 @@
   .teamNote {
     font-size: 0.82rem;
     padding: 0 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .timelineLine {
+    left: 15px;
+  }
+
+  .timelineItem {
+    grid-template-columns: 30px 1fr;
+  }
+
+  .timelineNode {
+    padding-left: 5px;
+    padding-top: 18px;
+  }
+
+  .timelineLeft .timelineCard,
+  .timelineRight .timelineCard {
+    padding: 14px;
+  }
+
+  .timelineYear {
+    font-size: 1.75rem;
+  }
+
+  .timelineTitle {
+    font-size: 0.95rem;
   }
 }

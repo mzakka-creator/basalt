@@ -1,24 +1,14 @@
+@import './styles/rock-brand.css';
+
 :root {
   --green-dark: #1B5E20;
   --green-mid: #2E7D32;
   --green-accent: #43A047;
   --grey-dark: #2C2C2C;
   --grey-mid: #4A4A4A;
-  --grey-light: #E8E8E8;
+  --grey-light: var(--stone-light);
   --white: #FFFFFF;
-  --stone-texture: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.02) 0px,
-    rgba(255, 255, 255, 0.02) 1px,
-    transparent 1px,
-    transparent 8px
-  );
   --navbar-height: 72px;
-}
-
-@keyframes stoneShift {
-  0% { background-position: 0 0; }
-  100% { background-position: 56px 56px; }
 }
 
 *,
@@ -100,8 +90,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes stoneShift {
-  0% { background-position: 0 0; }
-  100% { background-position: 56px 56px; }
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 48px 48px, 18px 18px, -22px 22px; }
 }
 
 .animate-on-scroll {
@@ -130,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Section title */
 .sectionLabel {
   display: inline-block;
+  position: relative;
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
@@ -137,6 +128,18 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   color: var(--green-accent);
   margin-bottom: 12px;
+  padding-left: 14px;
+}
+
+.sectionLabel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--green-accent);
+  border-radius: 1px;
 }
 
 .sectionTitle {

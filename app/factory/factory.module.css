@@ -258,6 +258,10 @@
   align-items: start;
 }
 
+.equipIntro {
+  margin-bottom: 36px;
+}
+
 .equipList {
   display: flex;
   flex-direction: column;
@@ -279,6 +283,9 @@
   font-weight: 600;
   color: var(--white);
   letter-spacing: 0.04em;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.35;
 }
 
 .equipSpec {
@@ -482,5 +489,87 @@
 
   .envGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .equipGrid {
+    gap: 32px;
+  }
+
+  .equipIntro {
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .equipItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .equipName {
+    font-size: 0.9rem;
+    line-height: 1.35;
+    width: 100%;
+  }
+
+  .equipSpec {
+    text-align: left;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .capacityBox {
+    padding: 28px 20px;
+  }
+
+  .capacityTitle {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+  }
+
+  .capStat {
+    padding: 16px 0;
+  }
+
+  .capValue {
+    font-size: 2rem;
+  }
+
+  .capUnit {
+    font-size: 0.7rem;
+  }
+
+  .capLabel {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .capacityNote {
+    margin-top: 20px;
+    font-size: 0.72rem;
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .equipItem {
+    padding: 12px 0;
+  }
+
+  .capacityBox {
+    padding: 24px 16px;
+  }
+
+  .capValue {
+    font-size: 1.75rem;
+  }
+
+  .capacityTitle {
+    font-size: 1.05rem;
   }
 }

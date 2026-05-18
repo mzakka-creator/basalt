@@ -37,7 +37,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      <nav className={`rock-surface ${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+        <div className="rock-surface-highlight" aria-hidden />
         <div className={styles.inner}>
           {/* Logo */}
           <Link href="/" className={styles.logo}>
@@ -87,7 +88,8 @@ export default function Navbar() {
         className={`${styles.mobileOverlay} ${menuOpen ? styles.overlayVisible : ''}`}
         onClick={() => setMenuOpen(false)}
       />
-      <div className={`${styles.mobileDrawer} ${menuOpen ? styles.drawerOpen : ''}`}>
+      <div className={`rock-surface ${styles.mobileDrawer} ${menuOpen ? styles.drawerOpen : ''}`}>
+        <div className="rock-surface-highlight" aria-hidden />
         <div className={styles.drawerLogo}>
           <Image
             src="/logo.png"
