@@ -1,7 +1,10 @@
 .footer {
-  background: linear-gradient(180deg, #0d1a0e 0%, #0a120b 100%);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(42, 160, 109, 0.16), transparent 30%),
+    linear-gradient(180deg, var(--basalt-panel) 0%, #07100e 100%);
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--basalt-line);
 }
 
 .footer::before {
@@ -11,7 +14,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--green-accent);
+  background: linear-gradient(90deg, transparent, var(--green-bright), transparent);
   z-index: 2;
 }
 
@@ -52,10 +55,10 @@
 }
 
 .tagline {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(213, 215, 207, 0.58);
   letter-spacing: 0.03em;
   line-height: 1.5;
 }
@@ -65,21 +68,21 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border: 1px solid rgba(67, 160, 71, 0.4);
-  border-radius: 2px;
-  font-family: var(--font-oswald);
+  border: 1px solid rgba(124, 207, 154, 0.42);
+  border-radius: 4px;
+  font-family: var(--font-heading);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
   width: fit-content;
 }
 
 .badgeDot {
   width: 6px;
   height: 6px;
-  background: var(--green-accent);
+  background: var(--green-bright);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -92,14 +95,14 @@
 }
 
 .colTitle {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(213, 215, 207, 0.48);
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--basalt-line);
 }
 
 .linkCol ul {
@@ -111,13 +114,13 @@
 
 .footerLink {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(213, 215, 207, 0.58);
   transition: color 0.2s ease, padding-left 0.2s ease;
   display: block;
 }
 
 .footerLink:hover {
-  color: var(--green-accent);
+  color: var(--green-bright);
   padding-left: 6px;
 }
 
@@ -133,7 +136,7 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(213, 215, 207, 0.58);
   line-height: 1.4;
 }
 
@@ -141,7 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--green-accent);
+  color: var(--green-bright);
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -159,24 +162,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--basalt-line);
   border-radius: 3px;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(213, 215, 207, 0.52);
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   font-style: normal;
   text-decoration: none;
 }
 
 .socialLink:hover {
-  border-color: var(--green-accent);
-  color: var(--green-accent);
-  background: rgba(67, 160, 71, 0.08);
+  border-color: var(--green-bright);
+  color: var(--green-bright);
+  background: rgba(42, 160, 109, 0.1);
 }
 
 /* Bottom bar */
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--basalt-line);
   position: relative;
   z-index: 1;
 }
@@ -203,7 +206,7 @@
 }
 
 .visionHighlight {
-  color: var(--green-accent);
+  color: var(--green-bright);
   font-weight: 600;
 }
 

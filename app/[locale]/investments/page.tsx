@@ -19,9 +19,21 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import { useI18n } from '@/lib/i18n/i18n-context';
+import type { Messages } from '@/lib/i18n/messages';
 import styles from './investments.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+type TierId = Messages['investments']['tiers'][number]['id'];
+
+type FormState = {
+  name: string;
+  company: string;
+  email: string;
+  message: string;
+  partnerType: TierId;
+};
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -39,81 +51,20 @@ function useScrollAnimation() {
   }, []);
 }
 
-const tiers = [
-  {
-    id: 'financial',
-    badge: '',
-    title: 'Financial Investor',
-    subtitle: 'Equity participation in Basalt Co.',
-    benefits: [
-      'Equity stake with dividend rights',
-      'Board observer seat (threshold-based)',
-      'Quarterly financial reporting',
-      'Pre-IPO positioning access',
-      'Transparent governance structure',
-    ],
-    cta: 'Inquire About Financial Investment',
-    featured: false,
-  },
-  {
-    id: 'strategic',
-    badge: 'Most Sought After',
-    title: 'Strategic Partner',
-    subtitle: 'Deep integration with Basalt operations',
-    benefits: [
-      'Exclusive regional distribution rights',
-      'Co-branding and white-label options',
-      'Priority product allocation',
-      'Joint R&D and product development',
-      'Board representation',
-      'Vision 2030 project pipeline access',
-    ],
-    cta: 'Apply as Strategic Partner',
-    featured: true,
-  },
-  {
-    id: 'distribution',
-    badge: '',
-    title: 'Distribution Partner',
-    subtitle: 'Market access across the GCC',
-    benefits: [
-      'Exclusive territory distribution rights',
-      'Sales training & technical support',
-      'Marketing materials & co-op advertising',
-      'Volume pricing and rebate structure',
-      'Basalt co-branding for your market',
-    ],
-    cta: 'Become a Distributor',
-    featured: false,
-  },
+const benefitIcons: SvgIcon[] = [
+  IconTarget,
+  IconLandmark,
+  IconTrendingUp,
+  IconLeaf,
+  IconScale,
+  IconHexagon,
 ];
-
-const marketStats = [
-  { value: '$1.5T', label: 'Saudi construction market projected value by 2030' },
-  { value: '847+', label: 'Active Vision 2030 projects requiring materials' },
-  { value: '14%', label: 'Annual growth rate of basalt fiber global market' },
-  { value: '0', label: 'Domestic basalt manufacturers in Saudi Arabia currently' },
-];
-
-const benefits: { Icon: SvgIcon; title: string; desc: string }[] = [
-  { Icon: IconTarget, title: 'First-Mover Advantage', desc: 'Be part of the only dedicated basalt factory in Saudi Arabia — before the market matures.' },
-  { Icon: IconLandmark, title: 'Vision 2030 Aligned', desc: 'NEOM, Red Sea, Diriyah Gate — all require massive construction materials locally sourced.' },
-  { Icon: IconTrendingUp, title: 'High-Growth Sector', desc: 'The global basalt fiber market is forecast to reach USD 4.2 billion by 2032 at 14% CAGR.' },
-  { Icon: IconLeaf, title: 'ESG Credentials', desc: 'Green material credentials support ESG mandates for institutional and sovereign investors.' },
-  { Icon: IconScale, title: 'Import Substitution', desc: 'Saudi Arabia imports 100% of its basalt materials. We eliminate that dependency.' },
-  { Icon: IconHexagon, title: 'Diversified Revenue', desc: 'Multiple product lines across aggregates, fiber products, and custom solutions reduce risk.' },
-];
-
-type FormState = {
-  name: string;
-  company: string;
-  email: string;
-  message: string;
-  partnerType: string;
-};
 
 export default function InvestmentsPage() {
   useScrollAnimation();
+  const { messages } = useI18n();
+  const inv = messages.investments;
+
   const [form, setForm] = useState<FormState>({
     name: '',
     company: '',
@@ -126,10 +77,10 @@ export default function InvestmentsPage() {
 
   const validate = () => {
     const e: Partial<FormState> = {};
-    if (!form.name.trim()) e.name = 'Name is required';
-    if (!form.company.trim()) e.company = 'Company is required';
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Valid email is required';
-    if (!form.message.trim()) e.message = 'Please describe your interest';
+    if (!form.name.trim()) e.name = inv.errors.name;
+    if (!form.company.trim()) e.company = inv.errors.company;
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = inv.errors.email;
+    if (!form.message.trim()) e.message = inv.errors.message;
     return e;
   };
 
@@ -142,7 +93,7 @@ export default function InvestmentsPage() {
     setSubmitted(true);
   };
 
-  const handleChange = (field: keyof FormState, value: string) => {
+  const handleChange = <K extends keyof FormState>(field: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
@@ -150,17 +101,18 @@ export default function InvestmentsPage() {
   return (
     <>
       <PageHero
-        tagline="Investments & Partnerships"
+        tagline={inv.heroTag}
         title={
           <>
-            Partner With the<br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>Future of Construction</span>
+            {inv.heroTitleLine1}
+            <br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>{inv.heroTitleAccent}</span>
           </>
         }
-        subtitle="Secure your position as a founding partner in Saudi Arabia&rsquo;s first basalt materials factory. Opportunities are limited and selective."
+        subtitle={inv.heroSubtitle}
       >
         <div className={styles.heroStats}>
-          {marketStats.map((s) => (
+          {inv.marketStats.map((s) => (
             <div key={s.label} className={styles.heroStat}>
               <div className={styles.heroStatValue}>{s.value}</div>
               <div className={styles.heroStatLabel}>{s.label}</div>
@@ -169,22 +121,20 @@ export default function InvestmentsPage() {
         </div>
       </PageHero>
 
-      {/* TIERS */}
       <section className={`${styles.tiersSection} section`}>
         <div className="container">
           <div className={`${styles.tiersSectionHead} animate-on-scroll`}>
-            <span className="sectionLabel">Partnership Tiers</span>
-            <h2 className="sectionTitle">Three Ways to Partner</h2>
-            <p className={styles.sectionDesc}>
-              Choose the partnership model that best fits your strategic or financial objectives.
-            </p>
+            <span className="sectionLabel">{inv.tiersLabel}</span>
+            <h2 className="sectionTitle">{inv.tiersTitle}</h2>
+            <p className={styles.sectionDesc}>{inv.tiersDesc}</p>
           </div>
           <div className={styles.tiersGrid}>
-            {tiers.map((tier) => (
-              <div key={tier.id} className={`${styles.tierCard} ${tier.featured ? styles.tierFeatured : ''} animate-on-scroll`}>
-                {tier.badge && (
-                  <div className={styles.tierBadge}>{tier.badge}</div>
-                )}
+            {inv.tiers.map((tier) => (
+              <div
+                key={tier.id}
+                className={`${styles.tierCard} ${tier.id === 'strategic' ? styles.tierFeatured : ''} animate-on-scroll`}
+              >
+                {tier.badge ? <div className={styles.tierBadge}>{tier.badge}</div> : null}
                 <div className={styles.tierTitle}>{tier.title}</div>
                 <div className={styles.tierSubtitle}>{tier.subtitle}</div>
                 <div className={styles.tierDivider} />
@@ -197,7 +147,8 @@ export default function InvestmentsPage() {
                   ))}
                 </ul>
                 <button
-                  className={tier.featured ? styles.tierCtaFeatured : styles.tierCta}
+                  type="button"
+                  className={tier.id === 'strategic' ? styles.tierCtaFeatured : styles.tierCta}
                   onClick={() => {
                     handleChange('partnerType', tier.id);
                     document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -214,75 +165,69 @@ export default function InvestmentsPage() {
         </div>
       </section>
 
-      {/* WHY INVEST */}
       <section className={`${styles.whySection} section`}>
         <div className="container">
           <div className={`${styles.whyInvestHead} animate-on-scroll`}>
-            <span className="sectionLabel">Why Invest</span>
-            <h2 className="sectionTitle">The Investment Case</h2>
+            <span className="sectionLabel">{inv.whyLabel}</span>
+            <h2 className="sectionTitle">{inv.whyTitle}</h2>
           </div>
           <div className={styles.benefitsGrid}>
-            {benefits.map(({ Icon: BenefitIcon, title, desc }) => (
-              <div key={title} className={`${styles.benefitCard} animate-on-scroll`}>
-                <div className={styles.benefitIcon}>
-                  <BenefitIcon className={iconStyles.svgIconLg} aria-hidden />
+            {inv.benefits.map(({ title, desc }, i) => {
+              const BenefitIcon = benefitIcons[i];
+              return (
+                <div key={title} className={`${styles.benefitCard} animate-on-scroll`}>
+                  <div className={styles.benefitIcon}>
+                    <BenefitIcon className={iconStyles.svgIconLg} aria-hidden />
+                  </div>
+                  <h4 className={styles.benefitTitle}>{title}</h4>
+                  <p className={styles.benefitDesc}>{desc}</p>
                 </div>
-                <h4 className={styles.benefitTitle}>{title}</h4>
-                <p className={styles.benefitDesc}>{desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className={`${styles.vision2030Banner} animate-on-scroll`}>
             <div className={styles.visionFlag}>
               <IconLandmark className={iconStyles.svgIconXl} aria-hidden />
             </div>
             <div>
-              <h3 className={styles.visionTitle}>Saudi Vision 2030</h3>
-              <p className={styles.visionDesc}>
-                Basalt Co. is directly aligned with Vision 2030&rsquo;s industrial diversification goals —
-                building Saudi manufacturing capacity, reducing imports, creating high-value jobs,
-                and supplying the Kingdom&rsquo;s unprecedented infrastructure buildout.
-              </p>
+              <h3 className={styles.visionTitle}>{inv.visionBannerTitle}</h3>
+              <p className={styles.visionDesc}>{inv.visionBannerDesc}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INQUIRY FORM */}
       <section id="inquiry-form" className={`${styles.formSection} section`}>
         <div className="container">
           <div className={styles.formGrid}>
-            <div className={`animate-on-scroll`}>
-              <span className="sectionLabel">Get In Touch</span>
-              <h2 className="sectionTitle">Start a Conversation</h2>
-              <p className={styles.formIntro}>
-                Fill in your details and our partnerships team will reach out within 48 hours
-                with a confidential information pack.
-              </p>
+            <div className="animate-on-scroll">
+              <span className="sectionLabel">{inv.formLabel}</span>
+              <h2 className="sectionTitle">{inv.formTitle}</h2>
+              <p className={styles.formIntro}>{inv.formIntro}</p>
               <div className={styles.formSideInfo}>
                 <div className={styles.sideInfoItem}>
                   <span className={styles.sideIcon}>
                     <IconLock className={iconStyles.svgIcon} aria-hidden />
                   </span>
-                  <span>All enquiries are strictly confidential</span>
+                  <span>{inv.formConfidential}</span>
                 </div>
                 <div className={styles.sideInfoItem}>
                   <span className={styles.sideIcon}>
                     <IconClock className={iconStyles.svgIcon} aria-hidden />
                   </span>
-                  <span>Response within 48 business hours</span>
+                  <span>{inv.formResponse}</span>
                 </div>
                 <div className={styles.sideInfoItem}>
                   <span className={styles.sideIcon}>
                     <IconFileText className={iconStyles.svgIcon} aria-hidden />
                   </span>
-                  <span>Investment deck available upon request</span>
+                  <span>{inv.formDeck}</span>
                 </div>
               </div>
               <button type="button" className={styles.brochureBtn}>
                 <IconDownload className={iconStyles.svgIcon} aria-hidden />
-                Download Investment Brochure
-                <span className={styles.brochureNote}>(Coming Soon)</span>
+                {inv.brochure}
+                <span className={styles.brochureNote}>{inv.brochureNote}</span>
               </button>
             </div>
 
@@ -292,21 +237,18 @@ export default function InvestmentsPage() {
                   <div className={styles.successIcon}>
                     <IconCheck className={iconStyles.svgIconLg} aria-hidden />
                   </div>
-                  <h3 className={styles.successTitle}>Inquiry Received</h3>
-                  <p className={styles.successText}>
-                    Thank you for your interest in partnering with Basalt Co.
-                    Our team will contact you within 48 hours.
-                  </p>
+                  <h3 className={styles.successTitle}>{inv.successTitle}</h3>
+                  <p className={styles.successText}>{inv.successText}</p>
                 </div>
               ) : (
                 <>
-                  {/* Partnership Type Selector */}
                   <div className={styles.formField}>
-                    <label className={styles.fieldLabel}>Partnership Type</label>
+                    <label className={styles.fieldLabel}>{inv.fieldPartnerType}</label>
                     <div className={styles.typeSelector}>
-                      {tiers.map((t) => (
+                      {inv.tiers.map((t) => (
                         <button
                           key={t.id}
+                          type="button"
                           className={`${styles.typeOption} ${form.partnerType === t.id ? styles.typeActive : ''}`}
                           onClick={() => handleChange('partnerType', t.id)}
                         >
@@ -318,22 +260,22 @@ export default function InvestmentsPage() {
 
                   <div className={styles.formRow}>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Full Name *</label>
+                      <label className={styles.fieldLabel}>{inv.fieldName}</label>
                       <input
                         className={`${styles.fieldInput} ${errors.name ? styles.fieldError : ''}`}
                         type="text"
-                        placeholder="Your full name"
+                        placeholder={inv.placeholderName}
                         value={form.name}
                         onChange={(e) => handleChange('name', e.target.value)}
                       />
                       {errors.name && <span className={styles.errorMsg}>{errors.name}</span>}
                     </div>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Company *</label>
+                      <label className={styles.fieldLabel}>{inv.fieldCompany}</label>
                       <input
                         className={`${styles.fieldInput} ${errors.company ? styles.fieldError : ''}`}
                         type="text"
-                        placeholder="Company or organization"
+                        placeholder={inv.placeholderCompany}
                         value={form.company}
                         onChange={(e) => handleChange('company', e.target.value)}
                       />
@@ -342,11 +284,11 @@ export default function InvestmentsPage() {
                   </div>
 
                   <div className={styles.formField}>
-                    <label className={styles.fieldLabel}>Email Address *</label>
+                    <label className={styles.fieldLabel}>{inv.fieldEmail}</label>
                     <input
                       className={`${styles.fieldInput} ${errors.email ? styles.fieldError : ''}`}
                       type="email"
-                      placeholder="your@company.com"
+                      placeholder={inv.placeholderEmail}
                       value={form.email}
                       onChange={(e) => handleChange('email', e.target.value)}
                     />
@@ -354,10 +296,10 @@ export default function InvestmentsPage() {
                   </div>
 
                   <div className={styles.formField}>
-                    <label className={styles.fieldLabel}>Message *</label>
+                    <label className={styles.fieldLabel}>{inv.fieldMessage}</label>
                     <textarea
                       className={`${styles.fieldTextarea} ${errors.message ? styles.fieldError : ''}`}
-                      placeholder="Describe your interest, background, and what you're looking for..."
+                      placeholder={inv.placeholderMessage}
                       value={form.message}
                       rows={5}
                       onChange={(e) => handleChange('message', e.target.value)}
@@ -365,8 +307,8 @@ export default function InvestmentsPage() {
                     {errors.message && <span className={styles.errorMsg}>{errors.message}</span>}
                   </div>
 
-                  <button className={styles.submitBtn} onClick={handleSubmit}>
-                    Submit Partnership Inquiry
+                  <button type="button" className={styles.submitBtn} onClick={handleSubmit}>
+                    {inv.submit}
                     <span className={styles.submitArrow}>
                       <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
                     </span>

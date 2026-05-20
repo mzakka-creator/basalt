@@ -5,8 +5,9 @@
   right: 0;
   z-index: 100;
   height: var(--navbar-height);
-  transition: box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  transition: box-shadow 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
   background: transparent;
+  border-bottom: 1px solid transparent;
 }
 
 /* Let logo rock texture show through at top of hero */
@@ -29,10 +30,10 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow:
-    0 2px 24px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(232, 236, 239, 0.12),
-    inset 0 -1px 0 rgba(42, 50, 56, 0.4);
-  border-bottom: 1px solid rgba(154, 163, 173, 0.2);
+    0 2px 28px rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(213, 215, 207, 0.12),
+    inset 0 -1px 0 rgba(15, 43, 36, 0.5);
+  border-bottom-color: var(--basalt-line);
 }
 
 .navbar.scrolled::before {
@@ -89,12 +90,12 @@
 }
 
 .navLink {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(213, 215, 207, 0.75);
   padding: 8px 14px;
   border-radius: 2px;
   transition: color 0.2s ease, background 0.2s ease;
@@ -109,7 +110,7 @@
   left: 14px;
   right: 14px;
   height: 2px;
-  background: var(--green-accent);
+  background: var(--green-bright);
   transform: scaleX(0);
   transition: transform 0.25s ease;
   transform-origin: left;
@@ -117,7 +118,7 @@
 
 .navLink:hover {
   color: var(--white);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(42, 160, 109, 0.13);
 }
 
 .navLink:hover::after,
@@ -137,8 +138,35 @@
   flex-shrink: 0;
 }
 
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 6px 10px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 4px;
+  background: rgba(11, 16, 16, 0.45);
+}
+
+.langLink {
+  color: rgba(213, 215, 207, 0.55);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 2px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.langLink:hover {
+  color: var(--white);
+  background: rgba(42, 160, 109, 0.15);
+}
+
 .langToggle {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -164,7 +192,7 @@
 }
 
 .langActive {
-  color: var(--green-accent);
+  color: var(--green-bright);
   font-weight: 700;
 }
 
@@ -185,7 +213,7 @@
 .hamburger span {
   display: block;
   height: 2px;
-  background: var(--white);
+  background: var(--sand-soft);
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
   transform-origin: center;
@@ -208,7 +236,7 @@
 .mobileOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.72);
   z-index: 150;
   opacity: 0;
   pointer-events: none;
@@ -227,14 +255,14 @@
   right: 0;
   width: min(320px, 85vw);
   height: 100dvh;
-  background: #2a3238;
+  background: var(--basalt-panel);
   z-index: 200;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   padding: 28px 24px;
-  border-left: 1px solid rgba(154, 163, 173, 0.25);
+  border-left: 1px solid var(--basalt-line-strong);
 }
 
 .mobileDrawer::before {
@@ -258,6 +286,12 @@
   transform: translateX(0);
 }
 
+.drawerLangLead {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .drawerLogo {
   display: flex;
   align-items: center;
@@ -275,12 +309,12 @@
 }
 
 .drawerLink {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(213, 215, 207, 0.72);
   padding: 14px 16px;
   border-radius: 3px;
   transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
@@ -290,12 +324,12 @@
 .drawerLink:hover,
 .drawerLink.drawerActive {
   color: var(--white);
-  background: rgba(67, 160, 71, 0.12);
+  background: rgba(42, 160, 109, 0.14);
   padding-left: 24px;
 }
 
 .drawerLink.drawerActive {
-  color: var(--green-accent);
+  color: var(--green-bright);
 }
 
 .drawerFooter {
@@ -307,19 +341,24 @@
 }
 
 .drawerBadge {
-  font-family: var(--font-oswald);
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
   padding: 4px 10px;
-  border: 1px solid var(--green-accent);
+  border: 1px solid var(--green-bright);
   border-radius: 2px;
+  margin-bottom: 16px;
 }
 
 @media (max-width: 900px) {
   .navLinks {
+    display: none;
+  }
+
+  .langSwitch {
     display: none;
   }
 
@@ -332,4 +371,26 @@
   .inner {
     padding: 0 20px;
   }
+}
+
+html[dir='rtl'] .navLink::after {
+  transform-origin: right;
+}
+
+html[dir='rtl'] .mobileDrawer {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--basalt-line-strong);
+  transform: translateX(-100%);
+}
+
+html[dir='rtl'] .mobileDrawer.drawerOpen {
+  transform: translateX(0);
+}
+
+html[dir='rtl'] .drawerLink:hover,
+html[dir='rtl'] .drawerLink.drawerActive {
+  padding-left: 16px;
+  padding-right: 24px;
 }

@@ -1,34 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { IconInstagram, IconLinkedin, IconLocation, IconMail, IconPhone } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
 import styles from './Footer.module.css';
-
-const productLinks = [
-  { label: 'BFRP Bars', href: '/products' },
-  { label: 'Crushed Stone', href: '/products' },
-  { label: 'Insulation Panels', href: '/products' },
-  { label: 'Basalt Rebar', href: '/products' },
-  { label: 'Custom Solutions', href: '/products' },
-];
-
-const companyLinks = [
-  { label: 'About Us', href: '/about' },
-  { label: 'Factory & Process', href: '/factory' },
-  { label: 'Investments', href: '/investments' },
-  { label: 'Contact', href: '/contact' },
-];
+import { useI18n } from '@/lib/i18n/i18n-context';
 
 export default function Footer() {
+  const { messages, href } = useI18n();
+  const f = messages.footer;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        {/* Brand Column */}
         <div className={styles.brand}>
-          <Link href="/" className={styles.logo}>
+          <Link href={href('/')} className={styles.logo}>
             <Image
               src="/logo.png"
-              alt="Basalt Logo"
+              alt="Basalt"
               width={130}
               height={48}
               className={styles.logoImg}
@@ -36,41 +26,44 @@ export default function Footer() {
             />
           </Link>
           <p className={styles.tagline}>
-            Building Tomorrow,<br />From the Earth&rsquo;s Core.
+            {f.taglineLine1}
+            <br />
+            {f.taglineLine2}
           </p>
           <div className={styles.openingBadge}>
             <span className={styles.badgeDot} />
-            Factory Opening 2028
+            {f.openingBadge}
           </div>
         </div>
 
-        {/* Products */}
         <div className={styles.linkCol}>
-          <h4 className={styles.colTitle}>Products</h4>
+          <h4 className={styles.colTitle}>{f.productsTitle}</h4>
           <ul>
-            {productLinks.map((l) => (
+            {f.productLinks.map((l) => (
               <li key={l.label}>
-                <Link href={l.href} className={styles.footerLink}>{l.label}</Link>
+                <Link href={href(l.path)} className={styles.footerLink}>
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Company */}
         <div className={styles.linkCol}>
-          <h4 className={styles.colTitle}>Company</h4>
+          <h4 className={styles.colTitle}>{f.companyTitle}</h4>
           <ul>
-            {companyLinks.map((l) => (
+            {f.companyLinks.map((l) => (
               <li key={l.label}>
-                <Link href={l.href} className={styles.footerLink}>{l.label}</Link>
+                <Link href={href(l.path)} className={styles.footerLink}>
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact Info */}
         <div className={styles.linkCol}>
-          <h4 className={styles.colTitle}>Get In Touch</h4>
+          <h4 className={styles.colTitle}>{f.touchTitle}</h4>
           <div className={styles.contactInfo}>
             <p className={styles.contactItem}>
               <span className={styles.contactIcon}>
@@ -88,14 +81,14 @@ export default function Footer() {
               <span className={styles.contactIcon}>
                 <IconLocation className={iconStyles.svgIcon} aria-hidden />
               </span>
-              Kingdom of Saudi Arabia
+              {f.location}
             </p>
           </div>
           <div className={styles.social}>
-            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+            <a href="#" className={styles.socialLink} aria-label={f.linkedin}>
               <IconLinkedin className={iconStyles.svgIcon} aria-hidden />
             </a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">
+            <a href="#" className={styles.socialLink} aria-label={f.instagram}>
               <IconInstagram className={iconStyles.svgIcon} aria-hidden />
             </a>
           </div>
@@ -104,12 +97,10 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <div className={styles.bottomInner}>
-          <p className={styles.copyright}>
-            © 2026 Basalt Co. — Saudi Arabia. All rights reserved.
-          </p>
+          <p className={styles.copyright}>{f.copyright}</p>
           <p className={styles.vision}>
-            Proudly aligned with{' '}
-            <span className={styles.visionHighlight}>Saudi Vision 2030</span>
+            {f.visionPrefix}{' '}
+            <span className={styles.visionHighlight}>{f.visionHighlight}</span>
           </p>
         </div>
       </div>

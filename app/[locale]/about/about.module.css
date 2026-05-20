@@ -24,14 +24,14 @@
 /* ==================== VISION / MISSION ==================== */
 .sectionDesc {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(213, 215, 207, 0.58);
   max-width: 540px;
   line-height: 1.75;
   margin-top: -4px;
 }
 
 .visionSection {
-  background: #111;
+  background: var(--basalt-black);
 }
 
 .vmGrid {
@@ -42,11 +42,11 @@
 
 .vmCard {
   padding: 48px 40px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 4px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  background: #141414;
+  background: var(--surface-card);
   transition: border-color 0.3s ease;
 }
 
@@ -57,7 +57,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--green-accent);
+  background: linear-gradient(90deg, var(--green-accent), var(--green-bright));
   opacity: 0.5;
   box-shadow: inset 0 1px 0 rgba(232, 236, 239, 0.25);
 }
@@ -66,7 +66,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--green-accent) 35%,
+    var(--green-bright) 35%,
     var(--green-accent) 65%,
     transparent 100%
   );
@@ -74,14 +74,15 @@
 }
 
 .vmCard:hover {
-  border-color: rgba(67, 160, 71, 0.3);
+  border-color: var(--basalt-line-strong);
+  box-shadow: var(--shadow-emerald);
 }
 
 .vmIcon {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: var(--green-accent);
+  color: var(--green-bright);
   margin-bottom: 20px;
 }
 
@@ -89,21 +90,21 @@
   font-family: var(--font-oswald);
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--sand-soft);
+  text-transform: none;
+  letter-spacing: 0.01em;
   margin-bottom: 16px;
 }
 
 .vmText {
   font-size: 0.97rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(213, 215, 207, 0.62);
   line-height: 1.8;
 }
 
 /* ==================== TIMELINE ==================== */
 .timelineSection {
-  background: var(--grey-dark);
+  background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
 }
 
 .timeline {
@@ -115,12 +116,12 @@
 
 .timelineLine {
   position: absolute;
-  left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--green-accent), rgba(67, 160, 71, 0.1));
-  transform: translateX(-50%);
+  inset-inline-start: 50%;
+  margin-inline-start: -1px;
+  background: linear-gradient(to bottom, var(--green-bright), rgba(42, 160, 109, 0.08));
 }
 
 .timelineItem {
@@ -136,11 +137,13 @@
   grid-column: 1;
   text-align: right;
   padding-right: 40px;
+  align-self: center;
 }
 
 .timelineRight .timelineCard {
   grid-column: 3;
   padding-left: 40px;
+  align-self: center;
 }
 
 .timelineRight .timelineNode {
@@ -156,6 +159,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   position: relative;
   z-index: 2;
 }
@@ -164,15 +168,15 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--grey-mid);
+  border: 2px solid var(--ash-muted);
   transition: background 0.3s ease;
 }
 
 .dotCurrent {
-  background: var(--green-accent);
-  border-color: var(--green-accent);
-  box-shadow: 0 0 0 6px rgba(67, 160, 71, 0.2), 0 0 0 12px rgba(67, 160, 71, 0.08);
+  background: var(--green-bright);
+  border-color: var(--green-bright);
+  box-shadow: 0 0 0 6px rgba(42, 160, 109, 0.22), 0 0 0 12px rgba(42, 160, 109, 0.08);
 }
 
 .dotTarget {
@@ -182,6 +186,7 @@
 
 .timelineCard {
   padding: 28px 0;
+  align-self: center;
 }
 
 .timelinePhase {
@@ -190,7 +195,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
   margin-bottom: 6px;
 }
 
@@ -198,7 +203,7 @@
   font-family: var(--font-oswald);
   font-size: 3rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.08);
+  color: rgba(213, 215, 207, 0.11);
   letter-spacing: 0.04em;
   line-height: 1;
   margin-bottom: 4px;
@@ -208,7 +213,7 @@
   font-family: var(--font-oswald);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--sand-soft);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 10px;
@@ -216,13 +221,21 @@
 
 .timelineDesc {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(213, 215, 207, 0.56);
   line-height: 1.65;
   max-width: 320px;
 }
 
 .timelineLeft .timelineDesc {
-  margin-left: auto;
+  margin-inline-start: auto;
+}
+
+/* RTL: phases 1 & 3 (timelineLeft) land on the right side of the spine —
+   flip text alignment and padding to match the right-side position */
+html[dir='rtl'] .timelineLeft .timelineCard {
+  text-align: left;
+  padding-right: 0;
+  padding-left: 40px;
 }
 
 .timelineBadge {
@@ -231,15 +244,15 @@
   gap: 6px;
   margin-top: 12px;
   padding: 4px 12px;
-  background: rgba(67, 160, 71, 0.12);
-  border: 1px solid rgba(67, 160, 71, 0.3);
+  background: rgba(42, 160, 109, 0.14);
+  border: 1px solid rgba(124, 207, 154, 0.3);
   border-radius: 2px;
   font-family: var(--font-source-sans);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
 }
 
 .badgeTarget {
@@ -251,7 +264,7 @@
 .badgePulse {
   width: 6px;
   height: 6px;
-  background: var(--green-accent);
+  background: var(--green-bright);
   border-radius: 50%;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -264,13 +277,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(67, 160, 71, 0.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(42, 160, 109, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
 /* ==================== VALUES ==================== */
 .valuesSection {
-  background: #0d1a0e;
+  background: var(--surface-volcanic);
 }
 
 .valuesGrid {
@@ -280,16 +293,16 @@
 }
 
 .valueCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
+  background: var(--surface-card);
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
   padding: 36px 28px;
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .valueCard:hover {
-  background: rgba(67, 160, 71, 0.06);
-  border-color: rgba(67, 160, 71, 0.25);
+  background: linear-gradient(155deg, rgba(42, 160, 109, 0.12), rgba(20, 33, 30, 0.92));
+  border-color: var(--basalt-line-strong);
   transform: translateY(-4px);
 }
 
@@ -298,28 +311,28 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
-  color: var(--green-accent);
+  color: var(--green-bright);
 }
 
 .valueTitle {
   font-family: var(--font-oswald);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--sand-soft);
+  text-transform: none;
+  letter-spacing: 0.01em;
   margin-bottom: 12px;
 }
 
 .valueDesc {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(213, 215, 207, 0.56);
   line-height: 1.7;
 }
 
 /* ==================== WHY BASALT ==================== */
 .whySection {
-  background: #111;
+  background: var(--basalt-black);
 }
 
 .propertyGrid {
@@ -329,16 +342,16 @@
 }
 
 .propertyCard {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-left: 3px solid var(--green-accent);
-  border-radius: 2px 4px 4px 2px;
+  background: var(--surface-card);
+  border: 1px solid var(--basalt-line);
+  border-left: 3px solid var(--green-bright);
+  border-radius: 4px 8px 8px 4px;
   padding: 28px 24px;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .propertyCard:hover {
-  background: rgba(67, 160, 71, 0.06);
+  background: linear-gradient(155deg, rgba(42, 160, 109, 0.11), rgba(20, 33, 30, 0.94));
   transform: translateX(4px);
 }
 
@@ -346,14 +359,14 @@
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  color: var(--green-accent);
+  color: var(--green-bright);
 }
 
 .propStat {
   font-family: var(--font-oswald);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--green-accent);
+  color: var(--green-bright);
   letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
@@ -362,7 +375,7 @@
   font-family: var(--font-oswald);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--sand-soft);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 8px;
@@ -370,13 +383,13 @@
 
 .propDesc {
   font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(213, 215, 207, 0.54);
   line-height: 1.65;
 }
 
 /* ==================== TEAM ==================== */
 .teamSection {
-  background: var(--grey-dark);
+  background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
 }
 
 .teamGrid {
@@ -389,27 +402,27 @@
 .teamCard {
   text-align: center;
   padding: 36px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
+  background: var(--surface-card);
   transition: border-color 0.2s ease;
 }
 
 .teamCard:hover {
-  border-color: rgba(67, 160, 71, 0.2);
+  border-color: var(--basalt-line-strong);
 }
 
 .teamAvatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-  border: 2px solid rgba(67, 160, 71, 0.2);
+  background: linear-gradient(135deg, var(--basalt-panel), var(--basalt-black));
+  border: 2px solid rgba(124, 207, 154, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  color: rgba(67, 160, 71, 0.35);
+  color: rgba(124, 207, 154, 0.42);
 }
 
 .teamName {
@@ -455,35 +468,33 @@
   }
 
   .timelineLine {
-    left: 23px;
+    inset-inline-start: 23px;
+    margin-inline-start: 0;
     transform: none;
   }
 
   .timelineItem {
     grid-template-columns: 48px 1fr;
     grid-template-rows: auto;
-    align-items: start;
+    align-items: center;
     min-height: 0;
-  }
-
-  .timelineCard {
-    padding: 0;
   }
 
   .timelineLeft .timelineCard,
   .timelineRight .timelineCard {
     grid-column: 2;
     grid-row: 1;
-    text-align: left;
+    text-align: start;
     padding: 20px;
     margin: 0;
-    background: #151515;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 4px;
+    background: var(--surface-card);
+    border: 1px solid var(--basalt-line);
+    border-radius: 8px;
+    align-self: center;
   }
 
   .timelineLeft .timelineDesc {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .timelineDesc {
@@ -493,10 +504,10 @@
   .timelineNode {
     grid-column: 1;
     grid-row: 1;
-    justify-content: flex-start;
-    align-self: start;
-    padding-left: 15px;
-    padding-top: 26px;
+    justify-content: center;
+    align-self: center;
+    padding-inline-start: 0;
+    padding-top: 0;
   }
 
   .timelineLeft .timelineNode,
@@ -550,7 +561,7 @@
   }
 
   .timelineLine {
-    left: 17px;
+    inset-inline-start: 17px;
   }
 
   .timelineItem {
@@ -558,8 +569,8 @@
   }
 
   .timelineNode {
-    padding-left: 7px;
-    padding-top: 22px;
+    padding-inline-start: 0;
+    padding-top: 0;
   }
 
   .timelineDot {
@@ -648,7 +659,7 @@
 
 @media (max-width: 400px) {
   .timelineLine {
-    left: 15px;
+    inset-inline-start: 15px;
   }
 
   .timelineItem {
@@ -656,8 +667,8 @@
   }
 
   .timelineNode {
-    padding-left: 5px;
-    padding-top: 18px;
+    padding-inline-start: 0;
+    padding-top: 0;
   }
 
   .timelineLeft .timelineCard,

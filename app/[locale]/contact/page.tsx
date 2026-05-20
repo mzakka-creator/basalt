@@ -19,9 +19,22 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import { useI18n } from '@/lib/i18n/i18n-context';
+import type { Messages } from '@/lib/i18n/messages';
 import styles from './contact.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+type SubjectId = Messages['contact']['subjects'][number]['id'];
+
+type FormState = {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  subject: SubjectId;
+  message: string;
+};
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -39,25 +52,6 @@ function useScrollAnimation() {
   }, []);
 }
 
-const subjectOptions = [
-  'General Inquiry',
-  'Investment & Partnership',
-  'Product Information',
-  'Factory Visit / Tour',
-  'Careers & Jobs',
-  'Media & Press',
-  'Other',
-];
-
-type FormState = {
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-};
-
 const socialLinks: { label: string; url: string; Icon: SvgIcon }[] = [
   { label: 'LinkedIn', url: '#', Icon: IconLinkedin },
   { label: 'X (Twitter)', url: '#', Icon: IconTwitter },
@@ -67,12 +61,16 @@ const socialLinks: { label: string; url: string; Icon: SvgIcon }[] = [
 
 export default function ContactPage() {
   useScrollAnimation();
+  const { messages } = useI18n();
+  const c = messages.contact;
+  const defaultSubject = c.subjects[0].id;
+
   const [form, setForm] = useState<FormState>({
     name: '',
     company: '',
     email: '',
     phone: '',
-    subject: 'General Inquiry',
+    subject: defaultSubject,
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -80,9 +78,9 @@ export default function ContactPage() {
 
   const validate = () => {
     const e: Partial<FormState> = {};
-    if (!form.name.trim()) e.name = 'Name is required';
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Valid email is required';
-    if (!form.message.trim()) e.message = 'Message is required';
+    if (!form.name.trim()) e.name = c.errors.name;
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = c.errors.email;
+    if (!form.message.trim()) e.message = c.errors.message;
     return e;
   };
 
@@ -95,25 +93,34 @@ export default function ContactPage() {
     setSubmitted(true);
   };
 
-  const handleChange = (field: keyof FormState, value: string) => {
+  const handleChange = <K extends keyof FormState>(field: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
+  const emptyForm = (): FormState => ({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    subject: defaultSubject,
+    message: '',
+  });
+
   return (
     <>
       <PageHero
-        tagline="Contact Us"
+        tagline={c.heroTag}
         title={
           <>
-            Let&rsquo;s Start<br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>a Conversation</span>
+            {c.heroTitleLine1}
+            <br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>{c.heroTitleAccent}</span>
           </>
         }
-        subtitle="Have a question, investment inquiry, or just want to know more? Our team is ready to respond within 48 hours."
+        subtitle={c.heroSubtitle}
       />
 
-      {/* CONTACT INFO CARDS */}
       <section className={`${styles.infoSection} section`}>
         <div className="container">
           <div className={styles.infoGrid}>
@@ -121,11 +128,11 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>
                 <IconMail className={iconStyles.svgIconLg} aria-hidden />
               </div>
-              <h3 className={styles.infoTitle}>Email</h3>
+              <h3 className={styles.infoTitle}>{c.emailTitle}</h3>
               <p className={styles.infoValue}>info@basalt.com.sa</p>
-              <p className={styles.infoSub}>For general inquiries</p>
+              <p className={styles.infoSub}>{c.emailSub}</p>
               <a href="mailto:info@basalt.com.sa" className={styles.infoLink}>
-                Send Email
+                {c.emailCta}
                 <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
               </a>
             </div>
@@ -133,11 +140,11 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>
                 <IconPhone className={iconStyles.svgIconLg} aria-hidden />
               </div>
-              <h3 className={styles.infoTitle}>Phone</h3>
+              <h3 className={styles.infoTitle}>{c.phoneTitle}</h3>
               <p className={styles.infoValue}>+966 XX XXX XXXX</p>
-              <p className={styles.infoSub}>Sun – Thu, 9:00 AM – 5:00 PM AST</p>
+              <p className={styles.infoSub}>{c.phoneHours}</p>
               <a href="tel:+966XXXXXXXX" className={styles.infoLink}>
-                Call Us
+                {c.phoneCta}
                 <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
               </a>
             </div>
@@ -145,36 +152,34 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>
                 <IconLocation className={iconStyles.svgIconLg} aria-hidden />
               </div>
-              <h3 className={styles.infoTitle}>Location</h3>
-              <p className={styles.infoValue}>Kingdom of Saudi Arabia</p>
-              <p className={styles.infoSub}>Factory site — to be announced</p>
-              <span className={styles.infoLink}>Riyadh Registered Office</span>
+              <h3 className={styles.infoTitle}>{c.locTitle}</h3>
+              <p className={styles.infoValue}>{c.locValue}</p>
+              <p className={styles.infoSub}>{c.locSub}</p>
+              <span className={styles.infoLink}>{c.locOffice}</span>
             </div>
             <div className={`${styles.infoCard} ${styles.infoCardHighlight} animate-on-scroll`}>
               <div className={styles.infoIcon}>
                 <IconClock className={iconStyles.svgIconLg} aria-hidden />
               </div>
-              <h3 className={styles.infoTitle}>Response Time</h3>
-              <p className={styles.infoValue}>Within 48 Hours</p>
-              <p className={styles.infoSub}>We respond to every inquiry</p>
+              <h3 className={styles.infoTitle}>{c.respTitle}</h3>
+              <p className={styles.infoValue}>{c.respValue}</p>
+              <p className={styles.infoSub}>{c.respSub}</p>
               <div className={styles.trustBadge}>
                 <span className={styles.trustDot} />
-                Guaranteed response
+                {c.respBadge}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FORM + MAP */}
       <section className={`${styles.mainSection} section`}>
         <div className="container">
           <div className={styles.mainGrid}>
-            {/* Form */}
             <div className={`${styles.formCard} animate-on-scroll`}>
               <div className={styles.formHeader}>
-                <h2 className={styles.formTitle}>Send Us a Message</h2>
-                <p className={styles.formSubtitle}>Fields marked with * are required</p>
+                <h2 className={styles.formTitle}>{c.formTitle}</h2>
+                <p className={styles.formSubtitle}>{c.formSubtitle}</p>
               </div>
 
               {submitted ? (
@@ -182,37 +187,39 @@ export default function ContactPage() {
                   <div className={styles.successIcon}>
                     <IconCheck className={iconStyles.svgIconLg} aria-hidden />
                   </div>
-                  <h3 className={styles.successTitle}>Message Sent!</h3>
-                  <p className={styles.successText}>
-                    Thank you for reaching out. We&rsquo;ll get back to you within 48 hours.
-                  </p>
+                  <h3 className={styles.successTitle}>{c.successTitle}</h3>
+                  <p className={styles.successText}>{c.successText}</p>
                   <button
+                    type="button"
                     className={styles.resetBtn}
-                    onClick={() => { setSubmitted(false); setForm({ name: '', company: '', email: '', phone: '', subject: 'General Inquiry', message: '' }); }}
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm(emptyForm());
+                    }}
                   >
-                    Send Another Message
+                    {c.resetBtn}
                   </button>
                 </div>
               ) : (
                 <div className={styles.formBody}>
                   <div className={styles.formRow}>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Full Name *</label>
+                      <label className={styles.fieldLabel}>{c.fieldName}</label>
                       <input
                         className={`${styles.fieldInput} ${errors.name ? styles.fieldError : ''}`}
                         type="text"
-                        placeholder="Your full name"
+                        placeholder={c.placeholderName}
                         value={form.name}
                         onChange={(e) => handleChange('name', e.target.value)}
                       />
                       {errors.name && <span className={styles.errorMsg}>{errors.name}</span>}
                     </div>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Company</label>
+                      <label className={styles.fieldLabel}>{c.fieldCompany}</label>
                       <input
                         className={styles.fieldInput}
                         type="text"
-                        placeholder="Your company (optional)"
+                        placeholder={c.placeholderCompany}
                         value={form.company}
                         onChange={(e) => handleChange('company', e.target.value)}
                       />
@@ -221,22 +228,22 @@ export default function ContactPage() {
 
                   <div className={styles.formRow}>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Email Address *</label>
+                      <label className={styles.fieldLabel}>{c.fieldEmail}</label>
                       <input
                         className={`${styles.fieldInput} ${errors.email ? styles.fieldError : ''}`}
                         type="email"
-                        placeholder="your@email.com"
+                        placeholder={c.placeholderEmail}
                         value={form.email}
                         onChange={(e) => handleChange('email', e.target.value)}
                       />
                       {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
                     </div>
                     <div className={styles.formField}>
-                      <label className={styles.fieldLabel}>Phone Number</label>
+                      <label className={styles.fieldLabel}>{c.fieldPhone}</label>
                       <input
                         className={styles.fieldInput}
                         type="tel"
-                        placeholder="+966 XX XXX XXXX"
+                        placeholder={c.placeholderPhone}
                         value={form.phone}
                         onChange={(e) => handleChange('phone', e.target.value)}
                       />
@@ -244,15 +251,17 @@ export default function ContactPage() {
                   </div>
 
                   <div className={styles.formField}>
-                    <label className={styles.fieldLabel}>Subject</label>
+                    <label className={styles.fieldLabel}>{c.fieldSubject}</label>
                     <div className={styles.selectWrapper}>
                       <select
                         className={styles.fieldSelect}
                         value={form.subject}
-                        onChange={(e) => handleChange('subject', e.target.value)}
+                        onChange={(e) => handleChange('subject', e.target.value as SubjectId)}
                       >
-                        {subjectOptions.map((s) => (
-                          <option key={s} value={s}>{s}</option>
+                        {c.subjects.map((s) => (
+                          <option key={s.id} value={s.id}>
+                            {s.label}
+                          </option>
                         ))}
                       </select>
                       <span className={styles.selectArrow}>
@@ -262,10 +271,10 @@ export default function ContactPage() {
                   </div>
 
                   <div className={styles.formField}>
-                    <label className={styles.fieldLabel}>Message *</label>
+                    <label className={styles.fieldLabel}>{c.fieldMessage}</label>
                     <textarea
                       className={`${styles.fieldTextarea} ${errors.message ? styles.fieldError : ''}`}
-                      placeholder="How can we help you?"
+                      placeholder={c.placeholderMessage}
                       value={form.message}
                       rows={6}
                       onChange={(e) => handleChange('message', e.target.value)}
@@ -273,8 +282,8 @@ export default function ContactPage() {
                     {errors.message && <span className={styles.errorMsg}>{errors.message}</span>}
                   </div>
 
-                  <button className={styles.submitBtn} onClick={handleSubmit}>
-                    Send Message
+                  <button type="button" className={styles.submitBtn} onClick={handleSubmit}>
+                    {c.send}
                     <span className={styles.submitArrow}>
                       <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
                     </span>
@@ -283,9 +292,7 @@ export default function ContactPage() {
               )}
             </div>
 
-            {/* Map + Social */}
             <div className={styles.rightCol}>
-              {/* Map Placeholder */}
               <div className={`${styles.mapContainer} animate-on-scroll`}>
                 <div className={styles.mapGrid} />
                 <div className={styles.mapContent}>
@@ -293,18 +300,15 @@ export default function ContactPage() {
                     <div className={styles.mapPinDot} />
                     <div className={styles.mapPinLine} />
                   </div>
-                  <div className={styles.mapLabel}>Saudi Arabia</div>
-                  <div className={styles.mapSub}>Kingdom of Saudi Arabia</div>
-                  <div className={styles.mapBadge}>Factory Site — TBD 2026</div>
+                  <div className={styles.mapLabel}>{c.mapLabel}</div>
+                  <div className={styles.mapSub}>{c.mapSub}</div>
+                  <div className={styles.mapBadge}>{c.mapBadge}</div>
                 </div>
               </div>
 
-              {/* Social */}
               <div className={`${styles.socialCard} animate-on-scroll`}>
-                <h3 className={styles.socialTitle}>Follow Our Journey</h3>
-                <p className={styles.socialDesc}>
-                  Stay updated on factory progress, product launches, and investment opportunities.
-                </p>
+                <h3 className={styles.socialTitle}>{c.socialTitle}</h3>
+                <p className={styles.socialDesc}>{c.socialDesc}</p>
                 <div className={styles.socialLinks}>
                   {socialLinks.map(({ label, url, Icon: SocialIcon }) => (
                     <a key={label} href={url} className={styles.socialItem}>
@@ -317,15 +321,14 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Trust Badge */}
               <div className={`${styles.trustCard} animate-on-scroll`}>
                 <div className={styles.trustContent}>
                   <span className={styles.trustIcon}>
                     <IconLandmark className={iconStyles.svgIconLg} aria-hidden />
                   </span>
                   <div>
-                    <div className={styles.trustTitle}>Registered in Saudi Arabia</div>
-                    <div className={styles.trustSub}>Fully compliant with Saudi commercial law</div>
+                    <div className={styles.trustTitle}>{c.trustTitle}</div>
+                    <div className={styles.trustSub}>{c.trustSub}</div>
                   </div>
                 </div>
               </div>

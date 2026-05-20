@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styles from './PageHero.module.css';
 
 type Particle = {
@@ -20,22 +18,16 @@ export type PageHeroProps = {
   banner?: ReactNode;
 };
 
+const particles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
+  left: `${(i * 37) % 100}%`,
+  animationDelay: `${(i * 0.43) % 8}s`,
+  animationDuration: `${6 + (i % 7) * 0.8}s`,
+  width: `${2 + (i % 4) * 0.7}px`,
+  height: `${2 + (i % 4) * 0.7}px`,
+  opacity: 0.3 + (i % 5) * 0.08,
+}));
+
 export default function PageHero({ tagline, title, subtitle, children, banner }: PageHeroProps) {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 20 }, () => ({
-        left: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * 8}s`,
-        animationDuration: `${6 + Math.random() * 6}s`,
-        width: `${2 + Math.random() * 3}px`,
-        height: `${2 + Math.random() * 3}px`,
-        opacity: 0.3 + Math.random() * 0.4,
-      }))
-    );
-  }, []);
-
   return (
     <section className={`rock-surface ${styles.hero}`}>
       <div className="rock-surface-highlight" aria-hidden />

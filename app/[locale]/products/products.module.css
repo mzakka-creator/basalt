@@ -29,8 +29,8 @@
 
 /* ==================== FILTER ==================== */
 .filterSection {
-  background: #111;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(11, 16, 16, 0.88);
+  border-bottom: 1px solid var(--basalt-line);
   padding: 20px 0;
   position: sticky;
   top: var(--navbar-height);
@@ -54,7 +54,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(213, 215, 207, 0.42);
   white-space: nowrap;
 }
 
@@ -70,29 +70,29 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(213, 215, 207, 0.58);
   padding: 7px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 4px;
   background: none;
   cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .filterTab:hover {
-  color: var(--white);
-  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--sand-soft);
+  border-color: var(--basalt-line-strong);
 }
 
 .filterTab.tabActive {
   color: var(--white);
-  background: var(--green-accent);
-  border-color: var(--green-accent);
+  background: linear-gradient(135deg, var(--green-mid), var(--green-accent));
+  border-color: var(--green-bright);
 }
 
 /* ==================== PRODUCTS SECTION ==================== */
 .productsSection {
-  background: var(--grey-dark);
+  background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
 }
 
 .productGrid {
@@ -120,8 +120,8 @@
 .cardBack {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(200, 207, 214, 0.1);
-  border-radius: 4px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
   padding: 32px 28px;
   backface-visibility: hidden;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -138,12 +138,12 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--green-accent);
+  background: linear-gradient(90deg, var(--green-accent), var(--green-bright));
   opacity: 0.7;
 }
 
 .cardFront {
-  background: #151515;
+  background: var(--surface-card);
   transform: rotateY(0deg);
   display: flex;
   flex-direction: column;
@@ -173,7 +173,7 @@
 }
 
 .cardBack {
-  background: linear-gradient(160deg, #0d1a0e, #111);
+  background: var(--surface-volcanic);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
@@ -192,7 +192,8 @@
 .comingSoonOverlay {
   position: absolute;
   top: 14px;
-  right: 14px;
+  /* LTR: top-right; RTL (Arabic): top-left */
+  inset-inline-end: 14px;
   z-index: 10;
 }
 
@@ -201,22 +202,22 @@
   align-items: center;
   gap: 6px;
   padding: 4px 12px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(67, 160, 71, 0.4);
-  border-radius: 2px;
+  background: rgba(11, 16, 16, 0.72);
+  border: 1px solid rgba(124, 207, 154, 0.42);
+  border-radius: 4px;
   font-family: var(--font-oswald);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
   backdrop-filter: blur(4px);
 }
 
 .csBadgePulse {
   width: 5px;
   height: 5px;
-  background: var(--green-accent);
+  background: var(--green-bright);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -227,14 +228,14 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
 }
 
 .cardIcon {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: rgba(67, 160, 71, 0.85);
+  color: rgba(124, 207, 154, 0.9);
   line-height: 1;
 }
 
@@ -251,15 +252,15 @@
   font-family: var(--font-oswald);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--sand-soft);
+  text-transform: none;
+  letter-spacing: 0.01em;
   line-height: 1.25;
 }
 
 .cardDesc {
   font-size: 0.87rem;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(213, 215, 207, 0.58);
   line-height: 1.65;
   flex: 1;
 }
@@ -271,13 +272,13 @@
   font-family: var(--font-source-sans);
   font-size: 0.78rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(213, 215, 207, 0.5);
+  border-top: 1px solid var(--basalt-line);
   padding-top: 12px;
 }
 
 .highlightIcon {
-  color: var(--green-accent);
+  color: var(--green-bright);
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -289,7 +290,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green-accent);
+  color: var(--green-bright);
   background: none;
   border: none;
   cursor: pointer;
@@ -330,7 +331,7 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(213, 215, 207, 0.42);
   margin-bottom: 4px;
 }
 
@@ -339,12 +340,12 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(213, 215, 207, 0.74);
   line-height: 1.5;
 }
 
 .specDot {
-  color: var(--green-accent);
+  color: var(--green-bright);
   margin-top: 3px;
   flex-shrink: 0;
   display: flex;
@@ -353,7 +354,7 @@
 
 /* ==================== WHY SECTION ==================== */
 .whySection {
-  background: #0d1a0e;
+  background: var(--surface-volcanic);
 }
 
 .whySectionHead {
@@ -373,15 +374,15 @@
 
 .advantageItem {
   padding: 32px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
+  background: var(--surface-card);
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .advantageItem:hover {
-  background: rgba(67, 160, 71, 0.06);
-  border-color: rgba(67, 160, 71, 0.2);
+  background: linear-gradient(155deg, rgba(42, 160, 109, 0.12), rgba(20, 33, 30, 0.92));
+  border-color: var(--basalt-line-strong);
   transform: translateY(-4px);
 }
 
@@ -390,28 +391,28 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
-  color: var(--green-accent);
+  color: var(--green-bright);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .advantageItem:hover .advIcon {
   transform: scale(1.08);
-  color: var(--white);
+  color: var(--sand-soft);
 }
 
 .advTitle {
   font-family: var(--font-oswald);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--sand-soft);
+  text-transform: none;
+  letter-spacing: 0.01em;
   margin-bottom: 10px;
 }
 
 .advDesc {
   font-size: 0.87rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(213, 215, 207, 0.56);
   line-height: 1.7;
 }
 

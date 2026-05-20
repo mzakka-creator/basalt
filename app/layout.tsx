@@ -1,28 +1,24 @@
 import type { Metadata } from "next";
-import { Oswald, Source_Sans_3 } from "next/font/google";
+import { Cairo, Montserrat } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Basalt — Saudi Arabia's Premier Construction Materials Factory",
-  description:
-    "Basalt is Saudi Arabia's upcoming premium basalt construction materials manufacturer. Producing BFRP bars, crushed stone, insulation panels, and more. Opening 2028.",
-  keywords: "basalt, construction materials, Saudi Arabia, BFRP, basalt fiber, factory, Vision 2030",
+  title: "Basalt",
+  description: "Basalt — construction materials",
 };
 
 export default function RootLayout({
@@ -31,12 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${sourceSans.variable}`}>
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+    <html lang="en" className={`${cairo.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <body>{children}</body>
     </html>
   );
 }

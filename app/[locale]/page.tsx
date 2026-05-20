@@ -17,6 +17,7 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './page.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -47,20 +48,23 @@ function AnimatedCounter({ target, suffix = '', label }: { target: number; suffi
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
-        started.current = true;
-        const duration = 1800;
-        const start = performance.now();
-        const animate = (now: number) => {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          setCount(Math.round(eased * target));
-          if (progress < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-      }
-    }, { threshold: 0.5 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const duration = 1800;
+          const start = performance.now();
+          const animate = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
     observer.observe(el);
     return () => observer.disconnect();
   }, [target]);
@@ -68,117 +72,80 @@ function AnimatedCounter({ target, suffix = '', label }: { target: number; suffi
   return (
     <div ref={ref} className={styles.counterItem}>
       <div className={styles.counterValue}>
-        {count}{suffix}
+        {count}
+        {suffix}
       </div>
       <div className={styles.counterLabel}>{label}</div>
     </div>
   );
 }
 
-const teaserCards: {
-  href: string;
-  Icon: SvgIcon;
-  title: string;
-  desc: string;
-  accent: string;
-}[] = [
-  {
-    href: '/about',
-    Icon: IconAbout,
-    title: 'Who Are We',
-    desc: 'Discover our vision, mission, and the 3-year roadmap to becoming Saudi Arabia\'s premier basalt manufacturer.',
-    accent: 'Our Story',
-  },
-  {
-    href: '/products',
-    Icon: IconProducts,
-    title: 'Our Products',
-    desc: 'From BFRP bars to insulation panels — cutting-edge basalt construction materials engineered for modern infrastructure.',
-    accent: 'View Products',
-  },
-  {
-    href: '/factory',
-    Icon: IconFactory,
-    title: 'The Factory',
-    desc: 'Explore our planned facility, production process, and the advanced technology that sets us apart.',
-    accent: 'See Factory',
-  },
-  {
-    href: '/investments',
-    Icon: IconInvestments,
-    title: 'Investments',
-    desc: 'Partner with a Vision 2030-aligned opportunity. Explore strategic, distribution, and financial partnership tiers.',
-    accent: 'Invest Now',
-  },
+const teaserIcons: { path: '/about' | '/products' | '/factory' | '/investments'; Icon: SvgIcon }[] = [
+  { path: '/about', Icon: IconAbout },
+  { path: '/products', Icon: IconProducts },
+  { path: '/factory', Icon: IconFactory },
+  { path: '/investments', Icon: IconInvestments },
 ];
 
-const introFeatures: { Icon: SvgIcon; stat: string; label: string }[] = [
-  { Icon: IconThermometer, stat: '700°C', label: 'Heat resistance threshold' },
-  { Icon: IconStrength, stat: '3×', label: 'Stronger than fiberglass' },
-  { Icon: IconLeaf, stat: '100%', label: 'Natural, non-toxic material' },
-  { Icon: IconLocation, stat: '2028', label: 'Factory opening, Saudi Arabia' },
-];
+const featureIcons: SvgIcon[] = [IconThermometer, IconStrength, IconLeaf, IconLocation];
 
 export default function HomePage() {
   useScrollAnimation();
+  const { messages, href } = useI18n();
+  const h = messages.home;
 
   return (
     <>
       <PageHero
-        tagline="Saudi Arabia — Est. 2028"
+        tagline={h.tagline}
         title={
           <>
-            Building Tomorrow,<br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>From the Earth&rsquo;s Core</span>
+            {h.titleLine1}
+            <br />
+            <span className={pageHeroStyles.heroHeadlineAccent}>{h.titleAccent}</span>
           </>
         }
-        subtitle="Saudi Arabia&rsquo;s upcoming premium basalt construction materials manufacturer"
+        subtitle={h.subtitle}
       >
         <div className={styles.heroCtas}>
-          <Link href="/products" className={styles.ctaPrimary}>
-            Explore Products
+          <Link href={href('/products')} className={styles.ctaPrimary}>
+            {h.ctaProducts}
             <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
           </Link>
-          <Link href="/investments" className={styles.ctaOutline}>
-            Investment Opportunities
+          <Link href={href('/investments')} className={styles.ctaOutline}>
+            {h.ctaInvest}
             <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
           </Link>
         </div>
       </PageHero>
 
-      {/* COUNTERS */}
       <section className={styles.counters}>
         <div className={styles.countersInner}>
-          <AnimatedCounter target={3} suffix=" Yrs" label="Years to Full Launch" />
+          <AnimatedCounter target={3} suffix={h.counterSuffixYrs} label={h.counters.years} />
           <div className={styles.counterDivider} />
-          <AnimatedCounter target={100} suffix="%" label="Saudi Owned & Operated" />
+          <AnimatedCounter target={100} suffix={h.counterSuffixPct} label={h.counters.saudi} />
           <div className={styles.counterDivider} />
-          <AnimatedCounter target={5} suffix="+" label="Core Product Lines" />
+          <AnimatedCounter target={5} suffix={h.counterSuffixPlus} label={h.counters.lines} />
           <div className={styles.counterDivider} />
-          <AnimatedCounter target={2030} label="Vision 2030 Aligned" />
+          <AnimatedCounter target={2030} label={h.counters.vision} />
         </div>
       </section>
 
-      {/* INTRO */}
       <section className={`${styles.intro} section`}>
         <div className="container">
           <div className={`${styles.introHeader} animate-on-scroll`}>
-            <span className="sectionLabel">About Basalt</span>
+            <span className="sectionLabel">{h.introLabel}</span>
             <h2 className="sectionTitle">
-              The Material That Built Civilizations,<br />
-              <span className={styles.accentText}>Reimagined for Tomorrow</span>
+              {h.introTitleLine1}
+              <br />
+              <span className={styles.accentText}>{h.introTitleAccent}</span>
             </h2>
-            <p className={styles.introText}>
-              Basalt rock — formed from volcanic magma — is one of the earth&rsquo;s most durable natural materials.
-              We are building Saudi Arabia&rsquo;s first dedicated basalt construction materials factory,
-              transforming this ancient stone into next-generation construction solutions: heat-resistant,
-              eco-friendly, and stronger than steel in specific applications.
-            </p>
+            <p className={styles.introText}>{h.introBody}</p>
           </div>
 
           <div className={styles.introFeatures}>
-            {introFeatures.map((f) => {
-              const FeatureIcon = f.Icon;
+            {h.features.map((f, i) => {
+              const FeatureIcon = featureIcons[i];
               return (
                 <div key={f.label} className={`${styles.featureItem} animate-on-scroll`}>
                   <div className={styles.featureIconWrap}>
@@ -193,18 +160,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TEASER CARDS */}
       <section className={`${styles.teasers} section`}>
         <div className="container">
           <div className={`${styles.teasersHead} animate-on-scroll`}>
-            <span className="sectionLabel">Explore Basalt</span>
-            <h2 className="sectionTitle">Everything You Need to Know</h2>
+            <span className="sectionLabel">{h.teasersLabel}</span>
+            <h2 className="sectionTitle">{h.teasersTitle}</h2>
           </div>
           <div className={styles.teaserGrid}>
-            {teaserCards.map((card) => {
-              const TeaserIcon = card.Icon;
+            {h.teasers.map((card, i) => {
+              const TeaserIcon = teaserIcons[i].Icon;
               return (
-                <Link key={card.href} href={card.href} className={`${styles.teaserCard} animate-on-scroll`}>
+                <Link key={card.path} href={href(card.path)} className={`${styles.teaserCard} animate-on-scroll`}>
                   <div className={styles.teaserCardInner}>
                     <div className={styles.teaserIconWrap} aria-hidden>
                       <TeaserIcon className={iconStyles.svgIcon} />
@@ -224,19 +190,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA BANNER */}
       <section className={styles.ctaBanner}>
         <div className={`${styles.ctaBannerContent} animate-on-scroll`}>
-          <span className="sectionLabel">Partner With Us</span>
+          <span className="sectionLabel">{h.ctaBannerLabel}</span>
           <h2 className={styles.ctaBannerTitle}>
-            Be Part of Saudi Arabia&rsquo;s<br />Construction Revolution
+            {h.ctaBannerTitleLine1}
+            <br />
+            {h.ctaBannerTitleLine2}
           </h2>
-          <p className={styles.ctaBannerText}>
-            Secure your position as a strategic partner before our factory opens in 2028.
-            Investment opportunities are limited and selective.
-          </p>
-          <Link href="/investments" className={`${styles.ctaPrimary} ${styles.ctaBannerLink}`}>
-            Explore Investment Tiers
+          <p className={styles.ctaBannerText}>{h.ctaBannerBody}</p>
+          <Link href={href('/investments')} className={`${styles.ctaPrimary} ${styles.ctaBannerLink}`}>
+            {h.ctaBannerButton}
             <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.ctaArrow}`} aria-hidden />
           </Link>
         </div>
