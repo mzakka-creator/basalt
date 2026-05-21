@@ -14,6 +14,44 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.heroPhoto {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Photo mode: keep image visible; use a light scrim instead of solid stone fills */
+.heroWithPhoto:global(.rock-surface)::before {
+  opacity: 0;
+}
+
+.heroWithPhoto:global(.rock-surface)::after {
+  opacity: 0.14;
+}
+
+.heroWithPhoto :global(.rock-surface-highlight) {
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.heroWithPhoto .heroGradient {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 70%, rgba(42, 160, 109, 0.2) 0%, transparent 42%),
+    linear-gradient(
+      165deg,
+      rgba(11, 16, 16, 0.35) 0%,
+      rgba(15, 43, 36, 0.45) 42%,
+      rgba(0, 0, 0, 0.62) 100%
+    );
+}
+
+.heroWithPhoto .heroTexture {
+  z-index: 2;
+  opacity: 0.1;
 }
 
 .heroBackground::after {
@@ -23,7 +61,6 @@
   height: 44%;
   z-index: 1;
   background:
-    linear-gradient(120deg, transparent 0 18%, rgba(124, 207, 154, 0.28) 18.5% 19.2%, transparent 20% 100%),
     linear-gradient(160deg, transparent 0 42%, rgba(11, 16, 16, 0.92) 42.5% 100%),
     linear-gradient(23deg, transparent 0 53%, rgba(58, 68, 68, 0.72) 53.4% 100%);
   clip-path: polygon(0 100%, 0 62%, 12% 46%, 25% 58%, 38% 28%, 52% 57%, 65% 22%, 77% 54%, 91% 38%, 100% 56%, 100% 100%);
@@ -48,7 +85,7 @@
 .heroGradient {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background:
     radial-gradient(circle at 50% 66%, rgba(42, 160, 109, 0.22) 0%, transparent 34%),
     linear-gradient(115deg, rgba(11, 16, 16, 0.1) 0%, rgba(11, 16, 16, 0.72) 48%, rgba(11, 16, 16, 0.92) 100%),
@@ -64,7 +101,7 @@
 .heroTexture {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   background: var(--stone-grain);
   background-size: 160px 160px;
   opacity: 0.35;

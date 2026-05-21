@@ -1,4 +1,7 @@
+import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import type { ReactNode } from 'react';
+import heroImage from '@/assets/images/hero.jpeg';
 import styles from './PageHero.module.css';
 
 type Particle = {
@@ -16,6 +19,7 @@ export type PageHeroProps = {
   subtitle?: ReactNode;
   children?: ReactNode;
   banner?: ReactNode;
+  backgroundImage?: StaticImageData | string;
 };
 
 const particles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
@@ -27,11 +31,26 @@ const particles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
   opacity: 0.3 + (i % 5) * 0.08,
 }));
 
-export default function PageHero({ tagline, title, subtitle, children, banner }: PageHeroProps) {
+export default function PageHero({
+  tagline,
+  title,
+  subtitle,
+  children,
+  banner,
+  backgroundImage = heroImage,
+}: PageHeroProps) {
   return (
-    <section className={`rock-surface ${styles.hero}`}>
+    <section className={`rock-surface ${styles.hero} ${styles.heroWithPhoto}`}>
       <div className="rock-surface-highlight" aria-hidden />
       <div className={styles.heroBackground}>
+        <Image
+          src={backgroundImage}
+          alt=""
+          fill
+          className={styles.heroPhoto}
+          priority
+          sizes="100vw"
+        />
         <div className={styles.heroGradient} />
         <div className={styles.heroTexture} />
         <div className={styles.heroParticles}>
