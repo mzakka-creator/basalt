@@ -7,33 +7,42 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  align-items: stretch;
 }
 
 .infoCard {
-  background: var(--surface-card);
-  border: 1px solid var(--basalt-line);
+  height: 100%;
+  min-height: 260px;
+  background: #A7BDAD;
+  border: 1px solid rgba(26, 29, 29, 0.14);
   border-radius: 8px;
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(26, 29, 29, 0.08);
 }
 
 .infoCard:hover {
-  border-color: var(--basalt-line-strong);
+  background: #b8c9be;
+  border-color: rgba(26, 29, 29, 0.18);
   transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(26, 29, 29, 0.1);
 }
 
 .infoCardHighlight {
-  background: var(--surface-volcanic);
-  border-color: var(--basalt-line-strong) !important;
+  background: #A7BDAD;
+  border-color: var(--green-dark) !important;
+  border-width: 1px;
 }
 
 .infoIcon {
   display: flex;
   align-items: center;
-  color: var(--green-bright);
+  color: var(--green-dark);
   margin-bottom: 6px;
   line-height: 1;
 }
@@ -42,7 +51,7 @@
   font-family: var(--font-oswald);
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(213, 215, 207, 0.54);
+  color: rgba(26, 29, 29, 0.52);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 2px;
@@ -52,13 +61,13 @@
   font-family: var(--font-oswald);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--sand-soft);
+  color: #1a1d1d;
   letter-spacing: 0.02em;
 }
 
 .infoSub {
   font-size: 0.8rem;
-  color: rgba(213, 215, 207, 0.42);
+  color: rgba(26, 29, 29, 0.58);
   line-height: 1.4;
 }
 
@@ -68,9 +77,10 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green-bright);
+  color: var(--green-dark);
   transition: letter-spacing 0.2s ease, gap 0.2s ease;
-  margin-top: 4px;
+  margin-top: auto;
+  padding-top: 8px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -85,16 +95,16 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 12px;
-  background: rgba(42, 160, 109, 0.14);
-  border: 1px solid rgba(124, 207, 154, 0.28);
+  margin-top: auto;
+  padding: 8px 12px 5px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(26, 29, 29, 0.12);
   border-radius: 4px;
   font-family: var(--font-source-sans);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--green-bright);
-  margin-top: 4px;
+  color: var(--green-dark);
   width: fit-content;
 }
 
@@ -423,17 +433,20 @@
 
 /* Social */
 .socialCard {
-  background: var(--surface-card);
-  border: 1px solid var(--basalt-line);
+  background: #A7BDAD;
+  border: 1px solid rgba(26, 29, 29, 0.14);
   border-radius: 8px;
   padding: 28px 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(26, 29, 29, 0.08);
 }
 
 .socialTitle {
   font-family: var(--font-oswald);
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--sand-soft);
+  color: #1a1d1d;
   text-transform: none;
   letter-spacing: 0.01em;
   margin-bottom: 8px;
@@ -441,7 +454,7 @@
 
 .socialDesc {
   font-size: 0.84rem;
-  color: rgba(213, 215, 207, 0.48);
+  color: rgba(26, 29, 29, 0.62);
   line-height: 1.6;
   margin-bottom: 20px;
 }
@@ -457,26 +470,27 @@
   align-items: center;
   gap: 14px;
   padding: 10px 14px;
-  border: 1px solid var(--basalt-line);
+  border: 1px solid rgba(26, 29, 29, 0.12);
   border-radius: 4px;
+  background: rgba(255, 255, 255, 0.28);
   transition: border-color 0.2s ease, background 0.2s ease;
   text-decoration: none;
 }
 
 .socialItem:hover {
-  border-color: var(--basalt-line-strong);
-  background: rgba(42, 160, 109, 0.1);
+  border-color: rgba(26, 29, 29, 0.18);
+  background: rgba(255, 255, 255, 0.45);
 }
 
 .socialIcon {
   width: 28px;
   height: 28px;
-  background: rgba(213, 215, 207, 0.07);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(213, 215, 207, 0.58);
+  color: var(--green-dark);
   flex-shrink: 0;
 }
 
@@ -485,15 +499,18 @@
   font-size: 0.88rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(26, 29, 29, 0.72);
 }
 
 /* Trust Card */
 .trustCard {
-  background: rgba(15, 43, 36, 0.74);
-  border: 1px solid var(--basalt-line-strong);
+  background: #A7BDAD;
+  border: 1px solid rgba(26, 29, 29, 0.14);
   border-radius: 8px;
   padding: 20px 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(26, 29, 29, 0.08);
 }
 
 .trustContent {
@@ -507,21 +524,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--green-bright);
+  color: var(--green-dark);
 }
 
 .trustTitle {
   font-family: var(--font-oswald);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--sand-soft);
+  color: #1a1d1d;
   letter-spacing: 0.04em;
   margin-bottom: 4px;
 }
 
 .trustSub {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(26, 29, 29, 0.62);
 }
 
 /* ==================== RESPONSIVE ==================== */

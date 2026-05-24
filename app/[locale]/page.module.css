@@ -152,7 +152,7 @@
 }
 
 .featureItem {
-  background: var(--surface-card);
+  background: #A7BDAD;
   padding: 36px 24px;
   text-align: center;
   transition: background 0.3s ease;
@@ -172,7 +172,7 @@
 }
 
 .featureItem:hover {
-  background: linear-gradient(155deg, rgba(42, 160, 109, 0.1), rgba(20, 33, 30, 0.95));
+  background: #b8c9be;
 }
 
 .featureItem:hover::after {
@@ -189,9 +189,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(42, 160, 109, 0.12);
-  border: 1px solid rgba(124, 207, 154, 0.22);
-  color: var(--green-bright);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(26, 29, 29, 0.1);
+  color: var(--green-dark);
   transition:
     transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     background 0.3s ease,
@@ -200,29 +200,29 @@
 }
 
 .featureItem:hover .featureIconWrap {
-  background: rgba(42, 160, 109, 0.24);
-  border-color: rgba(124, 207, 154, 0.45);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(26, 29, 29, 0.14);
+  box-shadow: 0 12px 28px rgba(26, 29, 29, 0.1);
 }
 
 .featureItem:hover .featureIconWrap .svgIcon,
 .featureItem:hover .featureIconWrap svg {
-  color: var(--white);
-  filter: drop-shadow(0 0 10px rgba(67, 160, 71, 0.45));
+  color: var(--green-dark);
+  filter: none;
 }
 
 .featureStat {
   font-family: var(--font-oswald);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--green-bright);
+  color: var(--green-dark);
   letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
 
 .featureLabel {
   font-size: 0.82rem;
-  color: rgba(213, 215, 207, 0.52);
+  color: rgba(26, 29, 29, 0.62);
   letter-spacing: 0.04em;
   line-height: 1.4;
 }
@@ -245,21 +245,24 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  align-items: stretch;
 }
 
 .teaserCard {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
   padding: 36px 28px;
-  background: var(--surface-card);
-  border: 1px solid var(--basalt-line);
+  background: #A7BDAD;
+  border: 1px solid rgba(26, 29, 29, 0.14);
   border-radius: 8px;
   overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   text-decoration: none;
   box-shadow:
-    inset 0 1px 0 rgba(232, 236, 239, 0.06),
-    inset 0 -1px 0 rgba(37, 43, 48, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(26, 29, 29, 0.08);
 }
 
 .teaserCard::before {
@@ -275,14 +278,19 @@
 }
 
 .teaserCard:hover {
-  border-color: var(--basalt-line-strong);
+  background: #b8c9be;
+  border-color: rgba(26, 29, 29, 0.18);
   transform: translateY(-6px);
-  box-shadow: var(--shadow-deep), var(--shadow-emerald);
+  box-shadow: 0 18px 40px rgba(26, 29, 29, 0.1);
 }
 
 .teaserCardInner {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
 }
 
 .teaserIconWrap {
@@ -293,9 +301,9 @@
   justify-content: center;
   margin-bottom: 18px;
   border-radius: 8px;
-  background: rgba(42, 160, 109, 0.12);
-  border: 1px solid rgba(124, 207, 154, 0.22);
-  color: var(--green-bright);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(26, 29, 29, 0.1);
+  color: var(--green-dark);
   transition:
     background 0.35s ease,
     border-color 0.35s ease,
@@ -304,18 +312,16 @@
 }
 
 .teaserCard:hover .teaserIconWrap {
-  background: rgba(42, 160, 109, 0.24);
-  border-color: var(--green-bright);
-  box-shadow:
-    0 0 0 1px rgba(67, 160, 71, 0.35),
-    0 10px 28px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(26, 29, 29, 0.14);
+  box-shadow: 0 10px 24px rgba(26, 29, 29, 0.08);
   transform: translateY(-3px) scale(1.07);
 }
 
 .teaserCard:hover .teaserIconWrap .svgIcon,
 .teaserCard:hover .teaserIconWrap svg {
-  color: var(--sand-soft);
-  filter: drop-shadow(0 0 12px rgba(67, 160, 71, 0.5));
+  color: var(--green-dark);
+  filter: none;
   transform: rotate(-5deg) scale(1.08);
 }
 
@@ -323,7 +329,7 @@
   font-family: var(--font-oswald);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--white);
+  color: #1a1d1d;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 12px;
@@ -331,9 +337,10 @@
 
 .teaserDesc {
   font-size: 0.88rem;
-  color: rgba(213, 215, 207, 0.58);
+  color: rgba(26, 29, 29, 0.72);
   line-height: 1.65;
   margin-bottom: 20px;
+  flex: 1;
 }
 
 .teaserCta {
@@ -342,7 +349,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green-bright);
+  color: var(--green-dark);
   transition: letter-spacing 0.2s ease;
   display: inline-flex;
   align-items: center;

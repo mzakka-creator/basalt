@@ -2,27 +2,24 @@
 
 import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import {
   IconArrowLeft,
   IconArrowRight,
   IconCoins,
-  IconGrid3x3,
   IconHexagon,
   IconLandmark,
-  IconLayers,
   IconLeaf,
-  IconMesh,
-  IconPanel,
   IconScale,
   IconShield,
   IconThermometer,
-  IconWrench,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
+import { productImages } from '@/lib/products/product-images';
 import styles from './products.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -44,14 +41,6 @@ function useScrollAnimation() {
     return () => observer.disconnect();
   }, []);
 }
-
-const productIcons: Record<number, SvgIcon> = {
-  1: IconGrid3x3,
-  2: IconLayers,
-  3: IconPanel,
-  4: IconMesh,
-  5: IconWrench,
-};
 
 const advantageIcons: SvgIcon[] = [IconShield, IconThermometer, IconScale, IconLeaf, IconCoins, IconLandmark];
 
@@ -111,27 +100,32 @@ export default function ProductsPage() {
       <section className={`${styles.productsSection} section`}>
         <div className="container">
           <div className={styles.productGrid}>
-            {filtered.map((product, index) => {
-              const ProductIcon = productIcons[product.id];
-              return (
-                <div
-                  key={product.id}
-                  className={`${styles.productCard} ${flipped === product.id ? styles.flipped : ''}`}
-                  style={{ animationDelay: `${index * 0.07}s` }}
-                  onClick={() => setFlipped(flipped === product.id ? null : product.id)}
-                >
-                  <div className={styles.comingSoonOverlay}>
-                    <div className={styles.comingSoonBadge}>
-                      <span className={styles.csBadgePulse} />
-                      {c.coming2028}
-                    </div>
+            {filtered.map((product, index) => (
+              <div
+                key={product.id}
+                className={`${styles.productCard} ${flipped === product.id ? styles.flipped : ''}`}
+                style={{ animationDelay: `${index * 0.07}s` }}
+                onClick={() => setFlipped(flipped === product.id ? null : product.id)}
+              >
+                <div className={styles.comingSoonOverlay}>
+                  <div className={styles.comingSoonBadge}>
+                    <span className={styles.csBadgePulse} />
+                    {c.coming2028}
                   </div>
+                </div>
 
-                  <div className={styles.cardFront}>
+                <div className={styles.cardFront}>
+                  <div className={styles.cardImageWrap}>
+                    <Image
+                      src={productImages[product.id]}
+                      alt={product.name}
+                      fill
+                      className={styles.cardImage}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <div className={styles.cardBody}>
                     <div className={styles.cardCategory}>{p.categories[product.categoryKey]}</div>
-                    <div className={styles.cardIcon}>
-                      <ProductIcon className={iconStyles.svgIconLg} aria-hidden />
-                    </div>
                     <h3 className={styles.cardName}>{product.name}</h3>
                     <p className={styles.cardDesc}>{product.desc}</p>
                     <div className={styles.cardHighlight}>
@@ -145,8 +139,20 @@ export default function ProductsPage() {
                       </span>
                     </button>
                   </div>
+                </div>
 
-                  <div className={styles.cardBack}>
+                <div className={styles.cardBack}>
+                  <div className={styles.cardImageWrap}>
+                    <Image
+                      src={productImages[product.id]}
+                      alt=""
+                      fill
+                      className={styles.cardImage}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      aria-hidden
+                    />
+                  </div>
+                  <div className={styles.cardBody}>
                     <div className={styles.cardCategory}>{p.categories[product.categoryKey]}</div>
                     <h3 className={styles.cardName}>{product.name}</h3>
                     <div className={styles.specsList}>
@@ -166,8 +172,8 @@ export default function ProductsPage() {
                     </button>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
