@@ -56,8 +56,8 @@ export const en = {
   },
   home: {
     tagline: 'Saudi Arabia — Est. 2028',
-    titleLine1: 'Building Tomorrow,',
-    titleAccent: "From the Earth's Core",
+    titleLine1: 'Natural Power,',
+    titleAccent: 'Without Limits',
     subtitle:
       "Saudi Arabia's upcoming premium basalt construction materials manufacturer",
     ctaProducts: 'Explore products',

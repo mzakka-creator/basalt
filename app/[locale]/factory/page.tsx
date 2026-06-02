@@ -20,6 +20,7 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import heroImage from '@/assets/images/heroes/hero-factory.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './factory.module.css';
 
@@ -64,6 +65,7 @@ export default function FactoryPage() {
           </>
         }
         subtitle={f.heroSubtitle}
+        backgroundImage={heroImage}
       />
 
       <section className={`${styles.locationSection} section`}>

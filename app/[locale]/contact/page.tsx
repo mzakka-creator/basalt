@@ -19,6 +19,7 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import heroImage from '@/assets/images/heroes/hero-contact.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
 import styles from './contact.module.css';
@@ -119,6 +120,7 @@ export default function ContactPage() {
           </>
         }
         subtitle={c.heroSubtitle}
+        backgroundImage={heroImage}
       />
 
       <section className={`${styles.infoSection} section`}>

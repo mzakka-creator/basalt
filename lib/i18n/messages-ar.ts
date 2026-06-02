@@ -56,8 +56,8 @@ export const ar: Messages = {
   },
   home: {
     tagline: 'المملكة العربية السعودية — تأسست 2028',
-    titleLine1: 'نبني الغد،',
-    titleAccent: 'من قلب الأرض',
+    titleLine1: 'قوة طبيعية،',
+    titleAccent: 'لا حدود لها',
     subtitle: 'شركة سعودية ناشئة لإنتاج مواد البناء المتميزة من حجر البازلت',
     ctaProducts: 'استكشف المنتجات',
     ctaInvest: 'فرص الاستثمار',

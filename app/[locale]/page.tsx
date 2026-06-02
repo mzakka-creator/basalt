@@ -3,6 +3,7 @@
 import type { ComponentType, SVGProps } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image, { type StaticImageData } from 'next/image';
 import {
   IconAbout,
   IconArrowRight,
@@ -18,6 +19,11 @@ import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import { useI18n } from '@/lib/i18n/i18n-context';
+import serviceIndustry from '@/assets/images/sectors/sector-industry.jpeg';
+import serviceRoads from '@/assets/images/sectors/sector-infrastructure.jpeg';
+import serviceTransportation from '@/assets/images/sectors/sector-transport.jpeg';
+import serviceSustainable from '@/assets/images/sectors/sector-energy.jpeg';
+import servicePetrolGas from '@/assets/images/sectors/sector-oilgas.jpeg';
 import styles from './page.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -89,6 +95,14 @@ const teaserIcons: { path: '/about' | '/products' | '/factory' | '/investments';
 
 const featureIcons: SvgIcon[] = [IconThermometer, IconStrength, IconLeaf, IconLocation];
 
+const services: { id: string; title: string; image: StaticImageData }[] = [
+  { id: 'industry', title: 'Industry', image: serviceIndustry },
+  { id: 'roads-bridges', title: 'Roads and Bridges', image: serviceRoads },
+  { id: 'transportation', title: 'Transportation', image: serviceTransportation },
+  { id: 'sustainable-solutions', title: 'Sustainable Solutions', image: serviceSustainable },
+  { id: 'petrol-gas-pipelines', title: 'Petrol and Gas Pipelines', image: servicePetrolGas },
+];
+
 export default function HomePage() {
   useScrollAnimation();
   const { messages, href } = useI18n();
@@ -156,6 +170,24 @@ export default function HomePage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.services} section`}>
+        <div className="container">
+          <div className={`${styles.servicesHead} animate-on-scroll`}>
+            <span className="sectionLabel">Services</span>
+            <h2 className="sectionTitle">Our Service Sectors</h2>
+          </div>
+          <div className={styles.servicesGrid}>
+            {services.map((service) => (
+              <article key={service.id} className={`${styles.serviceCard} animate-on-scroll`}>
+                <Image src={service.image} alt={service.title} fill className={styles.serviceImage} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                <div className={styles.serviceOverlay} />
+                <h3 className={styles.serviceTitle}>{service.title}</h3>
+              </article>
+            ))}
           </div>
         </div>
       </section>

@@ -17,6 +17,7 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import heroImage from '@/assets/images/heroes/hero-products.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
 import { productImages } from '@/lib/products/product-images';
@@ -77,6 +78,7 @@ export default function ProductsPage() {
           </>
         }
         subtitle={p.heroSubtitle}
+        backgroundImage={heroImage}
       />
 
       <section className={styles.filterSection}>

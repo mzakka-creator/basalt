@@ -227,6 +227,65 @@
   line-height: 1.4;
 }
 
+/* ==================== SERVICES ==================== */
+.services {
+  background: linear-gradient(180deg, var(--basalt-black), var(--basalt-deep));
+}
+
+.servicesHead {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.servicesHead :global(.sectionTitle) {
+  text-align: center;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.serviceCard {
+  position: relative;
+  min-height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--basalt-line);
+  box-shadow: var(--shadow-deep);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--basalt-line-strong);
+}
+
+.serviceImage {
+  object-fit: cover;
+}
+
+.serviceOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 13, 17, 0.12) 0%, rgba(8, 13, 17, 0.74) 70%, rgba(8, 13, 17, 0.95) 100%);
+}
+
+.serviceTitle {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  z-index: 1;
+  font-family: var(--font-oswald);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--sand-soft);
+}
+
 /* ==================== TEASER CARDS ==================== */
 .teasers {
   background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
@@ -428,6 +487,10 @@
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .teaserGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -522,6 +585,15 @@
 
   .teasersHead {
     margin-bottom: 40px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .serviceCard {
+    min-height: 200px;
   }
 
   .heroCtas {

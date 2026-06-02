@@ -1,7 +1,7 @@
 import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
-import heroImage from '@/assets/images/hero.jpeg';
+import heroImage from '@/assets/images/heroes/hero-home.png';
 import styles from './PageHero.module.css';
 
 type Particle = {

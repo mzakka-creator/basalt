@@ -6,10 +6,10 @@
 :root {
   /* Logo-matched stone palette */
   --stone-highlight: #d5d7cf;
-  --stone-light: #b7b6ad;
-  --stone-mid: #7a8882;
-  --stone-dark: #3a4444;
-  --stone-shadow: #1a1d1d;
+  --stone-light: #9BA3AA;
+  --stone-mid: #7A828A;
+  --stone-dark: #3A4248;
+  --stone-shadow: #1B2420;
 
   /* Directional lighting — top-left highlight like the logo */
   --stone-gradient: linear-gradient(
@@ -30,13 +30,13 @@
 
   --stone-base: linear-gradient(
     160deg,
-    #1a1d1d 0%,
-    #24322f 18%,
-    #3a4444 42%,
-    #64706b 58%,
-    #b7b6ad 74%,
-    #7a8882 86%,
-    #0f2b24 100%
+    #1B2420 0%,
+    #24302C 18%,
+    #3A4248 42%,
+    #64706B 58%,
+    #9BA3AA 74%,
+    #7A828A 86%,
+    #0B1F14 100%
   );
 
   /* Fine pitting / grain */
@@ -59,8 +59,8 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 20% 10%, rgba(124, 207, 154, 0.16), transparent 24%),
-    linear-gradient(180deg, rgba(7, 16, 14, 0.38), rgba(7, 16, 14, 0.88)),
+    radial-gradient(circle at 20% 10%, rgba(69, 255, 64, 0.1), transparent 24%),
+    linear-gradient(180deg, rgba(6, 15, 10, 0.38), rgba(6, 15, 10, 0.88)),
     var(--stone-base);
   opacity: 1;
 }
@@ -86,9 +86,9 @@
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    rgba(213, 215, 207, 0.24) 0%,
-    rgba(124, 136, 130, 0.08) 35%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(122, 130, 138, 0.08) 35%,
     transparent 55%,
-    rgba(15, 43, 36, 0.3) 100%
+    rgba(11, 31, 20, 0.3) 100%
   );
 }

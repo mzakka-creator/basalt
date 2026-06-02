@@ -1,21 +1,21 @@
 @import './styles/rock-brand.css';
 
 :root {
-  --green-dark: #0f2b24;
-  --green-mid: #1c5b4a;
-  --green-accent: #2aa06d;
-  --green-bright: #7ccf9a;
-  --basalt-black: #0b1010;
-  --basalt-deep: #101817;
-  --basalt-panel: #14211e;
-  --basalt-panel-strong: #1b2b27;
-  --basalt-line: rgba(124, 136, 130, 0.2);
-  --basalt-line-strong: rgba(124, 207, 154, 0.34);
-  --ash-muted: #7a8882;
-  --ash-light: #b7b6ad;
-  --sand-soft: #d5d7cf;
+  --green-dark: #0B1F14;
+  --green-mid: #155920;
+  --green-accent: #2BB828;
+  --green-bright: #45FF40;
+  --basalt-black: #0B1F14;
+  --basalt-deep: #0B1F14;
+  --basalt-panel: #1B2420;
+  --basalt-panel-strong: #1B2420;
+  --basalt-line: rgba(122, 130, 138, 0.2);
+  --basalt-line-strong: rgba(69, 255, 64, 0.3);
+  --ash-muted: #7A828A;
+  --ash-light: #9BA3AA;
+  --sand-soft: #FFFFFF;
   --grey-dark: var(--basalt-deep);
-  --grey-mid: #3a4444;
+  --grey-mid: #4A5158;
   --grey-light: var(--stone-light);
   --white: #FFFFFF;
   --font-heading: var(--font-cairo), 'Cairo', 'Montserrat', sans-serif;
@@ -23,13 +23,13 @@
   --font-oswald: var(--font-heading);
   --font-source-sans: var(--font-body);
   --surface-volcanic:
-    radial-gradient(circle at 22% 18%, rgba(124, 207, 154, 0.13), transparent 28%),
-    radial-gradient(circle at 78% 8%, rgba(213, 215, 207, 0.08), transparent 24%),
-    linear-gradient(145deg, var(--basalt-panel) 0%, var(--basalt-deep) 52%, #07100e 100%);
+    radial-gradient(circle at 22% 18%, rgba(69, 255, 64, 0.08), transparent 28%),
+    radial-gradient(circle at 78% 8%, rgba(255, 255, 255, 0.04), transparent 24%),
+    linear-gradient(145deg, var(--basalt-panel) 0%, var(--basalt-deep) 52%, #060F0A 100%);
   --surface-card:
     linear-gradient(155deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
     var(--surface-volcanic);
-  --shadow-emerald: 0 18px 55px rgba(42, 160, 109, 0.18);
+  --shadow-emerald: 0 18px 55px rgba(69, 255, 64, 0.2);
   --shadow-deep: 0 22px 70px rgba(0, 0, 0, 0.42);
   --navbar-height: 72px;
 }
@@ -57,7 +57,7 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 50% -10%, rgba(42, 160, 109, 0.18), transparent 34rem),
+    radial-gradient(circle at 50% -10%, rgba(69, 255, 64, 0.1), transparent 34rem),
     var(--basalt-black);
   color: var(--white);
   font-family: var(--font-body);
@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 14px 32px;
-  border: 1px solid rgba(124, 207, 154, 0.42);
+  border: 1px solid rgba(69, 255, 64, 0.42);
   border-radius: 4px;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -226,14 +226,14 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 14px 32px;
-  border: 1px solid rgba(213, 215, 207, 0.28);
+  border: 1px solid rgba(122, 130, 138, 0.35);
   border-radius: 4px;
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .btnOutline:hover {
   border-color: var(--green-bright);
-  background: rgba(42, 160, 109, 0.12);
+  background: rgba(69, 255, 64, 0.08);
   transform: translateY(-2px);
 }
 

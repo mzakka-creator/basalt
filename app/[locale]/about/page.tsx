@@ -18,6 +18,7 @@ import {
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import heroImage from '@/assets/images/heroes/hero-about.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './about.module.css';
 
@@ -60,6 +61,7 @@ export default function AboutPage() {
           </>
         }
         subtitle={a.heroSubtitle}
+        backgroundImage={heroImage}
       />
 
       <section className={`${styles.visionSection} section`}>
