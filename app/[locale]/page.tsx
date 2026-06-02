@@ -24,6 +24,10 @@ import serviceRoads from '@/assets/images/sectors/sector-infrastructure.jpeg';
 import serviceTransportation from '@/assets/images/sectors/sector-transport.jpeg';
 import serviceSustainable from '@/assets/images/sectors/sector-energy.jpeg';
 import servicePetrolGas from '@/assets/images/sectors/sector-oilgas.jpeg';
+import heroAbout from '@/assets/images/heroes/hero-about.png';
+import heroProducts from '@/assets/images/heroes/hero-products.png';
+import heroFactory from '@/assets/images/heroes/hero-factory.png';
+import heroInvestments from '@/assets/images/heroes/hero-investments.png';
 import styles from './page.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -92,6 +96,13 @@ const teaserIcons: { path: '/about' | '/products' | '/factory' | '/investments';
   { path: '/factory', Icon: IconFactory },
   { path: '/investments', Icon: IconInvestments },
 ];
+
+const teaserImages: Record<'/about' | '/products' | '/factory' | '/investments', StaticImageData> = {
+  '/about': heroAbout,
+  '/products': heroProducts,
+  '/factory': heroFactory,
+  '/investments': heroInvestments,
+};
 
 const featureIcons: SvgIcon[] = [IconThermometer, IconStrength, IconLeaf, IconLocation];
 
@@ -200,9 +211,12 @@ export default function HomePage() {
           </div>
           <div className={styles.teaserGrid}>
             {h.teasers.map((card, i) => {
+              const teaserPath = teaserIcons[i].path;
               const TeaserIcon = teaserIcons[i].Icon;
               return (
-                <Link key={card.path} href={href(card.path)} className={`${styles.teaserCard} animate-on-scroll`}>
+                <Link key={teaserPath} href={href(teaserPath)} className={`${styles.teaserCard} animate-on-scroll`}>
+                  <Image src={teaserImages[teaserPath]} alt="" fill className={styles.teaserImage} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                  <div className={styles.teaserOverlay} />
                   <div className={styles.teaserCardInner}>
                     <div className={styles.teaserIconWrap} aria-hidden>
                       <TeaserIcon className={iconStyles.svgIcon} />

@@ -332,27 +332,6 @@
   color: var(--green-bright);
 }
 
-.drawerFooter {
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.drawerBadge {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--green-bright);
-  padding: 4px 10px;
-  border: 1px solid var(--green-bright);
-  border-radius: 2px;
-  margin-bottom: 16px;
-}
-
 @media (max-width: 900px) {
   .navLinks {
     display: none;

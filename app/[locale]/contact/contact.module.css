@@ -32,12 +32,6 @@
   box-shadow: 0 18px 40px var(--basalt-line);
 }
 
-.infoCardHighlight {
-  background: var(--card-surface);
-  border-color: var(--green-bright) !important;
-  border-width: 1px;
-}
-
 .infoIcon {
   display: flex;
   align-items: center;

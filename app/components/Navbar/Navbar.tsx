@@ -159,9 +159,6 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-        <div className={styles.drawerFooter}>
-          <p className={styles.drawerBadge}>{messages.common.opening2028}</p>
-        </div>
       </div>
     </>
   );

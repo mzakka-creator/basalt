@@ -152,11 +152,14 @@
 }
 
 .featureItem {
-  background: #A7BDAD;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.38) 0%, transparent 42%),
+    linear-gradient(160deg, #a7bdad 0%, #9eb6a6 56%, #95ad9e 100%);
   padding: 36px 24px;
   text-align: center;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .featureItem::after {
@@ -171,8 +174,23 @@
   transition: transform 0.3s ease;
 }
 
+.featureItem::before {
+  content: '';
+  position: absolute;
+  inset: auto -28% -46% auto;
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69, 255, 64, 0.22) 0%, rgba(69, 255, 64, 0) 70%);
+  pointer-events: none;
+}
+
 .featureItem:hover {
-  background: #b8c9be;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.48) 0%, transparent 42%),
+    linear-gradient(160deg, #b8c9be 0%, #aec2b6 56%, #a3b8ac 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(26, 29, 29, 0.12);
 }
 
 .featureItem:hover::after {
@@ -189,7 +207,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.46);
   border: 1px solid rgba(26, 29, 29, 0.1);
   color: var(--green-dark);
   transition:
@@ -200,9 +218,9 @@
 }
 
 .featureItem:hover .featureIconWrap {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.68);
   border-color: rgba(26, 29, 29, 0.14);
-  box-shadow: 0 12px 28px rgba(26, 29, 29, 0.1);
+  box-shadow: 0 12px 28px rgba(26, 29, 29, 0.12), 0 0 0 4px rgba(69, 255, 64, 0.16);
 }
 
 .featureItem:hover .featureIconWrap .svgIcon,
@@ -243,7 +261,7 @@
 
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -313,7 +331,7 @@
   flex-direction: column;
   min-height: 260px;
   padding: 36px 28px;
-  background: #A7BDAD;
+  background: #0f1414;
   border: 1px solid rgba(26, 29, 29, 0.14);
   border-radius: 8px;
   overflow: hidden;
@@ -337,10 +355,24 @@
 }
 
 .teaserCard:hover {
-  background: #b8c9be;
+  background: #151c1c;
   border-color: rgba(26, 29, 29, 0.18);
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(26, 29, 29, 0.1);
+}
+
+.teaserImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.teaserOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 14% 14%, rgba(124, 207, 154, 0.24) 0%, transparent 34%),
+    linear-gradient(180deg, rgba(7, 10, 12, 0.18) 0%, rgba(7, 10, 12, 0.76) 72%, rgba(7, 10, 12, 0.95) 100%);
 }
 
 .teaserCardInner {
@@ -360,9 +392,9 @@
   justify-content: center;
   margin-bottom: 18px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(26, 29, 29, 0.1);
-  color: var(--green-dark);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(213, 215, 207, 0.32);
+  color: var(--sand-soft);
   transition:
     background 0.35s ease,
     border-color 0.35s ease,
@@ -371,15 +403,15 @@
 }
 
 .teaserCard:hover .teaserIconWrap {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(26, 29, 29, 0.14);
-  box-shadow: 0 10px 24px rgba(26, 29, 29, 0.08);
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(213, 215, 207, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
   transform: translateY(-3px) scale(1.07);
 }
 
 .teaserCard:hover .teaserIconWrap .svgIcon,
 .teaserCard:hover .teaserIconWrap svg {
-  color: var(--green-dark);
+  color: var(--green-bright);
   filter: none;
   transform: rotate(-5deg) scale(1.08);
 }
@@ -388,7 +420,7 @@
   font-family: var(--font-oswald);
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1a1d1d;
+  color: var(--sand-soft);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 12px;
@@ -396,7 +428,7 @@
 
 .teaserDesc {
   font-size: 0.88rem;
-  color: rgba(26, 29, 29, 0.72);
+  color: rgba(213, 215, 207, 0.82);
   line-height: 1.65;
   margin-bottom: 20px;
   flex: 1;
@@ -408,7 +440,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green-dark);
+  color: var(--green-bright);
   transition: letter-spacing 0.2s ease;
   display: inline-flex;
   align-items: center;
@@ -433,7 +465,7 @@
   background: radial-gradient(ellipse at bottom left, rgba(42, 160, 109, 0.16) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 1;
+  z-index: 2;
 }
 
 .teaserCard:hover .teaserHoverBg {

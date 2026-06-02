@@ -159,7 +159,7 @@ export default function ContactPage() {
               <p className={styles.infoSub}>{c.locSub}</p>
               <span className={styles.infoLink}>{c.locOffice}</span>
             </div>
-            <div className={`${styles.infoCard} ${styles.infoCardHighlight} animate-on-scroll`}>
+            <div className={`${styles.infoCard} animate-on-scroll`}>
               <div className={styles.infoIcon}>
                 <IconClock className={iconStyles.svgIconLg} aria-hidden />
               </div>

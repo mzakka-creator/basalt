@@ -55,7 +55,7 @@ export const en = {
     technicalSpecs: 'Technical specifications',
   },
   home: {
-    tagline: 'Saudi Arabia — Est. 2028',
+    tagline: 'Saudi Arabia',
     titleLine1: 'Natural Power,',
     titleAccent: 'Without Limits',
     subtitle:

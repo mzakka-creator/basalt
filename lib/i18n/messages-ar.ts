@@ -55,7 +55,7 @@ export const ar: Messages = {
     technicalSpecs: 'المواصفات الفنية',
   },
   home: {
-    tagline: 'المملكة العربية السعودية — تأسست 2028',
+    tagline: 'المملكة العربية السعودية',
     titleLine1: 'قوة طبيعية،',
     titleAccent: 'لا حدود لها',
     subtitle: 'شركة سعودية ناشئة لإنتاج مواد البناء المتميزة من حجر البازلت',
