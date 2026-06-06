@@ -56,8 +56,8 @@ export const en = {
   },
   home: {
     tagline: 'Saudi Arabia',
-    titleLine1: 'Natural Power,',
-    titleAccent: 'Without Limits',
+    titleLine1: 'From the heart of the volcano',
+    titleAccent: 'to the summit of innovation',
     subtitle:
       "Saudi Arabia's upcoming premium basalt construction materials manufacturer",
     ctaProducts: 'Explore products',
@@ -118,116 +118,63 @@ export const en = {
     ctaBannerButton: 'Explore investment tiers',
   },
   about: {
-    heroTag: 'Who we are',
-    heroTitleLine1: 'Built on vision,',
-    heroTitleAccent: 'forged from the earth',
+    heroTag: 'Basalt Technology',
+    heroTitleLine1: 'Saudi Basalt',
+    heroTitleAccent: 'Technology Company',
     heroSubtitle:
-      "A future-forward Saudi company transforming volcanic basalt rock into the building blocks of tomorrow's infrastructure.",
+      'The largest industrial complex in the Middle East and North Africa, dedicated to transforming basalt rock into advanced engineering solutions for construction, energy, and infrastructure — powered by world-class manufacturing technology.',
+    strengthsLabel: 'Our strengths',
+    strengthsTitle: 'Company strengths',
+    strengths: [
+      'First industrial complex in the region specialized in basalt',
+      'A strategic alternative to conventional steel',
+      'Corrosion- and heat-resistant technologies',
+      'Direct support for Vision 2030',
+    ],
+    whoWeAreLabel: 'Who we are',
+    whoWeAreTitle: 'The industrial complex',
+    whoWeAreParagraphs: [
+      'The Basalt Technology industrial complex operates within advanced materials engineering, focused on developing and applying manufacturing technologies based on natural metallic fibers extracted from basalt.',
+      'The complex follows a scientific approach to composite material design, aiming to improve strength-to-weight ratios, corrosion resistance, and thermal stability — supporting long-term use in construction and industrial applications.',
+      'Our strategy centers on converting raw materials into functional solutions that integrate seamlessly into modern infrastructure systems.',
+    ],
     visionTitle: 'Our vision',
-    visionText:
-      "To become the Middle East's leading producer of basalt construction materials — setting the benchmark for quality, innovation, and sustainability in the region's rapidly growing construction sector.",
+    visionParagraphs: [
+      'We aim to establish a leading position in the advanced composites sector by delivering innovative engineering solutions built on basalt technology — redefining performance standards in construction and infrastructure.',
+      'We believe the future is built with smarter, more sustainable materials. We put our technical expertise at the service of the nation\'s major projects, contributing to Saudi Vision 2030 through localizing advanced materials industry, raising local content, and building national capabilities that compete globally.',
+    ],
+    visionClosing: 'From the Kingdom of Saudi Arabia, we make the difference.',
     missionTitle: 'Our mission',
-    missionText:
-      "To harness Saudi Arabia's abundant basalt rock reserves and transform them into premium construction materials that reduce reliance on imports, strengthen national infrastructure, and support Vision 2030's industrial goals.",
-    roadmapLabel: 'Roadmap',
-    roadmapTitle: '3-year journey to launch',
-    roadmapDesc:
-      "A structured, milestone-driven approach to building Saudi Arabia's first basalt materials factory.",
-    timeline: [
+    missionParagraphs: [
+      'We design, manufacture, and supply advanced composite materials based on basalt fibers — with high mechanical and chemical performance standards — to meet the requirements of construction, energy, and transportation sectors.',
+      'We are committed to continuous improvement and developing solutions that work in real industrial environments, driven by our belief that technical excellence is the best path to lasting industrial partnerships that grow the national construction and industrial sector and strengthen Saudi Arabia\'s competitiveness on the global industrial map.',
+    ],
+    productsLabel: 'Our products',
+    productsTitle: 'Engineering solutions portfolio',
+    productsDesc:
+      'Our portfolio includes a comprehensive range of advanced materials and engineering solutions built on basalt fiber technology — designed to enhance structural performance, extend operational life, and minimize maintenance requirements.',
+    products: [
       {
-        year: '2025',
-        phase: 'Phase 1',
-        title: 'Foundation & planning',
-        desc: 'Company registration, feasibility studies, site selection across Saudi Arabia, and initial investor onboarding.',
-        status: 'current' as const,
+        title: 'Concrete reinforcement systems — BFRP Rebars',
+        desc: 'An advanced alternative to conventional steel, offering high corrosion resistance and lightweight performance — ideal for structures exposed to moisture and harsh environments.',
       },
       {
-        year: '2026',
-        phase: 'Phase 2',
-        title: 'Infrastructure & partnerships',
-        desc: 'Land acquisition, machinery procurement agreements, technology licensing, and strategic partnership deals.',
-        status: 'upcoming' as const,
+        title: 'High-strength structural reinforcement meshes',
+        desc: 'Structural reinforcement solutions designed to enhance construction durability and distribute loads with high efficiency.',
       },
       {
-        year: '2027',
-        phase: 'Phase 3',
-        title: 'Construction & installation',
-        desc: 'Factory construction, equipment installation, team recruitment, and pre-production trials begin.',
-        status: 'upcoming' as const,
+        title: 'Composite panels for industrial applications',
+        desc: 'Project-specific panels that combine lightweight design with rigid performance in demanding industrial environments.',
       },
       {
-        year: '2028',
-        phase: 'Launch',
-        title: 'Grand opening',
-        desc: "Full-scale production commences. Saudi Arabia's first dedicated basalt materials factory is officially open.",
-        status: 'target' as const,
+        title: 'Oil & gas transfer pipelines',
+        desc: 'High-load pipelines resistant to pressure and chemical corrosion, engineered for the most challenging operating conditions.',
+      },
+      {
+        title: 'Lightweight, high-load containers and structures',
+        desc: 'An integrated structural system combining maximum load capacity with low mass — for transportation and infrastructure applications.',
       },
     ],
-    valuesLabel: 'Core values',
-    valuesTitle: 'What we stand for',
-    values: [
-      {
-        title: 'Innovation',
-        desc: 'Applying the latest basalt fiber technologies and continuous R&D to stay ahead of global construction trends.',
-      },
-      {
-        title: 'Sustainability',
-        desc: 'Basalt is 100% natural. Our processes are designed to minimize carbon footprint and maximize material longevity.',
-      },
-      {
-        title: 'Quality',
-        desc: 'Every product leaving our factory meets or exceeds international standards — zero compromise on performance.',
-      },
-      {
-        title: 'Saudi pride',
-        desc: 'Built in Saudi Arabia, for Saudi Arabia. Proudly supporting Vision 2030 and the growth of domestic industry.',
-      },
-    ],
-    materialLabel: 'The material',
-    materialTitle: 'Why basalt?',
-    materialDesc:
-      'Formed 65+ million years ago from volcanic magma, basalt rock possesses extraordinary properties that make it ideal for modern construction.',
-    rockProps: [
-      {
-        title: 'Heat resistance',
-        stat: 'Up to 700°C',
-        desc: 'Superior performance in high-temperature environments compared to steel or fiberglass.',
-      },
-      {
-        title: 'Tensile strength',
-        stat: '4,840 MPa',
-        desc: 'Basalt fiber offers exceptional tensile strength, surpassing fiberglass by up to 30%.',
-      },
-      {
-        title: 'Chemical resistance',
-        stat: 'pH 1–14',
-        desc: 'Naturally resistant to acids, alkalis, and corrosive environments — ideal for infrastructure.',
-      },
-      {
-        title: 'Lightweight',
-        stat: '2.7 g/cm³',
-        desc: 'Lower density than steel, reducing structural load while maintaining superior strength.',
-      },
-      {
-        title: 'Eco-friendly',
-        stat: '0 toxic',
-        desc: 'No binders, no toxic emissions during production. Fully natural volcanic rock origin.',
-      },
-      {
-        title: 'Dimensional stability',
-        stat: '±0.01%',
-        desc: 'Exceptional resistance to thermal expansion and contraction over its lifespan.',
-      },
-    ],
-    teamLabel: 'Leadership',
-    teamTitle: 'The team behind Basalt',
-    teamRoles: [
-      'Chief executive officer',
-      'Chief technology officer',
-      'VP of operations',
-      'Head of investments',
-    ],
-    teamNote: 'Leadership team announcements coming in 2026',
   },
   products: {
     heroTag: 'Our products',

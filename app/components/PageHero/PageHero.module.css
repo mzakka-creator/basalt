@@ -23,76 +23,21 @@
   object-position: center;
 }
 
-/* Photo mode: keep image visible; use a light scrim instead of solid stone fills */
-.heroWithPhoto:global(.rock-surface)::before {
-  opacity: 0;
+/* Brighten variant — lifts a dark source image and adds a soft light wash */
+.heroBrighten .heroPhoto {
+  filter: brightness(1.28) contrast(0.96) saturate(1.08);
 }
 
-.heroWithPhoto:global(.rock-surface)::after {
-  opacity: 0.14;
-}
-
-.heroWithPhoto :global(.rock-surface-highlight) {
-  opacity: 0.4;
-  z-index: 1;
-}
-
-.heroWithPhoto .heroGradient {
-  z-index: 1;
-  background:
-    radial-gradient(circle at 50% 70%, rgba(42, 160, 109, 0.2) 0%, transparent 42%),
-    linear-gradient(
-      165deg,
-      rgba(11, 16, 16, 0.35) 0%,
-      rgba(15, 43, 36, 0.45) 42%,
-      rgba(0, 0, 0, 0.62) 100%
-    );
-}
-
-.heroWithPhoto .heroTexture {
-  z-index: 2;
-  opacity: 0.1;
-}
-
-/* Logo rock base + green atmosphere — layered under .rock-surface grain */
-.hero::before {
-  opacity: 0.55;
-}
-
-.hero::after {
-  opacity: 0.7;
-}
-
-.hero :global(.rock-surface-highlight) {
-  opacity: 0.85;
-  z-index: 1;
-}
-
-.heroGradient {
+.heroLightWash {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 50% 66%, rgba(42, 160, 109, 0.22) 0%, transparent 34%),
-    linear-gradient(115deg, rgba(11, 16, 16, 0.1) 0%, rgba(11, 16, 16, 0.72) 48%, rgba(11, 16, 16, 0.92) 100%),
-    linear-gradient(
-      160deg,
-      rgba(10, 12, 14, 0.72) 0%,
-      rgba(15, 43, 36, 0.72) 34%,
-      rgba(8, 15, 8, 0.84) 64%,
-      rgba(0, 0, 0, 0.92) 100%
-    );
-}
-
-.heroTexture {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: var(--stone-grain);
-  background-size: 160px 160px;
-  opacity: 0.35;
-  mix-blend-mode: soft-light;
-  animation: stoneShift 28s linear infinite;
+    radial-gradient(120% 80% at 50% 0%, rgba(255, 247, 230, 0.28) 0%, transparent 55%),
+    radial-gradient(90% 70% at 80% 15%, rgba(124, 207, 154, 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255, 252, 245, 0.12) 0%, transparent 35%, rgba(11, 16, 16, 0.4) 100%);
+  mix-blend-mode: screen;
 }
 
 .heroParticles {

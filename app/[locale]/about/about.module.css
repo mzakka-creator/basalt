@@ -102,11 +102,248 @@
   text-align: center;
 }
 
+.vmBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .vmText {
   font-size: 0.97rem;
   color: var(--about-card-text-muted);
   line-height: 1.8;
   text-align: center;
+}
+
+.vmClosing {
+  font-family: var(--font-oswald);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ==================== STRENGTHS ==================== */
+.strengthsSection {
+  background: var(--basalt-black);
+}
+
+.strengthsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.strengthCard {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 40px 28px 36px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--brand-neon-rgb), 0.1), transparent 60%),
+    var(--about-card);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.strengthCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--brand-neon-rgb), 0.45);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+}
+
+.strengthIndex {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 18px;
+  font-family: var(--font-oswald);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+
+.strengthOrb {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--basalt-black);
+  background: linear-gradient(145deg, var(--green-bright), var(--green-accent));
+  box-shadow:
+    0 0 0 6px rgba(var(--brand-neon-rgb), 0.12),
+    0 14px 30px rgba(var(--brand-neon-rgb), 0.28);
+}
+
+.strengthCard:hover .strengthOrb {
+  box-shadow:
+    0 0 0 8px rgba(var(--brand-neon-rgb), 0.18),
+    0 16px 36px rgba(var(--brand-neon-rgb), 0.4);
+}
+
+.strengthTitle {
+  font-family: var(--font-oswald);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--about-card-text);
+}
+
+/* ==================== WHO WE ARE ==================== */
+.whoWeAreSection {
+  background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
+}
+
+.whoWeAreLayout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.whoWeAreContent .sectionIntro {
+  margin-bottom: 32px;
+}
+
+.whoWeAreBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.whoWeAreText {
+  font-size: 1.05rem;
+  color: var(--ash-muted);
+  line-height: 1.85;
+}
+
+.whoWeAreVisual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--basalt-line-strong);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+.whoWeAreImage {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.whoWeAreVisual:hover .whoWeAreImage {
+  transform: scale(1.05);
+}
+
+.whoWeAreGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(var(--brand-neon-rgb), 0.18) 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+/* ==================== PRODUCTS ==================== */
+.productsSection {
+  background: var(--basalt-black);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--basalt-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--about-card);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--brand-neon-rgb), 0.4);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.5);
+}
+
+.productImageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.productImage {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.06);
+}
+
+.productImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(13, 15, 15, 0.85) 100%);
+  pointer-events: none;
+}
+
+.productIndex {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  font-family: var(--font-oswald);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--basalt-black);
+  background: linear-gradient(145deg, var(--green-bright), var(--green-accent));
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(var(--brand-neon-rgb), 0.35);
+}
+
+.productBody {
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.productTitle {
+  font-family: var(--font-oswald);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--about-card-text);
+}
+
+.productDesc {
+  font-size: 0.9rem;
+  color: var(--about-card-text-muted);
+  line-height: 1.75;
 }
 
 /* ==================== TIMELINE ==================== */
@@ -536,12 +773,23 @@ html[dir='rtl'] .timelineLeft .timelineCard {
   }
 
   .valuesGrid,
-  .teamGrid {
+  .teamGrid,
+  .strengthsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .propertyGrid {
+  .propertyGrid,
+  .productGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .whoWeAreLayout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .whoWeAreVisual {
+    order: -1;
   }
 
   .timeline {
@@ -660,7 +908,10 @@ html[dir='rtl'] .timelineLeft .timelineCard {
   .timelineSection:global(.section),
   .valuesSection:global(.section),
   .whySection:global(.section),
-  .teamSection:global(.section) {
+  .teamSection:global(.section),
+  .strengthsSection:global(.section),
+  .whoWeAreSection:global(.section),
+  .productsSection:global(.section) {
     padding-top: 56px;
     padding-bottom: 56px;
   }
@@ -774,6 +1025,28 @@ html[dir='rtl'] .timelineLeft .timelineCard {
   }
 
   .propertyCard:hover {
+    transform: none;
+  }
+
+  .strengthsGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .strengthCard {
+    padding: 32px 22px 28px;
+  }
+
+  .strengthCard:hover {
+    transform: none;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .productCard:hover {
     transform: none;
   }
 

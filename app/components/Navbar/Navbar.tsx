@@ -50,11 +50,10 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="Basalt"
-              width={140}
-              height={52}
+              width={168}
+              height={56}
               className={styles.logoImg}
               priority
-              style={{ width: 'auto', height: '44px' }}
             />
           </Link>
 
@@ -118,10 +117,9 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="Basalt"
-            width={120}
-            height={44}
+            width={144}
+            height={48}
             className={styles.logoImg}
-            style={{ width: 'auto', height: '40px' }}
           />
         </div>
         <ul className={styles.drawerLinks}>

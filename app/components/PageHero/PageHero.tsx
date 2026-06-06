@@ -14,12 +14,13 @@ type Particle = {
 };
 
 export type PageHeroProps = {
-  tagline: string;
+  tagline?: string;
   title: ReactNode;
   subtitle?: ReactNode;
   children?: ReactNode;
   banner?: ReactNode;
   backgroundImage?: StaticImageData | string;
+  brighten?: boolean;
 };
 
 const particles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
@@ -38,11 +39,11 @@ export default function PageHero({
   children,
   banner,
   backgroundImage = heroImage,
+  brighten = false,
 }: PageHeroProps) {
   return (
-    <section className={`rock-surface ${styles.hero} ${styles.heroWithPhoto}`}>
-      <div className="rock-surface-highlight" aria-hidden />
-      <div className={styles.heroBackground}>
+    <section className={styles.hero}>
+      <div className={`${styles.heroBackground} ${brighten ? styles.heroBrighten : ''}`}>
         <Image
           src={backgroundImage}
           alt=""
@@ -51,8 +52,7 @@ export default function PageHero({
           priority
           sizes="100vw"
         />
-        <div className={styles.heroGradient} />
-        <div className={styles.heroTexture} />
+        {brighten ? <div className={styles.heroLightWash} aria-hidden /> : null}
         <div className={styles.heroParticles}>
           {particles.map((p, i) => (
             <div key={i} className={styles.particle} style={p} />
@@ -62,10 +62,12 @@ export default function PageHero({
 
       <div className={styles.heroForeground}>
         <div className={styles.heroContent}>
-          <div className={styles.heroTagline}>
-            <span className={styles.taglineDot} />
-            {tagline}
-          </div>
+          {tagline ? (
+            <div className={styles.heroTagline}>
+              <span className={styles.taglineDot} />
+              {tagline}
+            </div>
+          ) : null}
           <h1 className={styles.heroHeadline}>{title}</h1>
           {subtitle != null && subtitle !== '' && (
             <p className={styles.heroSubheadline}>{subtitle}</p>

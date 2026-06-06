@@ -112,6 +112,7 @@ export default function InvestmentsPage() {
         }
         subtitle={inv.heroSubtitle}
         backgroundImage={heroImage}
+        brighten
       >
         <div className={styles.heroStats}>
           {inv.marketStats.map((s) => (

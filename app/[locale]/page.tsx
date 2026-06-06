@@ -122,7 +122,6 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        tagline={h.tagline}
         title={
           <>
             {h.titleLine1}
