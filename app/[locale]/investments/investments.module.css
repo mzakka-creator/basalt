@@ -34,13 +34,13 @@
 
 .heroStatLabel {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.52);
+  color: var(--white);
   line-height: 1.4;
 }
 
 .sectionDesc {
   font-size: 0.97rem;
-  color: rgba(255, 255, 255, 0.56);
+  color: var(--white);
   max-width: 520px;
   margin: 0 auto;
   text-align: center;
@@ -116,7 +116,7 @@
   font-family: var(--font-oswald);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--sand-soft);
+  color: var(--white);
   text-transform: none;
   letter-spacing: 0.01em;
   margin-bottom: 6px;
@@ -125,7 +125,7 @@
 
 .tierSubtitle {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.52);
+  color: var(--white);
   margin-bottom: 24px;
   line-height: 1.5;
 }
@@ -150,7 +150,7 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.66);
+  color: var(--white);
   line-height: 1.5;
 }
 
@@ -283,7 +283,7 @@
 .benefitDesc {
   flex: 1;
   font-size: 0.86rem;
-  color: var(--ash-muted);
+  color: var(--white);
   line-height: 1.7;
 }
 
@@ -309,7 +309,7 @@
   font-family: var(--font-oswald);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--sand-soft);
+  color: var(--green-bright);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 10px;
@@ -317,7 +317,7 @@
 
 .visionDesc {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--white);
   line-height: 1.75;
   max-width: 700px;
 }
@@ -336,7 +336,7 @@
 
 .formIntro {
   font-size: 0.97rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--white);
   line-height: 1.75;
   margin: 16px 0 32px;
 }
@@ -353,7 +353,7 @@
   align-items: center;
   gap: 12px;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.56);
+  color: var(--white);
 }
 
 .sideIcon {
@@ -378,19 +378,19 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.56);
+  color: var(--white);
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .brochureBtn:hover {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--white);
   color: var(--white);
 }
 
 .brochureNote {
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
   font-weight: 400;
 }
 
@@ -422,7 +422,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--white);
 }
 
 .fieldInput,
@@ -441,7 +441,7 @@
 
 .fieldInput::placeholder,
 .fieldTextarea::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
 }
 
 .fieldInput:focus,
@@ -481,14 +481,14 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--white);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .typeOption:hover {
   border-color: rgba(var(--brand-neon-rgb), 0.4);
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--white);
 }
 
 .typeActive {
@@ -551,7 +551,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--sand-soft);
+  color: var(--white);
   margin-bottom: 8px;
 }
 
@@ -566,7 +566,7 @@
 
 .successText {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--white);
   line-height: 1.7;
   max-width: 360px;
 }

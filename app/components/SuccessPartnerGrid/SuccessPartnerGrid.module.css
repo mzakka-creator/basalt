@@ -1,0 +1,87 @@
+.gridSection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.categoryBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.categoryLabel {
+  font-family: var(--font-oswald);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.gridItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 112px;
+  padding: 20px 24px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.gridItem:hover {
+  border-color: rgba(69, 255, 64, 0.35);
+  background: rgba(69, 255, 64, 0.06);
+  transform: translateY(-3px);
+}
+
+.partnerLogo {
+  width: auto;
+  height: auto;
+  max-width: 180px;
+  max-height: 52px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+
+.gridItem:hover .partnerLogo {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gridSection {
+    gap: 36px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .gridItem {
+    min-height: 96px;
+    padding: 16px 18px;
+  }
+
+  .partnerLogo {
+    max-width: 140px;
+    max-height: 44px;
+  }
+}

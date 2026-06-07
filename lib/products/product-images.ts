@@ -1,14 +1,14 @@
 import type { StaticImageData } from 'next/image';
-import product1 from '@/assets/images/products/product-1-bfrp.jpeg';
-import product2 from '@/assets/images/products/product-2-aggregates.jpeg';
-import product3 from '@/assets/images/products/product-3-insulation.jpeg';
-import product4 from '@/assets/images/products/product-4-rebar-mesh.jpeg';
-import product5 from '@/assets/images/products/product-5-custom.jpeg';
+import productRebar from '@/assets/images/products/product-rebar.png';
+import productGeogrid from '@/assets/images/products/product-geogrid.png';
+import productMesh from '@/assets/images/products/product-mesh.png';
+import productRoving from '@/assets/images/products/product-roving.png';
+import productFibre from '@/assets/images/products/product-fibre.png';
 
 export const productImages: Record<number, StaticImageData> = {
-  1: product1,
-  2: product2,
-  3: product3,
-  4: product4,
-  5: product5,
+  1: productRebar,
+  2: productGeogrid,
+  3: productMesh,
+  4: productRoving,
+  5: productFibre,
 };

@@ -45,7 +45,7 @@ function useScrollAnimation() {
 
 const advantageIcons: SvgIcon[] = [IconShield, IconThermometer, IconScale, IconLeaf, IconCoins, IconLandmark];
 
-const categoryOrder: CategoryFilter[] = ['all', 'reinforcement', 'aggregates', 'insulation', 'custom'];
+const categoryOrder: CategoryFilter[] = ['all', 'reinforcement', 'fibers'];
 
 export default function ProductsPage() {
   useScrollAnimation();

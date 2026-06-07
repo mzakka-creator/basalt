@@ -54,7 +54,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--white);
   white-space: nowrap;
 }
 
@@ -70,7 +70,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--white);
   padding: 7px 18px;
   border: 1px solid var(--basalt-line);
   border-radius: 4px;
@@ -80,7 +80,7 @@
 }
 
 .filterTab:hover {
-  color: var(--sand-soft);
+  color: var(--white);
   border-color: var(--basalt-line-strong);
 }
 
@@ -106,7 +106,7 @@
 /* Card flip container */
 .productCard {
   position: relative;
-  height: 520px;
+  height: 600px;
   perspective: 1200px;
   cursor: pointer;
   transform-style: preserve-3d;
@@ -285,7 +285,7 @@
 
 .cardDesc {
   font-size: 0.87rem;
-  color: var(--ash-muted);
+  color: var(--white);
   line-height: 1.65;
   flex: 1;
 }
@@ -297,7 +297,7 @@
   font-family: var(--font-source-sans);
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--ash-muted);
+  color: var(--white);
   border-top: 1px solid var(--basalt-line);
   padding-top: 12px;
 }
@@ -356,7 +356,7 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ash-muted);
+  color: var(--white);
   margin-bottom: 4px;
 }
 
@@ -364,9 +364,9 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.5;
+  font-size: 0.85rem;
+  color: var(--white);
+  line-height: 1.45;
 }
 
 .specDot {
@@ -440,7 +440,7 @@
 
 .advDesc {
   font-size: 0.87rem;
-  color: var(--ash-muted);
+  color: var(--white);
   line-height: 1.7;
 }
 

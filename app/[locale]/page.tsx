@@ -17,13 +17,12 @@ import {
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
 import PageHero from '@/app/components/PageHero/PageHero';
+import PartnerMarquee from '@/app/components/PartnerMarquee/PartnerMarquee';
+import SuccessPartnerGrid from '@/app/components/SuccessPartnerGrid/SuccessPartnerGrid';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
+import { homePartners } from '@/lib/home-partners';
+import { successPartnerCategories, successPartners } from '@/lib/success-partners';
 import { useI18n } from '@/lib/i18n/i18n-context';
-import serviceIndustry from '@/assets/images/sectors/sector-industry.jpeg';
-import serviceRoads from '@/assets/images/sectors/sector-infrastructure.jpeg';
-import serviceTransportation from '@/assets/images/sectors/sector-transport.jpeg';
-import serviceSustainable from '@/assets/images/sectors/sector-energy.jpeg';
-import servicePetrolGas from '@/assets/images/sectors/sector-oilgas.jpeg';
 import heroAbout from '@/assets/images/heroes/hero-about.png';
 import heroProducts from '@/assets/images/heroes/hero-products.png';
 import heroFactory from '@/assets/images/heroes/hero-factory.png';
@@ -106,14 +105,6 @@ const teaserImages: Record<'/about' | '/products' | '/factory' | '/investments',
 
 const featureIcons: SvgIcon[] = [IconThermometer, IconStrength, IconLeaf, IconLocation];
 
-const services: { id: string; title: string; image: StaticImageData }[] = [
-  { id: 'industry', title: 'Industry', image: serviceIndustry },
-  { id: 'roads-bridges', title: 'Roads and Bridges', image: serviceRoads },
-  { id: 'transportation', title: 'Transportation', image: serviceTransportation },
-  { id: 'sustainable-solutions', title: 'Sustainable Solutions', image: serviceSustainable },
-  { id: 'petrol-gas-pipelines', title: 'Petrol and Gas Pipelines', image: servicePetrolGas },
-];
-
 export default function HomePage() {
   useScrollAnimation();
   const { messages, href } = useI18n();
@@ -184,20 +175,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={`${styles.services} section`}>
+      <section className={`${styles.partners} section`}>
         <div className="container">
-          <div className={`${styles.servicesHead} animate-on-scroll`}>
-            <span className="sectionLabel">Services</span>
-            <h2 className="sectionTitle">Our Service Sectors</h2>
+          <div className={`${styles.partnersHead} animate-on-scroll`}>
+            <span className="sectionLabel">{h.partnersLabel}</span>
+            <h2 className="sectionTitle">{h.partnersTitle}</h2>
+            <p className={styles.partnersDesc}>{h.partnersDesc}</p>
           </div>
-          <div className={styles.servicesGrid}>
-            {services.map((service) => (
-              <article key={service.id} className={`${styles.serviceCard} animate-on-scroll`}>
-                <Image src={service.image} alt={service.title} fill className={styles.serviceImage} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-                <div className={styles.serviceOverlay} />
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
-              </article>
-            ))}
+          <div className={`${styles.partnersMarquee} animate-on-scroll`}>
+            <PartnerMarquee partners={homePartners} />
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.successPartners} section`}>
+        <div className="container">
+          <div className={`${styles.successPartnersHead} animate-on-scroll`}>
+            <span className="sectionLabel">{h.successPartnersLabel}</span>
+            <h2 className="sectionTitle">{h.successPartnersTitle}</h2>
+            <p className={styles.successPartnersDesc}>{h.successPartnersDesc}</p>
+          </div>
+          <div className="animate-on-scroll">
+            <SuccessPartnerGrid
+              partners={successPartners}
+              categories={successPartnerCategories}
+              categoryLabels={h.successPartnerCategories}
+            />
           </div>
         </div>
       </section>

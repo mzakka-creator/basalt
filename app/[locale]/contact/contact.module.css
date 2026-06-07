@@ -44,7 +44,7 @@
   font-family: var(--font-oswald);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--ash-muted);
+  color: var(--white);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 2px;
@@ -60,7 +60,7 @@
 
 .infoSub {
   font-size: 0.8rem;
-  color: var(--ash-muted);
+  color: var(--white);
   line-height: 1.4;
 }
 
@@ -137,7 +137,7 @@
   font-family: var(--font-oswald);
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--sand-soft);
+  color: var(--green-bright);
   text-transform: none;
   letter-spacing: 0.01em;
   margin-bottom: 6px;
@@ -145,7 +145,7 @@
 
 .formSubtitle {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--white);
 }
 
 .formBody {
@@ -172,7 +172,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--white);
 }
 
 .fieldInput,
@@ -194,7 +194,7 @@
 
 .fieldInput::placeholder,
 .fieldTextarea::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
 }
 
 .fieldInput:focus,
@@ -232,7 +232,7 @@
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--white);
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -293,7 +293,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--sand-soft);
+  color: var(--white);
   margin-bottom: 8px;
 }
 
@@ -308,7 +308,7 @@
 
 .successText {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--white);
   line-height: 1.7;
   max-width: 360px;
 }
@@ -401,13 +401,13 @@
   font-family: var(--font-oswald);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--sand-soft);
+  color: var(--white);
   letter-spacing: 0.1em;
 }
 
 .mapSub {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--white);
   letter-spacing: 0.06em;
 }
 
@@ -446,7 +446,7 @@
 
 .socialDesc {
   font-size: 0.84rem;
-  color: var(--ash-muted);
+  color: var(--white);
   line-height: 1.6;
   margin-bottom: 20px;
 }
@@ -491,7 +491,7 @@
   font-size: 0.88rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--ash-muted);
+  color: var(--white);
 }
 
 /* Trust Card */
@@ -529,7 +529,7 @@
 
 .trustSub {
   font-size: 0.78rem;
-  color: var(--ash-muted);
+  color: var(--white);
 }
 
 /* ==================== RESPONSIVE ==================== */

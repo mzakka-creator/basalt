@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  color: var(--sand-soft);
+  color: var(--green-bright);
   text-transform: none;
   letter-spacing: 0.01em;
   margin-bottom: 20px;
