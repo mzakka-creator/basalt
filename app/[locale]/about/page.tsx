@@ -27,6 +27,15 @@ import styles from './about.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
+const NAME_PARTICLES = new Set(['bin', 'ibn', 'بن', 'ابن']);
+
+function getLeaderInitials(name: string) {
+  const parts = name.split(/\s+/).filter((part) => part.length > 0 && !NAME_PARTICLES.has(part.toLowerCase()));
+  if (parts.length === 0) return '?';
+  if (parts.length === 1) return parts[0].slice(0, 2);
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`;
+}
+
 function useScrollAnimation() {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,7 +72,7 @@ export default function AboutPage() {
         tagline={a.heroTag}
         title={
           <>
-            {a.heroTitleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{a.heroTitleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{a.heroTitleAccent}</span>
           </>
@@ -156,6 +165,40 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.leadershipSection} section`}>
+        <div className="container">
+          <div className={`${styles.sectionIntro} ${styles.sectionIntroCenter} animate-on-scroll`}>
+            <span className="sectionLabel">{a.leadershipLabel}</span>
+            <h2 className="sectionTitle">{a.leadershipTitle}</h2>
+          </div>
+          <div className={styles.leadershipGrid}>
+            {a.leadership.map((leader) => (
+              <article key={leader.name} className={`${styles.leadershipCard} animate-on-scroll`}>
+                <div className={styles.leadershipLayout}>
+                  <div className={styles.leadershipPortrait} aria-hidden>
+                    <span className={styles.leadershipInitials}>{getLeaderInitials(leader.name)}</span>
+                  </div>
+                  <div className={styles.leadershipContent}>
+                    <h3 className={styles.leadershipTitle}>{leader.title}</h3>
+                    <div className={styles.leadershipBody}>
+                      {leader.paragraphs.map((paragraph) => (
+                        <p key={paragraph.slice(0, 32)} className={styles.leadershipText}>
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    <footer className={styles.leadershipSignature}>
+                      <span className={styles.leadershipRole}>{leader.role}</span>
+                      <span className={styles.leadershipName}>{leader.name}</span>
+                    </footer>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

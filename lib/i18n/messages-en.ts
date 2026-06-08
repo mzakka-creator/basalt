@@ -90,10 +90,6 @@ export const en = {
     successPartnersTitle: 'Trusted by leaders across Saudi Arabia',
     successPartnersDesc:
       'Governmental and non-governmental organizations that share our commitment to building a stronger, more sustainable construction sector.',
-    successPartnerCategories: {
-      governmental: 'Governmental organizations',
-      nonGovernmental: 'Non-governmental organizations',
-    },
     teasersLabel: 'Explore Basalt',
     teasersTitle: 'Everything you need to know',
     teasers: [
@@ -160,6 +156,28 @@ export const en = {
     missionParagraphs: [
       'We design, manufacture, and supply advanced composite materials based on basalt fibers — with high mechanical and chemical performance standards — to meet the requirements of construction, energy, and transportation sectors.',
       'We are committed to continuous improvement and developing solutions that work in real industrial environments, driven by our belief that technical excellence is the best path to lasting industrial partnerships that grow the national construction and industrial sector and strengthen Saudi Arabia\'s competitiveness on the global industrial map.',
+    ],
+    leadershipLabel: 'Leadership',
+    leadershipTitle: 'Words from our leadership',
+    leadership: [
+      {
+        title: 'Message from the Chairman of the Board',
+        paragraphs: [
+          'At Basalt Technology Company, we believe the economic and industrial renaissance underway in the Kingdom of Saudi Arabia under Vision 2030 is a launchpad toward a more prosperous and sustainable future. Guided by this ambitious vision, we strive to develop the basalt industry to the highest global standards — strengthening local content, supporting industrial development, and creating added value for the national economy.',
+          'We are driven by the ambition for Basalt Technology Company to become a leading national model in advanced industries, and to help cement the Kingdom\'s position as a regional and global hub for innovation, industry, and investment.',
+        ],
+        role: 'Chairman of the Board',
+        name: 'Omar Salimin bin Mahfouz',
+      },
+      {
+        title: 'Message from the General Manager',
+        paragraphs: [
+          'At Basalt Technology Company, we turn ambition into achievement through a commitment to the highest standards of quality, efficiency, and innovation at every stage of our work. Our vision is inspired by the Kingdom of Saudi Arabia\'s growing stature as a global economic and industrial power, and by the exceptional opportunities for growth and development offered by Vision 2030.',
+          'We focus on building an integrated industrial ecosystem capable of delivering competitive products to world-class standards — investing in national talent and modern technologies to create sustainable value for our clients and partners, and to support the Kingdom\'s industrial development journey.',
+        ],
+        role: 'General Manager',
+        name: 'Salimin Omar bin Mahfouz',
+      },
     ],
     productsLabel: 'Our products',
     productsTitle: 'Engineering solutions portfolio',

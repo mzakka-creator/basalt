@@ -59,7 +59,7 @@ export default function FactoryPage() {
         tagline={f.heroTag}
         title={
           <>
-            {f.heroTitleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{f.heroTitleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{f.heroTitleAccent}</span>
           </>

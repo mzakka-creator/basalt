@@ -72,7 +72,7 @@ export default function ProductsPage() {
         tagline={p.heroTag}
         title={
           <>
-            {p.heroTitleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{p.heroTitleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{p.heroTitleAccent}</span>
           </>

@@ -114,7 +114,7 @@ export default function ContactPage() {
         tagline={c.heroTag}
         title={
           <>
-            {c.heroTitleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{c.heroTitleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{c.heroTitleAccent}</span>
           </>

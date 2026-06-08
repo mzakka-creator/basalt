@@ -21,7 +21,7 @@ import PartnerMarquee from '@/app/components/PartnerMarquee/PartnerMarquee';
 import SuccessPartnerGrid from '@/app/components/SuccessPartnerGrid/SuccessPartnerGrid';
 import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import { homePartners } from '@/lib/home-partners';
-import { successPartnerCategories, successPartners } from '@/lib/success-partners';
+import { successPartners } from '@/lib/success-partners';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import heroAbout from '@/assets/images/heroes/hero-about.png';
 import heroProducts from '@/assets/images/heroes/hero-products.png';
@@ -115,7 +115,7 @@ export default function HomePage() {
       <PageHero
         title={
           <>
-            {h.titleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{h.titleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{h.titleAccent}</span>
           </>
@@ -196,11 +196,7 @@ export default function HomePage() {
             <p className={styles.successPartnersDesc}>{h.successPartnersDesc}</p>
           </div>
           <div className="animate-on-scroll">
-            <SuccessPartnerGrid
-              partners={successPartners}
-              categories={successPartnerCategories}
-              categoryLabels={h.successPartnerCategories}
-            />
+            <SuccessPartnerGrid partners={successPartners} />
           </div>
         </div>
       </section>

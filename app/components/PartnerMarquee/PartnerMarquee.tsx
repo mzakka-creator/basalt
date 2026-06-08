@@ -15,10 +15,8 @@ export default function PartnerMarquee({ partners }: PartnerMarqueeProps) {
         {track.map((partner, index) => (
           <div key={`${partner.id}-${index}`} className={styles.marqueeItem}>
             <Image
-              src={partner.logoSrc}
+              src={partner.logo}
               alt={partner.name}
-              width={200}
-              height={56}
               className={styles.partnerLogo}
               unoptimized
             />

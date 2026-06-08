@@ -140,6 +140,10 @@
   text-shadow: 0 5px 40px rgba(0, 0, 0, 0.64);
 }
 
+.heroHeadlineLead {
+  color: var(--white);
+}
+
 .heroHeadlineAccent {
   color: var(--green-bright);
   display: block;

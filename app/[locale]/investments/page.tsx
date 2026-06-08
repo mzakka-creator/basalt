@@ -105,7 +105,7 @@ export default function InvestmentsPage() {
         tagline={inv.heroTag}
         title={
           <>
-            {inv.heroTitleLine1}
+            <span className={pageHeroStyles.heroHeadlineLead}>{inv.heroTitleLine1}</span>
             <br />
             <span className={pageHeroStyles.heroHeadlineAccent}>{inv.heroTitleAccent}</span>
           </>

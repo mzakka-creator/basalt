@@ -1,29 +1,10 @@
-.gridSection {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-.categoryBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.categoryLabel {
-  font-family: var(--font-oswald);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--green-bright);
-  text-align: center;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .gridItem {
@@ -66,10 +47,6 @@
 }
 
 @media (max-width: 640px) {
-  .gridSection {
-    gap: 36px;
-  }
-
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
