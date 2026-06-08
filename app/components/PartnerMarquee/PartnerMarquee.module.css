@@ -29,18 +29,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: inherit;
   width: 240px;
   height: 100px;
   padding: 16px 24px;
-  border: 1px solid var(--basalt-line);
+  border: 1px solid rgba(26, 29, 29, 0.1);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  transition: border-color 0.25s ease, background 0.25s ease;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.38) 0%, transparent 42%),
+    linear-gradient(160deg, #a7bdad 0%, #9eb6a6 56%, #95ad9e 100%);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .marqueeItem:hover {
-  border-color: rgba(69, 255, 64, 0.35);
-  background: rgba(69, 255, 64, 0.06);
+  cursor: pointer;
+  border-color: rgba(26, 29, 29, 0.14);
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.48) 0%, transparent 42%),
+    linear-gradient(160deg, #b8c9be 0%, #aec2b6 56%, #a3b8ac 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(26, 29, 29, 0.12);
 }
 
 .partnerLogo {

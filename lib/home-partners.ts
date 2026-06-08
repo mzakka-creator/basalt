@@ -9,12 +9,14 @@ export type HomePartner = {
   id: string;
   name: string;
   logo: StaticImageData;
+  /** Company website — leave empty until ready */
+  url: string;
 };
 
 export const homePartners: HomePartner[] = [
-  { id: 'double-act', name: 'Double Act', logo: logo01 },
-  { id: 'peace-city', name: 'Peace City', logo: logo02 },
-  { id: 'doka-me', name: 'DOKA ME', logo: logo03 },
-  { id: 'basalt-tech', name: 'Basalt Tech', logo: logo04 },
-  { id: 'partner-05', name: 'Strategic partner', logo: logo05 },
+  { id: 'double-act', name: 'Double Act', logo: logo01, url: 'https://doubleact.com.sa' },
+  { id: 'peace-city', name: 'Peace City', logo: logo02, url: 'https://peacecity.world' },
+  { id: 'doka-me', name: 'DOKA ME', logo: logo03, url: 'https://doka-me.com' },
+  { id: 'basalt-tech', name: 'Basalt Tech', logo: logo04, url: 'https://basalt.tech' },
+  { id: 'partner-05', name: 'Strategic partner', logo: logo05, url: '' },
 ];
