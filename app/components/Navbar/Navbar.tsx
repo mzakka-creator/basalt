@@ -110,9 +110,14 @@ export default function Navbar() {
       <div
         className={`${styles.mobileOverlay} ${menuOpen ? styles.overlayVisible : ''}`}
         onClick={() => setMenuOpen(false)}
-        aria-hidden
+        aria-hidden={!menuOpen}
+        inert={menuOpen ? undefined : true}
       />
-      <div className={`rock-surface ${styles.mobileDrawer} ${menuOpen ? styles.drawerOpen : ''}`}>
+      <div
+        className={`rock-surface ${styles.mobileDrawer} ${menuOpen ? styles.drawerOpen : ''}`}
+        aria-hidden={!menuOpen}
+        inert={menuOpen ? undefined : true}
+      >
         <div className="rock-surface-highlight" aria-hidden />
         <div className={styles.drawerLogo}>
           <Image

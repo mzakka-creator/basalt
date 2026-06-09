@@ -241,13 +241,16 @@
   background: rgba(0, 0, 0, 0.72);
   z-index: 150;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 
 .mobileOverlay.overlayVisible {
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
+  transition: opacity 0.3s ease, visibility 0s;
 }
 
 /* Mobile Drawer */
@@ -259,8 +262,12 @@
   height: 100dvh;
   background: var(--basalt-panel);
   z-index: 200;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate3d(100%, 0, 0);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.35s;
   display: flex;
   flex-direction: column;
   padding: 28px 24px;
@@ -285,7 +292,12 @@
 }
 
 .mobileDrawer.drawerOpen {
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s;
 }
 
 .drawerLangLead {
@@ -338,6 +350,13 @@
   color: var(--green-bright);
 }
 
+@media (min-width: 901px) {
+  .mobileOverlay,
+  .mobileDrawer {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
   .navLinks {
     display: none;
@@ -350,11 +369,19 @@
   .hamburger {
     display: flex;
   }
+
+  .logoImg {
+    height: 42px;
+  }
 }
 
 @media (max-width: 480px) {
   .inner {
     padding: 0 20px;
+  }
+
+  .logoImg {
+    height: 36px;
   }
 }
 
@@ -367,11 +394,11 @@ html[dir='rtl'] .mobileDrawer {
   left: 0;
   border-left: none;
   border-right: 1px solid var(--basalt-line-strong);
-  transform: translateX(-100%);
+  transform: translate3d(-100%, 0, 0);
 }
 
 html[dir='rtl'] .mobileDrawer.drawerOpen {
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
 }
 
 html[dir='rtl'] .drawerLink:hover,
