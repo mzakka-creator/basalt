@@ -171,6 +171,16 @@ export const en = {
         name: 'Omar Salimin bin Mahfouz',
       },
       {
+        id: '3',
+        title: 'Message from the Vice Chairman of the Board',
+        paragraphs: [
+          'We believe the economic and industrial transformations underway in the Kingdom of Saudi Arabia today represent a historic opportunity to launch distinctive industries capable of competing globally and delivering sustainable development impact. From this starting point, Basalt Technology Company seeks to help build an advanced industrial base founded on innovation, quality, and optimal use of natural resources — supporting Vision 2030 targets and strengthening the competitiveness of the national economy.',
+          'Our ambition is not limited to developing outstanding products; it extends to building an integrated industrial ecosystem that creates added value, supports local content, and contributes to knowledge transfer and localization of modern technologies — so that Basalt Technology Company becomes a national model reflecting the Kingdom\'s capabilities and ambitions toward a more prosperous and sustainable industrial future.',
+        ],
+        role: 'Vice Chairman of the Board',
+        name: 'Dr. Riyadh Al-Tokabri',
+      },
+      {
         title: 'Message from the General Manager',
         paragraphs: [
           'At Basalt Technology Company, we turn ambition into achievement through a commitment to the highest standards of quality, efficiency, and innovation at every stage of our work. Our vision is inspired by the Kingdom of Saudi Arabia\'s growing stature as a global economic and industrial power, and by the exceptional opportunities for growth and development offered by Vision 2030.',

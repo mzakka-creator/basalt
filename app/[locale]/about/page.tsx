@@ -23,6 +23,7 @@ import productPanel from '@/assets/images/products/product-3-insulation.jpeg';
 import productPipes from '@/assets/images/products/product-7-pipes.jpeg';
 import productContainers from '@/assets/images/products/product-5-custom.jpeg';
 import { useI18n } from '@/lib/i18n/i18n-context';
+import { leadershipPortraits } from '@/lib/leadership-portraits';
 import styles from './about.module.css';
 
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -170,11 +171,28 @@ export default function AboutPage() {
             <h2 className="sectionTitle">{a.leadershipTitle}</h2>
           </div>
           <div className={styles.leadershipGrid}>
-            {a.leadership.map((leader) => (
+            {a.leadership.map((leader) => {
+              const portrait = 'id' in leader && leader.id ? leadershipPortraits[leader.id] : undefined;
+
+              return (
               <article key={leader.name} className={`${styles.leadershipCard} animate-on-scroll`}>
                 <div className={styles.leadershipLayout}>
-                  <div className={styles.leadershipPortrait} aria-hidden>
-                    <span className={styles.leadershipInitials}>{getLeaderInitials(leader.name)}</span>
+                  <div className={styles.leadershipPortrait}>
+                    {portrait ? (
+                      <div className={styles.leadershipPhotoWrap}>
+                        <Image
+                          src={portrait}
+                          alt={leader.name}
+                          fill
+                          className={styles.leadershipPhoto}
+                          sizes="(max-width: 768px) 40vw, 300px"
+                        />
+                      </div>
+                    ) : (
+                      <span className={styles.leadershipInitials} aria-hidden>
+                        {getLeaderInitials(leader.name)}
+                      </span>
+                    )}
                   </div>
                   <div className={styles.leadershipContent}>
                     <h3 className={styles.leadershipTitle}>{leader.title}</h3>
@@ -192,7 +210,8 @@ export default function AboutPage() {
                   </div>
                 </div>
               </article>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
