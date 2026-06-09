@@ -4,7 +4,7 @@ import Navbar from "@/app/components/Navbar/Navbar";
 import Footer from "@/app/components/Footer/Footer";
 import DocumentLang from "@/app/components/DocumentLang";
 import { I18nProvider } from "@/lib/i18n/i18n-context";
-import { isLocale, locales, type Locale } from "@/lib/i18n/config";
+import { defaultLocale, isLocale, locales, type Locale } from "@/lib/i18n/config";
 import { en, ar } from "@/lib/i18n/messages";
 
 type Props = {
@@ -26,8 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: meta.description,
     alternates: {
       languages: {
-        en: "/en",
         ar: "/ar",
+        en: "/en",
+        "x-default": `/${defaultLocale}`,
       },
     },
   };

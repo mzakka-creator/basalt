@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo, Montserrat } from "next/font/google";
+import { defaultLocale, localeDir } from "@/lib/i18n/config";
 import "./globals.css";
 
 const cairo = Cairo({
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cairo.variable} ${montserrat.variable}`} suppressHydrationWarning>
+    <html lang={defaultLocale} dir={localeDir(defaultLocale)} className={`${cairo.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );
