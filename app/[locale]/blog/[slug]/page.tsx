@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { StaticImageData } from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
 import {
   IconArrowLeft,
+  IconArrowRight,
   IconClock,
   IconFactory,
   IconGear,
@@ -58,6 +60,48 @@ export default function PostPage() {
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
   const post = blogPosts.find((p) => p.slug === slug);
 
+  const images: StaticImageData[] = useMemo(() => {
+    if (!post) return [];
+    return post.gallery && post.gallery.length > 0 ? post.gallery : [post.image];
+  }, [post]);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const imageCount = images.length;
+  const activeImage = images[activeIndex] ?? images[0];
+  const hasMultipleImages = imageCount > 1;
+
+  const goToImage = useCallback(
+    (index: number) => {
+      if (imageCount === 0) return;
+      setActiveIndex((index + imageCount) % imageCount);
+    },
+    [imageCount]
+  );
+
+  const goToPrev = useCallback(() => {
+    goToImage(activeIndex - 1);
+  }, [activeIndex, goToImage]);
+
+  const goToNext = useCallback(() => {
+    goToImage(activeIndex + 1);
+  }, [activeIndex, goToImage]);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [slug]);
+
+  useEffect(() => {
+    if (!hasMultipleImages) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') goToPrev();
+      if (event.key === 'ArrowRight') goToNext();
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [goToNext, goToPrev, hasMultipleImages]);
+
   if (!post) return notFound();
 
   const title = locale === 'ar' ? post.titleAr : post.titleEn;
@@ -74,15 +118,11 @@ export default function PostPage() {
     .filter((p) => p.slug !== post.slug && p.category === post.category)
     .slice(0, 3);
 
+  const prevLabel = locale === 'ar' ? 'الصورة السابقة' : 'Previous image';
+  const nextLabel = locale === 'ar' ? 'الصورة التالية' : 'Next image';
+
   return (
     <div className={styles.postRoot}>
-      <PageHero
-        tagline={b.heroTag}
-        title={<HeroHeadline line1={title} />}
-        backgroundImage={post.image}
-        brighten
-      />
-
       <section className={`${styles.articleSection} section`}>
         <div className="container">
           <div className={styles.layout}>
@@ -112,7 +152,8 @@ export default function PostPage() {
               {/* Hero image */}
               <div className={`${styles.heroImageWrap} animate-on-scroll`}>
                 <Image
-                  src={post.image}
+                  key={activeIndex}
+                  src={activeImage}
                   alt={title}
                   fill
                   className={styles.heroImage}
@@ -120,7 +161,54 @@ export default function PostPage() {
                   priority
                 />
                 <div className={styles.heroImageOverlay} />
+                {hasMultipleImages ? (
+                  <>
+                    <button
+                      type="button"
+                      className={`${styles.imageNavBtn} ${styles.imageNavPrev}`}
+                      onClick={goToPrev}
+                      aria-label={prevLabel}
+                    >
+                      <IconArrowLeft className={iconStyles.svgIcon} aria-hidden />
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.imageNavBtn} ${styles.imageNavNext}`}
+                      onClick={goToNext}
+                      aria-label={nextLabel}
+                    >
+                      <IconArrowRight className={iconStyles.svgIcon} aria-hidden />
+                    </button>
+                    <span className={styles.imageCounter}>
+                      {activeIndex + 1} / {images.length}
+                    </span>
+                  </>
+                ) : null}
               </div>
+
+              {hasMultipleImages ? (
+                <div className={`${styles.gallery} animate-on-scroll`} role="list">
+                  {images.map((img, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      role="listitem"
+                      className={`${styles.galleryItem} ${i === activeIndex ? styles.galleryItemActive : ''}`}
+                      onClick={() => goToImage(i)}
+                      aria-label={`${locale === 'ar' ? 'عرض الصورة' : 'View image'} ${i + 1}`}
+                      aria-current={i === activeIndex ? 'true' : undefined}
+                    >
+                      <Image
+                        src={img}
+                        alt=""
+                        fill
+                        className={styles.galleryImage}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </button>
+                  ))}
+                </div>
+              ) : null}
 
               {/* Body */}
               <div className={`${styles.body} animate-on-scroll`}>

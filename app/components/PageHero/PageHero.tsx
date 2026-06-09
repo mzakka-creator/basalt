@@ -21,6 +21,8 @@ export type PageHeroProps = {
   banner?: ReactNode;
   backgroundImage?: StaticImageData | string;
   brighten?: boolean;
+  blur?: boolean;
+  contentPosition?: 'center' | 'bottom';
 };
 
 const particles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
@@ -40,10 +42,16 @@ export default function PageHero({
   banner,
   backgroundImage = heroImage,
   brighten = false,
+  blur = false,
+  contentPosition = 'center',
 }: PageHeroProps) {
+  const isBottom = contentPosition === 'bottom';
+
   return (
-    <section className={styles.hero}>
-      <div className={`${styles.heroBackground} ${brighten ? styles.heroBrighten : ''}`}>
+    <section className={`${styles.hero} ${isBottom ? styles.heroBottomAlign : ''}`}>
+      <div
+        className={`${styles.heroBackground} ${brighten ? styles.heroBrighten : ''} ${blur ? styles.heroBlur : ''}`}
+      >
         <Image
           src={backgroundImage}
           alt=""
@@ -61,7 +69,7 @@ export default function PageHero({
       </div>
 
       <div className={styles.heroForeground}>
-        <div className={styles.heroContent}>
+        <div className={`${styles.heroContent} ${isBottom ? styles.heroContentBottom : ''}`}>
           {tagline ? (
             <div className={styles.heroTagline}>
               <span className={styles.taglineDot} />

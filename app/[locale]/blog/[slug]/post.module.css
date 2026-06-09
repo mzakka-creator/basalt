@@ -117,11 +117,68 @@ html[dir='rtl'] .backLink {
 
 .heroImage {
   object-fit: cover;
-  transition: transform 0.6s ease;
+  animation: heroImageFade 0.35s ease;
 }
 
-.heroImageWrap:hover .heroImage {
-  transform: scale(1.03);
+@keyframes heroImageFade {
+  from {
+    opacity: 0.4;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.imageNavBtn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 207, 154, 0.35);
+  background: rgba(11, 16, 16, 0.72);
+  color: var(--green-bright);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.imageNavBtn:hover {
+  background: rgba(11, 16, 16, 0.9);
+  border-color: var(--green-bright);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.imageNavPrev {
+  inset-inline-end: 16px;
+}
+
+.imageNavNext {
+  inset-inline-start: 16px;
+}
+
+.imageCounter {
+  position: absolute;
+  inset-inline-end: 16px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(11, 16, 16, 0.72);
+  border: 1px solid rgba(124, 207, 154, 0.28);
+  font-family: var(--font-oswald);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  backdrop-filter: blur(8px);
 }
 
 .heroImageOverlay {
@@ -134,6 +191,52 @@ html[dir='rtl'] .backLink {
     rgba(0, 0, 0, 0.25) 100%
   );
   pointer-events: none;
+}
+
+/* ==================== GALLERY ==================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--basalt-line);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.galleryItem:hover {
+  border-color: var(--basalt-line-strong);
+  transform: translateY(-2px);
+}
+
+.galleryItemActive {
+  border-color: var(--green-bright);
+  box-shadow: 0 0 0 1px rgba(124, 207, 154, 0.35);
+}
+
+.galleryImage {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 }
 
 /* ==================== BODY ==================== */

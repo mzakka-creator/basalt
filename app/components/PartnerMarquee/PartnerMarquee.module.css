@@ -77,11 +77,11 @@
 }
 
 .marqueeItemDoubleAct .partnerLogo {
-  transform: scale(1.2);
+  transform: scale(1.55);
 }
 
 .marqueeItemDoubleAct:hover .partnerLogo {
-  transform: scale(1.22);
+  transform: scale(1.6);
 }
 
 @keyframes partnerMarquee {
@@ -115,6 +115,14 @@ html[dir='rtl'] .marqueeTrack {
     width: 220px;
     height: 104px;
     padding: 5px 8px;
+  }
+
+  .marqueeItemDoubleAct .partnerLogo {
+    transform: scale(1.45);
+  }
+
+  .marqueeItemDoubleAct:hover .partnerLogo {
+    transform: scale(1.5);
   }
 }
 

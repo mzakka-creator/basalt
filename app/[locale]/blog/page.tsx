@@ -150,6 +150,22 @@ export default function BlogPage() {
                 </span>
               </div>
             </Link>
+
+            {featured.gallery && featured.gallery.length > 1 ? (
+              <div className={`${styles.featuredGallery} animate-on-scroll`}>
+                {featured.gallery.map((img, i) => (
+                  <div key={i} className={styles.featuredGalleryItem}>
+                    <Image
+                      src={img}
+                      alt=""
+                      fill
+                      className={styles.featuredGalleryImage}
+                      sizes="(max-width: 640px) 50vw, 20vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
         </section>
       )}

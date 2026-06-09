@@ -7,6 +7,10 @@ import imgInvestments from '@/assets/images/heroes/hero-investments.png';
 import imgTransport from '@/assets/images/sectors/sector-transport.jpeg';
 import imgEnergy from '@/assets/images/sectors/sector-energy.jpeg';
 import imgAbout from '@/assets/images/heroes/hero-about.png';
+import {
+  partnershipSigningCover,
+  partnershipSigningImages,
+} from '@/lib/blog/partnership-signing-images';
 
 export type BlogCategory = 'news' | 'industry' | 'tech';
 
@@ -18,6 +22,7 @@ export type BlogPost = {
   readMin: number;
   featured?: boolean;
   image: StaticImageData;
+  gallery?: StaticImageData[];
   titleEn: string;
   excerptEn: string;
   bodyEn: string[];
@@ -29,11 +34,39 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
+    slug: 'partnership-signing-largest-basalt-complex',
+    category: 'news',
+    date: '2026-06-08',
+    readMin: 4,
+    featured: true,
+    image: partnershipSigningCover,
+    gallery: partnershipSigningImages,
+    titleEn:
+      'Partners sign agreement to establish the largest basalt manufacturing industrial complex',
+    excerptEn:
+      'Partners marked a milestone signing ceremony to establish the largest industrial complex dedicated to basalt manufacturing — a strategic step toward localizing advanced materials production in Saudi Arabia.',
+    bodyEn: [
+      'Basalt partners held a formal signing ceremony for the partnership agreement to establish the largest industrial complex for basalt manufacturing in the region. The event brought together founding partners, investors, and technical collaborators committed to advancing Saudi Arabia\'s basalt industry.',
+      'The new complex is designed to integrate basalt fiber production, reinforcement products, and pipeline manufacturing under one industrial platform — supporting Vision 2030 goals to localize advanced manufacturing and strengthen national supply chains.',
+      'The signing reflects a shared long-term vision: building a world-class basalt materials ecosystem that serves energy, infrastructure, and industrial sectors across the Kingdom and the wider region.',
+      'Work will now proceed on detailed engineering, site development, and partnership coordination ahead of the planned operational launch.',
+    ],
+    titleAr: 'مراسم توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي لصناعة البازلت',
+    excerptAr:
+      'شهدت مراسم رسمية توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي متخصص في صناعة البازلت — خطوة استراتيجية نحو توطين إنتاج المواد المتقدمة في المملكة.',
+    bodyAr: [
+      'عقد الشركاء مراسم توقيع رسمية لعقد الشراكة لإنشاء أكبر مجمع صناعي لصناعة البازلت في المنطقة، بحضور الشركاء المؤسسين والمستثمرين والجهات التقنية المشاركة في تطوير صناعة البازلت في المملكة.',
+      'يُخطَّط للمجمع الجديد لدمج إنتاج ألياف البازلت ومنتجات التسليح وتصنيع الأنابيب ضمن منصة صناعية متكاملة، بما يدعم أهداف رؤية 2030 لتوطين التصنيع المتقدم وتعزيز سلاسل التوريد الوطنية.',
+      'يعكس التوقيع رؤية مشتركة طويلة الأمد لبناء منظومة عالمية المستوى لمواد البازلت تخدم قطاعات الطاقة والبنية التحتية والصناعة في المملكة والمنطقة.',
+      'ستُتابع المرحلة المقبلة أعمال الهندسة التفصيلية وتطوير الموقع وتنسيق الشراكات استعدادًا للإطلاق التشغيلي المخطط له.',
+    ],
+  },
+  {
+    id: '9',
     slug: 'basalt-factory-groundbreaking-2026',
     category: 'news',
     date: '2026-05-20',
     readMin: 4,
-    featured: true,
     image: imgFactory,
     titleEn: 'Basalt Co. Announces Factory Groundbreaking Ceremony for 2026',
     excerptEn:
