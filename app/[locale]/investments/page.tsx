@@ -17,8 +17,8 @@ import {
   IconTrendingUp,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
-import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import heroImage from '@/assets/images/heroes/hero-investments.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
@@ -103,13 +103,7 @@ export default function InvestmentsPage() {
     <>
       <PageHero
         tagline={inv.heroTag}
-        title={
-          <>
-            <span className={pageHeroStyles.heroHeadlineLead}>{inv.heroTitleLine1}</span>
-            <br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>{inv.heroTitleAccent}</span>
-          </>
-        }
+        title={<HeroHeadline line1={inv.heroTitleLine1} line2={inv.heroTitleAccent} />}
         subtitle={inv.heroSubtitle}
         backgroundImage={heroImage}
         brighten

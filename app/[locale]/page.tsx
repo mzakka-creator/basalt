@@ -16,10 +16,10 @@ import {
   IconThermometer,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
 import PartnerMarquee from '@/app/components/PartnerMarquee/PartnerMarquee';
 import SuccessPartnerGrid from '@/app/components/SuccessPartnerGrid/SuccessPartnerGrid';
-import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import { homePartners } from '@/lib/home-partners';
 import { successPartners } from '@/lib/success-partners';
 import { useI18n } from '@/lib/i18n/i18n-context';
@@ -113,13 +113,7 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        title={
-          <>
-            <span className={pageHeroStyles.heroHeadlineLead}>{h.titleLine1}</span>
-            <br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>{h.titleAccent}</span>
-          </>
-        }
+        title={<HeroHeadline line1={h.titleLine1} line2={h.titleAccent} />}
         subtitle={h.subtitle}
       >
         <div className={styles.heroCtas}>

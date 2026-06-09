@@ -140,6 +140,16 @@
   text-shadow: 0 5px 40px rgba(0, 0, 0, 0.64);
 }
 
+.heroHeadlineTitle {
+  display: block;
+  line-height: 1;
+}
+
+.heroHeadlineTitle > span {
+  display: block;
+  line-height: 1.05;
+}
+
 .heroHeadlineLead {
   color: var(--white);
 }

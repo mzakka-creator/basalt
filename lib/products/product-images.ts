@@ -4,6 +4,7 @@ import productGeogrid from '@/assets/images/products/product-geogrid.png';
 import productMesh from '@/assets/images/products/product-mesh.png';
 import productRoving from '@/assets/images/products/product-roving.png';
 import productFibre from '@/assets/images/products/product-fibre.png';
+import productPipelines from '@/assets/images/products/product-pipelines.png';
 
 export const productImages: Record<number, StaticImageData> = {
   1: productRebar,
@@ -11,4 +12,5 @@ export const productImages: Record<number, StaticImageData> = {
   3: productMesh,
   4: productRoving,
   5: productFibre,
+  6: productPipelines,
 };

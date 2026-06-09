@@ -7,20 +7,29 @@ type PartnerMarqueeProps = {
 };
 
 function PartnerCard({ partner }: { partner: HomePartner }) {
+  const cardClass =
+    partner.id === 'double-act'
+      ? `${styles.marqueeItem} ${styles.marqueeItemDoubleAct}`
+      : styles.marqueeItem;
+
   const logo = (
-    <Image
-      src={partner.logo}
-      alt={partner.name}
-      className={styles.partnerLogo}
-      unoptimized
-    />
+    <span className={styles.logoWrap}>
+      <Image
+        src={partner.logo}
+        alt={partner.name}
+        fill
+        className={styles.partnerLogo}
+        sizes="280px"
+        unoptimized
+      />
+    </span>
   );
 
   if (partner.url) {
     return (
       <a
         href={partner.url}
-        className={styles.marqueeItem}
+        className={cardClass}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={partner.name}
@@ -30,7 +39,7 @@ function PartnerCard({ partner }: { partner: HomePartner }) {
     );
   }
 
-  return <div className={styles.marqueeItem}>{logo}</div>;
+  return <div className={cardClass}>{logo}</div>;
 }
 
 export default function PartnerMarquee({ partners }: PartnerMarqueeProps) {

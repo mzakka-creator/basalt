@@ -6,6 +6,7 @@ import Image from 'next/image';
 import {
   IconArrowLeft,
   IconArrowRight,
+  IconCheck,
   IconCoins,
   IconHexagon,
   IconLandmark,
@@ -15,8 +16,8 @@ import {
   IconThermometer,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
-import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import heroImage from '@/assets/images/heroes/hero-products.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
@@ -26,6 +27,19 @@ import styles from './products.module.css';
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 type CategoryFilter = keyof Messages['products']['categories'];
+type ProductItem = Messages['products']['items'][number];
+
+function isDetailedProduct(
+  product: ProductItem
+): product is ProductItem & {
+  applications: string[];
+  features: string[];
+  lifespan: string;
+  why: string;
+  disclaimer: string;
+} {
+  return 'applications' in product && Array.isArray(product.applications);
+}
 
 function useScrollAnimation() {
   useEffect(() => {
@@ -45,7 +59,7 @@ function useScrollAnimation() {
 
 const advantageIcons: SvgIcon[] = [IconShield, IconThermometer, IconScale, IconLeaf, IconCoins, IconLandmark];
 
-const categoryOrder: CategoryFilter[] = ['all', 'reinforcement', 'fibers'];
+const categoryOrder: CategoryFilter[] = ['all', 'reinforcement', 'fibers', 'pipelines'];
 
 export default function ProductsPage() {
   useScrollAnimation();
@@ -70,13 +84,7 @@ export default function ProductsPage() {
     <>
       <PageHero
         tagline={p.heroTag}
-        title={
-          <>
-            <span className={pageHeroStyles.heroHeadlineLead}>{p.heroTitleLine1}</span>
-            <br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>{p.heroTitleAccent}</span>
-          </>
-        }
+        title={<HeroHeadline line1={p.heroTitleLine1} line2={p.heroTitleAccent} />}
         subtitle={p.heroSubtitle}
         backgroundImage={heroImage}
       />
@@ -102,7 +110,9 @@ export default function ProductsPage() {
       <section className={`${styles.productsSection} section`}>
         <div className="container">
           <div className={styles.productGrid}>
-            {filtered.map((product, index) => (
+            {filtered.map((product, index) => {
+              const detailed = isDetailedProduct(product);
+              return (
               <div
                 key={product.id}
                 className={`${styles.productCard} ${flipped === product.id ? styles.flipped : ''}`}
@@ -128,6 +138,9 @@ export default function ProductsPage() {
                   </div>
                   <div className={styles.cardBody}>
                     <div className={styles.cardCategory}>{p.categories[product.categoryKey]}</div>
+                    {'tagline' in product && product.tagline ? (
+                      <p className={styles.cardTagline}>{product.tagline}</p>
+                    ) : null}
                     <h3 className={styles.cardName}>{product.name}</h3>
                     <p className={styles.cardDesc}>{product.desc}</p>
                     <div className={styles.cardHighlight}>
@@ -155,18 +168,63 @@ export default function ProductsPage() {
                     />
                   </div>
                   <div className={styles.cardBody}>
-                    <div className={styles.cardCategory}>{p.categories[product.categoryKey]}</div>
-                    <h3 className={styles.cardName}>{product.name}</h3>
-                    <div className={styles.specsList}>
-                      <p className={styles.specsTitle}>{c.technicalSpecs}</p>
-                      {product.specs.map((spec) => (
-                        <div key={spec} className={styles.specItem}>
-                          <span className={styles.specDot}>
-                            <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
-                          </span>
-                          {spec}
-                        </div>
-                      ))}
+                    <div className={styles.cardBackHead}>
+                      <div className={styles.cardCategory}>{p.categories[product.categoryKey]}</div>
+                      <h3 className={styles.cardName}>{product.name}</h3>
+                    </div>
+                    <div className={styles.cardBackScroll}>
+                    {detailed ? (
+                      <div className={styles.cardDetail}>
+                        <section className={styles.detailBlock}>
+                          <h4 className={styles.detailTitle}>{product.applicationsTitle}</h4>
+                          <ul className={styles.detailList}>
+                            {product.applications.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </section>
+                        <section className={styles.detailBlock}>
+                          <h4 className={styles.detailTitle}>{product.featuresTitle}</h4>
+                          <ul className={`${styles.detailList} ${styles.detailFeaturesList}`}>
+                            {product.features.map((item) => (
+                              <li key={item} className={styles.detailCheckItem}>
+                                <IconCheck className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm} ${styles.detailCheckIcon}`} aria-hidden />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                        <section className={styles.detailBlock}>
+                          <h4 className={styles.detailTitle}>{product.lifespanTitle}</h4>
+                          <p className={styles.detailText}>{product.lifespan}</p>
+                        </section>
+                        <section className={styles.detailBlock}>
+                          <h4 className={styles.detailTitle}>{product.specsTitle}</h4>
+                          <ul className={styles.detailList}>
+                            {product.specs.map((spec) => (
+                              <li key={spec}>{spec}</li>
+                            ))}
+                          </ul>
+                        </section>
+                        <section className={styles.detailBlock}>
+                          <h4 className={styles.detailTitle}>{product.whyTitle}</h4>
+                          <p className={styles.detailText}>{product.why}</p>
+                        </section>
+                        <p className={styles.detailDisclaimer}>{product.disclaimer}</p>
+                      </div>
+                    ) : (
+                      <div className={styles.specsList}>
+                        <p className={styles.specsTitle}>{c.technicalSpecs}</p>
+                        {product.specs.map((spec) => (
+                          <div key={spec} className={styles.specItem}>
+                            <span className={styles.specDot}>
+                              <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
+                            </span>
+                            {spec}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     </div>
                     <button type="button" className={styles.backBtn}>
                       <IconArrowLeft className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
@@ -175,7 +233,8 @@ export default function ProductsPage() {
                   </div>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>

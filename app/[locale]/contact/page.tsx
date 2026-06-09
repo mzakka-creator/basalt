@@ -17,8 +17,8 @@ import {
   IconYoutube,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
-import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import heroImage from '@/assets/images/heroes/hero-contact.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import type { Messages } from '@/lib/i18n/messages';
@@ -112,13 +112,7 @@ export default function ContactPage() {
     <>
       <PageHero
         tagline={c.heroTag}
-        title={
-          <>
-            <span className={pageHeroStyles.heroHeadlineLead}>{c.heroTitleLine1}</span>
-            <br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>{c.heroTitleAccent}</span>
-          </>
-        }
+        title={<HeroHeadline line1={c.heroTitleLine1} line2={c.heroTitleAccent} />}
         subtitle={c.heroSubtitle}
         backgroundImage={heroImage}
       />

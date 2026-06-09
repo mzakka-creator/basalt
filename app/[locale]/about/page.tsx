@@ -13,8 +13,8 @@ import {
   IconThermometer,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
-import pageHeroStyles from '@/app/components/PageHero/PageHero.module.css';
 import heroImage from '@/assets/images/heroes/hero-about.png';
 import whoWeAreImage from '@/assets/images/sectors/sector-industry.jpeg';
 import productBfrp from '@/assets/images/products/product-1-bfrp.jpeg';
@@ -70,13 +70,7 @@ export default function AboutPage() {
     <div className={styles.aboutRoot}>
       <PageHero
         tagline={a.heroTag}
-        title={
-          <>
-            <span className={pageHeroStyles.heroHeadlineLead}>{a.heroTitleLine1}</span>
-            <br />
-            <span className={pageHeroStyles.heroHeadlineAccent}>{a.heroTitleAccent}</span>
-          </>
-        }
+        title={<HeroHeadline line1={a.heroTitleLine1} line2={a.heroTitleAccent} />}
         subtitle={a.heroSubtitle}
         backgroundImage={heroImage}
       />

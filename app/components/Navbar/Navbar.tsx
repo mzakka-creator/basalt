@@ -8,7 +8,7 @@ import { useI18n } from '@/lib/i18n/i18n-context';
 import { swapLocaleInPathname, stripLocaleFromPathname, type AppPath } from '@/lib/i18n/paths';
 import styles from './Navbar.module.css';
 
-const navPaths: AppPath[] = ['/', '/about', '/products', '/factory', '/investments', '/contact'];
+const navPaths: AppPath[] = ['/', '/about', '/products', '/factory', '/investments', '/blog', '/contact'];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,6 +23,7 @@ export default function Navbar() {
     '/products': nav.products,
     '/factory': nav.factory,
     '/investments': nav.investments,
+    '/blog': nav.blog,
     '/contact': nav.contact,
   };
 

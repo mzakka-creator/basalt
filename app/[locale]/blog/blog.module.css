@@ -1,0 +1,641 @@
+/* ==================== ROOT ==================== */
+.blogRoot {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ==================== SECTION INTRO ==================== */
+.sectionIntro {
+  margin-bottom: 48px;
+}
+
+/* ==================== FEATURED POST ==================== */
+.featuredSection {
+  background: linear-gradient(180deg, var(--basalt-black), var(--basalt-deep));
+}
+
+.featuredCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--basalt-line);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.featuredCard:hover {
+  border-color: var(--basalt-line-strong);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(69, 255, 64, 0.1);
+}
+
+/* Image half */
+.featuredImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.featuredImage {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.featuredCard:hover .featuredImage {
+  transform: scale(1.05);
+}
+
+.featuredImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 60%,
+    rgba(11, 31, 20, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content half */
+.featuredContent {
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.025);
+  position: relative;
+}
+
+.featuredContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--green-bright) 30%,
+    var(--green-accent) 70%,
+    transparent 100%
+  );
+  opacity: 0.7;
+}
+
+/* ==================== FEATURED BADGE ==================== */
+.featuredBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 4px 14px;
+  background: rgba(69, 255, 64, 0.12);
+  border: 1px solid rgba(69, 255, 64, 0.3);
+  border-radius: 2px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  width: fit-content;
+}
+
+.featuredDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-bright);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.featuredMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.featuredTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+.featuredCard:hover .featuredTitle {
+  color: var(--green-bright);
+  transition: color 0.25s ease;
+}
+
+.featuredExcerpt {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  transition: gap 0.2s ease;
+  margin-top: auto;
+  width: fit-content;
+}
+
+.featuredCard:hover .readMoreLink {
+  gap: 10px;
+}
+
+/* ==================== CATEGORY CHIP ==================== */
+.categoryChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.categoryChip[data-category='news'] {
+  background: rgba(43, 184, 40, 0.14);
+  color: var(--green-bright);
+  border: 1px solid rgba(43, 184, 40, 0.28);
+}
+
+.categoryChip[data-category='industry'] {
+  background: rgba(255, 165, 0, 0.12);
+  color: #ffb347;
+  border: 1px solid rgba(255, 165, 0, 0.25);
+}
+
+.categoryChip[data-category='tech'] {
+  background: rgba(100, 160, 255, 0.12);
+  color: #80b0ff;
+  border: 1px solid rgba(100, 160, 255, 0.25);
+}
+
+/* Category chip overlaid on image */
+.categoryChipOverlay {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.categoryChipOverlay[data-category='news'] {
+  background: rgba(43, 184, 40, 0.75);
+  color: #0b1f14;
+}
+
+.categoryChipOverlay[data-category='industry'] {
+  background: rgba(200, 120, 0, 0.8);
+  color: #fff;
+}
+
+.categoryChipOverlay[data-category='tech'] {
+  background: rgba(60, 100, 200, 0.8);
+  color: #fff;
+}
+
+/* ==================== META ==================== */
+.metaSep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.metaDate {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.metaRead {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ==================== POSTS SECTION ==================== */
+.postsSection {
+  background: var(--basalt-black);
+}
+
+/* ==================== FILTER BAR ==================== */
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--basalt-line);
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.filterBtn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.filterBtn:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.filterBtnActive {
+  background: linear-gradient(135deg, var(--green-mid), var(--green-accent));
+  color: var(--white);
+}
+
+.filterBtnActive:hover {
+  background: linear-gradient(135deg, var(--green-accent), var(--green-bright));
+  color: var(--white);
+}
+
+/* ==================== POSTS GRID ==================== */
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.postCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--basalt-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.postCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--basalt-line-strong);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Post image */
+.postImageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.postImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.postCard:hover .postImage {
+  transform: scale(1.06);
+}
+
+.postImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(11, 31, 20, 0.75) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.postCardBody {
+  flex: 1;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postTitle {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+.postCard:hover .postTitle {
+  color: var(--green-bright);
+}
+
+.postExcerpt {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.postCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px 18px;
+  border-top: 1px solid var(--basalt-line);
+  margin-top: auto;
+  gap: 8px;
+}
+
+.postMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.cardReadMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  opacity: 0;
+  transition: opacity 0.25s ease, gap 0.25s ease;
+}
+
+.postCard:hover .cardReadMore {
+  opacity: 1;
+  gap: 7px;
+}
+
+.emptyMessage {
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 48px 0;
+}
+
+/* ==================== NEWSLETTER ==================== */
+.newsletterSection {
+  background: linear-gradient(180deg, var(--basalt-deep), var(--basalt-black));
+}
+
+.newsletterCard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 56px 64px;
+  border: 1px solid var(--basalt-line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(69, 255, 64, 0.07), transparent 40%),
+    rgba(255, 255, 255, 0.025);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletterCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--green-accent), transparent);
+  opacity: 0.6;
+}
+
+.newsletterIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(69, 255, 64, 0.1);
+  border: 1px solid rgba(69, 255, 64, 0.2);
+  color: var(--green-bright);
+  flex-shrink: 0;
+}
+
+.newsletterCopy {
+  min-width: 0;
+}
+
+.newsletterTitle {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  margin-bottom: 8px;
+}
+
+.newsletterDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.newsletterForm {
+  flex-shrink: 0;
+  min-width: 320px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputRow {
+  display: flex;
+  gap: 8px;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--basalt-line);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+  min-width: 0;
+}
+
+.emailInput::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: rgba(69, 255, 64, 0.5);
+}
+
+.subscribeBtn {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  padding: 12px 20px;
+}
+
+.newsletterNote {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+}
+
+.subscribedMsg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: rgba(69, 255, 64, 0.1);
+  border: 1px solid rgba(69, 255, 64, 0.25);
+  border-radius: 8px;
+  color: var(--green-bright);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .postsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuredCard {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredImageWrap {
+    aspect-ratio: 16 / 7;
+  }
+
+  .featuredImageOverlay {
+    background: linear-gradient(180deg, transparent 50%, rgba(11, 31, 20, 0.9) 100%);
+  }
+
+  .newsletterCard {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 28px;
+    padding: 40px 48px;
+  }
+
+  .newsletterForm {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuredContent {
+    padding: 32px 28px;
+  }
+
+  .newsletterCard {
+    grid-template-columns: 1fr;
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  .newsletterIcon {
+    margin: 0 auto;
+  }
+
+  .newsletterDesc {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .postsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .featuredContent {
+    padding: 24px 20px;
+  }
+
+  .featuredTitle {
+    font-size: 1.25rem;
+  }
+
+  .featuredExcerpt {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .filterBar {
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .filterBtn {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  .newsletterCard {
+    padding: 28px 16px;
+  }
+
+  .inputRow {
+    flex-direction: column;
+  }
+
+  .subscribeBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

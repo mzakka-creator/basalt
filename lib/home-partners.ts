@@ -9,7 +9,6 @@ export type HomePartner = {
   id: string;
   name: string;
   logo: StaticImageData;
-  /** Company website — leave empty until ready */
   url: string;
 };
 
@@ -18,5 +17,5 @@ export const homePartners: HomePartner[] = [
   { id: 'peace-city', name: 'Peace City', logo: logo02, url: 'https://peacecity.world' },
   { id: 'doka-me', name: 'DOKA ME', logo: logo03, url: 'https://doka-me.com' },
   { id: 'basalt-tech', name: 'Basalt Tech', logo: logo04, url: 'https://basalt.tech' },
-  { id: 'partner-05', name: 'Strategic partner', logo: logo05, url: '' },
+  { id: 'partner-05', name: 'Giraffe', logo: logo05, url: '' },
 ];

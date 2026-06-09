@@ -31,14 +31,15 @@
   justify-content: center;
   text-decoration: none;
   color: inherit;
-  width: 240px;
-  height: 100px;
-  padding: 16px 24px;
+  width: 280px;
+  height: 124px;
+  padding: 6px 10px;
+  overflow: hidden;
   border: 1px solid rgba(26, 29, 29, 0.1);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.38) 0%, transparent 42%),
-    linear-gradient(160deg, #a7bdad 0%, #9eb6a6 56%, #95ad9e 100%);
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.55) 0%, transparent 48%),
+    linear-gradient(160deg, #c8d8ce 0%, #bdd0c4 56%, #b3c9bb 100%);
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -46,23 +47,41 @@
   cursor: pointer;
   border-color: rgba(26, 29, 29, 0.14);
   background:
-    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.48) 0%, transparent 42%),
-    linear-gradient(160deg, #b8c9be 0%, #aec2b6 56%, #a3b8ac 100%);
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.68) 0%, transparent 48%),
+    linear-gradient(160deg, #d8e5dc 0%, #ceddce 56%, #c4d5c8 100%);
   transform: translateY(-3px);
   box-shadow: 0 14px 34px rgba(26, 29, 29, 0.12);
 }
 
-.partnerLogo {
+.logoWrap {
+  position: relative;
+  flex: 1;
   width: 100%;
   height: 100%;
+  min-height: 0;
+}
+
+.partnerLogo {
   object-fit: contain;
   object-position: center;
-  opacity: 0.82;
+  opacity: 0.88;
   transition: opacity 0.25s ease;
 }
 
 .marqueeItem:hover .partnerLogo {
   opacity: 1;
+}
+
+.marqueeItemDoubleAct {
+  padding: 4px 8px;
+}
+
+.marqueeItemDoubleAct .partnerLogo {
+  transform: scale(1.2);
+}
+
+.marqueeItemDoubleAct:hover .partnerLogo {
+  transform: scale(1.22);
 }
 
 @keyframes partnerMarquee {
@@ -93,9 +112,9 @@ html[dir='rtl'] .marqueeTrack {
   }
 
   .marqueeItem {
-    width: 200px;
-    height: 84px;
-    padding: 12px 18px;
+    width: 220px;
+    height: 104px;
+    padding: 5px 8px;
   }
 }
 

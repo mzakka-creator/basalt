@@ -1,7 +1,7 @@
 import type { Locale } from './config';
 
 /** Path without locale prefix, e.g. "/" or "/about" */
-export type AppPath = '/' | '/about' | '/products' | '/factory' | '/investments' | '/contact';
+export type AppPath = '/' | '/about' | '/products' | '/factory' | '/investments' | '/contact' | '/blog';
 
 export function withLocale(locale: Locale, path: AppPath): string {
   if (path === '/') return `/${locale}`;
@@ -18,9 +18,11 @@ export function stripLocaleFromPathname(pathname: string): AppPath {
     normalized === '/products' ||
     normalized === '/factory' ||
     normalized === '/investments' ||
-    normalized === '/contact'
+    normalized === '/contact' ||
+    normalized === '/blog' ||
+    normalized.startsWith('/blog/')
   ) {
-    return normalized as AppPath;
+    return (normalized.startsWith('/blog/') ? '/blog' : normalized) as AppPath;
   }
   return '/';
 }

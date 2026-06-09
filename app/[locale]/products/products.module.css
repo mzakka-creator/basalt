@@ -218,8 +218,41 @@
 }
 
 .cardBack .cardBody {
-  gap: 14px;
-  padding: 20px 28px 28px;
+  gap: 0;
+  padding: 20px 28px 24px;
+}
+
+.cardBackHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.cardBackScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 207, 154, 0.35) transparent;
+  padding-inline-end: 4px;
+}
+
+.cardBackScroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cardBackScroll::-webkit-scrollbar-thumb {
+  background: rgba(124, 207, 154, 0.35);
+  border-radius: 4px;
+}
+
+.cardBack .backBtn {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--basalt-line);
 }
 
 .productCard.flipped .cardFront {
@@ -271,6 +304,16 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--green-bright);
+}
+
+.cardTagline {
+  font-family: var(--font-oswald);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin: -4px 0 0;
 }
 
 .cardName {
@@ -375,6 +418,87 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
+}
+
+.cardDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailFeaturesList {
+  gap: 10px;
+}
+
+.detailTitle {
+  font-family: var(--font-oswald);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+
+.detailList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detailList li {
+  font-size: 0.8rem;
+  color: var(--white);
+  line-height: 1.45;
+  padding-inline-start: 14px;
+  position: relative;
+}
+
+.detailList li::before {
+  content: '•';
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--green-bright);
+}
+
+.detailCheckItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-inline-start: 0 !important;
+}
+
+.detailCheckItem::before {
+  content: none !important;
+}
+
+.detailCheckIcon {
+  color: var(--green-bright);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detailText {
+  font-size: 0.8rem;
+  color: var(--white);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.detailDisclaimer {
+  font-size: 0.72rem;
+  color: rgba(213, 215, 207, 0.72);
+  line-height: 1.5;
+  margin: 0;
+  font-style: italic;
 }
 
 /* ==================== WHY SECTION ==================== */
