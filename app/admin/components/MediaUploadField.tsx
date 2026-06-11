@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { useAdminI18n } from './AdminI18nProvider';
 import styles from '../admin.module.css';
 
 type MediaUploadFieldProps = {
@@ -19,6 +20,7 @@ export default function MediaUploadField({
   accept = 'image/*',
   hint,
 }: MediaUploadFieldProps) {
+  const { messages: f } = useAdminI18n();
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
 
@@ -31,10 +33,10 @@ export default function MediaUploadField({
       formData.append('file', file);
       const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
       const data = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok || !data.url) throw new Error(data.error || 'Upload failed');
+      if (!res.ok || !data.url) throw new Error(data.error || f.form.uploadFailed);
       onChange(data.url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Upload failed');
+      setError(err instanceof Error ? err.message : f.form.uploadFailed);
     } finally {
       setUploading(false);
     }
@@ -49,7 +51,7 @@ export default function MediaUploadField({
         className={styles.adminInput}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="/blog/uploads/example.jpg"
+        placeholder={f.form.uploadPlaceholder}
       />
       <input
         type="file"
@@ -57,7 +59,7 @@ export default function MediaUploadField({
         onChange={(e) => void handleUpload(e.target.files?.[0] ?? null)}
       />
       {hint ? <span className={styles.adminHint}>{hint}</span> : null}
-      {uploading ? <span className={styles.adminHint}>Uploading...</span> : null}
+      {uploading ? <span className={styles.adminHint}>{f.form.uploading}</span> : null}
       {error ? <span className={styles.adminError}>{error}</span> : null}
       {isImage ? (
         <div className={styles.adminPreview} style={{ position: 'relative' }}>

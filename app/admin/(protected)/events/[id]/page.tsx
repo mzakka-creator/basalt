@@ -1,20 +1,38 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
-import { getBlogEventById } from '@/lib/cms/store';
+import type { BlogEventRecord } from '@/lib/cms/types';
 import BlogEventForm from '../../../components/BlogEventForm';
+import AdminPageHeader from '../../../components/AdminPageHeader';
+import { useAdminI18n } from '../../../components/AdminI18nProvider';
 import styles from '../../../admin.module.css';
 
 type PageProps = { params: Promise<{ id: string }> };
 
-export default async function AdminEditEventPage({ params }: PageProps) {
-  const { id } = await params;
-  const event = await getBlogEventById(id);
+export default function AdminEditEventPage({ params }: PageProps) {
+  const { messages: m } = useAdminI18n();
+  const [event, setEvent] = useState<BlogEventRecord | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    void params.then(async ({ id }) => {
+      const res = await fetch(`/api/admin/blog-events/${id}`);
+      if (!res.ok) {
+        setEvent(null);
+      } else {
+        setEvent((await res.json()) as BlogEventRecord);
+      }
+      setLoading(false);
+    });
+  }, [params]);
+
+  if (loading) return null;
   if (!event) notFound();
 
   return (
     <>
-      <div className={styles.adminHeader}>
-        <h1 className={styles.adminTitle}>Edit event</h1>
-      </div>
+      <AdminPageHeader title={m.events.editEvent} />
       <div className={styles.adminCard}>
         <BlogEventForm initial={event} />
       </div>

@@ -16,12 +16,38 @@
   background: rgba(0, 0, 0, 0.25);
 }
 
+.adminSidebarHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
 .adminBrand {
   font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 800;
-  margin-bottom: 28px;
   color: var(--green-bright);
+  line-height: 1.3;
+}
+
+.adminLocaleBtn {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--basalt-line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--green-bright);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.adminLocaleBtn:hover {
+  background: rgba(69, 255, 64, 0.1);
+  border-color: var(--basalt-line-strong);
 }
 
 .adminNav {
@@ -184,13 +210,37 @@
 .adminLoginWrap {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  position: relative;
+}
+
+.adminLoginTopBar {
+  position: absolute;
+  top: 20px;
+  inset-inline-end: 20px;
 }
 
 .adminLoginCard {
   width: min(420px, 100%);
+  text-align: center;
+}
+
+.adminLoginSubtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.adminLoginForm {
+  text-align: start;
+}
+
+.adminLoginForm .adminBtn {
+  width: 100%;
 }
 
 .adminPreview {

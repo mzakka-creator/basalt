@@ -1,4 +1,5 @@
 import '../globals.css';
+import { AdminI18nProvider } from './components/AdminI18nProvider';
 import styles from './admin.module.css';
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
-  return <div className={styles.adminRoot}>{children}</div>;
+  return (
+    <AdminI18nProvider>
+      <div className={styles.adminRoot}>{children}</div>
+    </AdminI18nProvider>
+  );
 }

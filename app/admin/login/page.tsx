@@ -2,10 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import AdminLocaleSwitcher from '../components/AdminLocaleSwitcher';
+import { useAdminI18n } from '../components/AdminI18nProvider';
 import styles from '../admin.module.css';
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const { messages: m } = useAdminI18n();
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,7 +27,7 @@ export default function AdminLoginPage() {
       router.push('/admin');
       router.refresh();
     } catch {
-      setError('Invalid password');
+      setError(m.login.invalidPassword);
     } finally {
       setLoading(false);
     }
@@ -32,14 +35,15 @@ export default function AdminLoginPage() {
 
   return (
     <div className={styles.adminLoginWrap}>
+      <div className={styles.adminLoginTopBar}>
+        <AdminLocaleSwitcher />
+      </div>
       <div className={`${styles.adminCard} ${styles.adminLoginCard}`}>
-        <h1 className={styles.adminTitle}>Basalt Admin</h1>
-        <p className={styles.adminHint} style={{ marginBottom: 16 }}>
-          Sign in to manage blogs and events.
-        </p>
-        <form className={styles.adminForm} onSubmit={(e) => void handleSubmit(e)}>
+        <h1 className={styles.adminTitle}>{m.login.title}</h1>
+        <p className={styles.adminLoginSubtitle}>{m.login.subtitle}</p>
+        <form className={`${styles.adminForm} ${styles.adminLoginForm}`} onSubmit={(e) => void handleSubmit(e)}>
           <div className={styles.adminField}>
-            <label className={styles.adminLabel}>Password</label>
+            <label className={styles.adminLabel}>{m.login.password}</label>
             <input
               type="password"
               className={styles.adminInput}
@@ -50,7 +54,7 @@ export default function AdminLoginPage() {
           </div>
           {error ? <p className={styles.adminError}>{error}</p> : null}
           <button type="submit" className={styles.adminBtn} disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? m.login.signingIn : m.login.signIn}
           </button>
         </form>
       </div>
