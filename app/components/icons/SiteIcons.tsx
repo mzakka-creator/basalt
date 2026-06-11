@@ -190,6 +190,15 @@ export function IconArrowLeft(props: IconProps) {
   );
 }
 
+export function IconPlay(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+    </svg>
+  );
+}
+
 export function IconChevronDown(props: IconProps) {
   return (
     <svg {...base} {...props}>

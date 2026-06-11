@@ -162,6 +162,7 @@ export const en = {
     leadershipTitle: 'Words from our leadership',
     leadership: [
       {
+        id: '1',
         title: 'Message from the Chairman of the Board',
         paragraphs: [
           'At Basalt Technology Company, we believe the economic and industrial renaissance underway in the Kingdom of Saudi Arabia under Vision 2030 is a launchpad toward a more prosperous and sustainable future. Guided by this ambitious vision, we strive to develop the basalt industry to the highest global standards — strengthening local content, supporting industrial development, and creating added value for the national economy.',
@@ -174,13 +175,18 @@ export const en = {
         id: '3',
         title: 'Message from the Vice Chairman of the Board',
         paragraphs: [
-          'We believe the economic and industrial transformations underway in the Kingdom of Saudi Arabia today represent a historic opportunity to launch distinctive industries capable of competing globally and delivering sustainable development impact. From this starting point, Basalt Technology Company seeks to help build an advanced industrial base founded on innovation, quality, and optimal use of natural resources — supporting Vision 2030 targets and strengthening the competitiveness of the national economy.',
-          'Our ambition is not limited to developing outstanding products; it extends to building an integrated industrial ecosystem that creates added value, supports local content, and contributes to knowledge transfer and localization of modern technologies — so that Basalt Technology Company becomes a national model reflecting the Kingdom\'s capabilities and ambitions toward a more prosperous and sustainable industrial future.',
+          'We are leading a strategic national project to build the first integrated advanced basalt industry ecosystem in the Middle East and North Africa — transforming the Kingdom\'s natural wealth into high-value engineering solutions that serve the construction, energy, and infrastructure sectors.',
+          'We are working to localize the latest global technologies, develop competitive and sustainable products, and establish specialized Saudi research and development centers powered by artificial intelligence to accelerate innovation, improve products, and create new industrial applications that support the economy of the future.',
+          'We also believe that investing in people is the foundation of success. That is why we focus on training and qualifying a Saudi generation of engineers, technicians, and researchers capable of leading this promising industry and continuing the journey of development and excellence.',
+          'Our goal is not limited to building a factory, but to establishing an advanced national industry and a global regional hub for basalt and composite material technologies — contributing to higher local content, stronger exports, and the achievement of Saudi Vision 2030 targets.',
+          'From the heart of the Kingdom... we manufacture the materials of the future and build the capabilities of the future.',
+          'From rock to innovation... and from innovation to the future.',
         ],
         role: 'Vice Chairman of the Board',
         name: 'Dr. Riyadh Al-Tokabri',
       },
       {
+        id: '2',
         title: 'Message from the General Manager',
         paragraphs: [
           'At Basalt Technology Company, we turn ambition into achievement through a commitment to the highest standards of quality, efficiency, and innovation at every stage of our work. Our vision is inspired by the Kingdom of Saudi Arabia\'s growing stature as a global economic and industrial power, and by the exceptional opportunities for growth and development offered by Vision 2030.',
@@ -219,10 +225,10 @@ export const en = {
   },
   products: {
     heroTag: 'Our products',
-    heroTitleLine1: 'Basalt-based',
-    heroTitleAccent: 'construction materials',
+    heroTitleLine1: 'Basalt innovations',
+    heroTitleAccent: 'for a more sustainable future',
     heroSubtitle:
-      'Six core product lines engineered from volcanic basalt rock — stronger, lighter, and more durable than conventional alternatives.',
+      'Six specialized production lines from volcanic basalt rock, delivering innovative solutions for multiple sectors with exceptional strength, high efficiency, and a longer operational life than conventional materials.',
     filterLabel: 'Filter by category:',
     categories: {
       all: 'All',
@@ -667,6 +673,12 @@ export const en = {
     minRead: 'min read',
     featuredLabel: 'Featured',
     latestLabel: 'Latest articles',
+    eventsLabel: 'Events',
+    eventsTitle: 'Event photo gallery',
+    eventsPhotos: 'photos',
+    eventsVideo: 'video',
+    eventsViewPhotos: 'Click to view photos',
+    eventsClose: 'Close',
     noPostsFound: 'No articles found in this category.',
     newsletterLabel: 'Stay informed',
     newsletterTitle: 'Subscribe to our newsletter',

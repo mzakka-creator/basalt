@@ -5,6 +5,10 @@ import { defaultLocale, isLocale } from '@/lib/i18n/config';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname.startsWith('/admin')) {
+    return NextResponse.next();
+  }
+
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||

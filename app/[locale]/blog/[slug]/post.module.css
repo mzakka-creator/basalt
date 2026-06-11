@@ -193,6 +193,37 @@ html[dir='rtl'] .backLink {
   pointer-events: none;
 }
 
+/* ==================== VIDEO ==================== */
+.videoSection {
+  margin-bottom: 32px;
+}
+
+.videoLabel {
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--font-oswald);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+
+.videoWrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--basalt-line);
+  background: var(--basalt-black);
+}
+
+.videoPlayer {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000;
+}
+
 /* ==================== GALLERY ==================== */
 .gallery {
   display: grid;

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "partnership-signing",
+    "slug": "partnership-signing-largest-basalt-complex",
+    "date": "2026-06-08",
+    "titleAr": "مراسم توقيع عقد الشراكة لإنشاء أكبر مجمع صناعي لصناعة البازلت",
+    "titleEn": "Partnership agreement signing ceremony for the largest basalt manufacturing industrial complex",
+    "tabLabelAr": "توقيع الشراكة",
+    "tabLabelEn": "Partnership signing",
+    "descAr": "صور من مراسم توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي متخصص في صناعة البازلت.",
+    "descEn": "Photos from the partnership signing ceremony between partners to establish the largest basalt manufacturing industrial complex.",
+    "cover": "/blog/partnership-signing-01.jpeg",
+    "images": [
+      "/blog/partnership-signing-01.jpeg",
+      "/blog/partnership-signing-02.jpeg",
+      "/blog/partnership-signing-03.jpeg",
+      "/blog/partnership-signing-04.jpeg",
+      "/blog/partnership-signing-05.jpeg",
+      "/blog/partnership-signing-06.jpeg",
+      "/blog/partnership-signing-07.jpeg",
+      "/blog/partnership-signing-08.jpeg",
+      "/blog/partnership-signing-09.jpeg"
+    ],
+    "video": "/blog/partnership-signing-video.mp4"
+  }
+]

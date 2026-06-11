@@ -22,3 +22,5 @@ export const partnershipSigningImages: StaticImageData[] = [
 ];
 
 export const partnershipSigningCover = img01;
+
+export const partnershipSigningVideo = '/blog/partnership-signing-video.mp4';

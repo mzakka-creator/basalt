@@ -1,0 +1,201 @@
+/**
+ * One-time script: exports current TS seed data to data/seed/*.json
+ * Run: node scripts/export-cms-seed.mjs
+ */
+import { writeFileSync, mkdirSync, copyFileSync, existsSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const dataDir = join(root, 'data');
+const seedDir = join(dataDir, 'seed');
+
+mkdirSync(seedDir, { recursive: true });
+
+const gallery = Array.from({ length: 9 }, (_, i) => {
+  const n = String(i + 1).padStart(2, '0');
+  return `/blog/partnership-signing-${n}.jpeg`;
+});
+
+const posts = [
+  {
+    id: '1',
+    slug: 'partnership-signing-largest-basalt-complex',
+    category: 'news',
+    date: '2026-06-08',
+    readMin: 4,
+    featured: true,
+    image: '/blog/partnership-signing-01.jpeg',
+    gallery,
+    video: '/blog/partnership-signing-video.mp4',
+    titleEn: 'Partners sign agreement to establish the largest basalt manufacturing industrial complex',
+    excerptEn: 'Partners marked a milestone signing ceremony to establish the largest industrial complex dedicated to basalt manufacturing — a strategic step toward localizing advanced materials production in Saudi Arabia.',
+    bodyEn: [
+      "Basalt partners held a formal signing ceremony for the partnership agreement to establish the largest industrial complex for basalt manufacturing in the region. The event brought together founding partners, investors, and technical collaborators committed to advancing Saudi Arabia's basalt industry.",
+      'The new complex is designed to integrate basalt fiber production, reinforcement products, and pipeline manufacturing under one industrial platform — supporting Vision 2030 goals to localize advanced manufacturing and strengthen national supply chains.',
+      'The signing reflects a shared long-term vision: building a world-class basalt materials ecosystem that serves energy, infrastructure, and industrial sectors across the Kingdom and the wider region.',
+      'Work will now proceed on detailed engineering, site development, and partnership coordination ahead of the planned operational launch.',
+    ],
+    titleAr: 'مراسم توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي لصناعة البازلت',
+    excerptAr: 'شهدت مراسم رسمية توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي متخصص في صناعة البازلت — خطوة استراتيجية نحو توطين إنتاج المواد المتقدمة في المملكة.',
+    bodyAr: [
+      'عقد الشركاء مراسم توقيع رسمية لعقد الشراكة لإنشاء أكبر مجمع صناعي لصناعة البازلت في المنطقة، بحضور الشركاء المؤسسين والمستثمرين والجهات التقنية المشاركة في تطوير صناعة البازلت في المملكة.',
+      'يُخطَّط للمجمع الجديد لدمج إنتاج ألياف البازلت ومنتجات التسليح وتصنيع الأنابيب ضمن منصة صناعية متكاملة، بما يدعم أهداف رؤية 2030 لتوطين التصنيع المتقدم وتعزيز سلاسل التوريد الوطنية.',
+      'يعكس التوقيع رؤية مشتركة طويلة الأمد لبناء منظومة عالمية المستوى لمواد البازلت تخدم قطاعات الطاقة والبنية التحتية والصناعة في المملكة والمنطقة.',
+      'ستُتابع المرحلة المقبلة أعمال الهندسة التفصيلية وتطوير الموقع وتنسيق الشراكات استعدادًا للإطلاق التشغيلي المخطط له.',
+    ],
+  },
+  {
+    id: '9',
+    slug: 'basalt-factory-groundbreaking-2026',
+    category: 'news',
+    date: '2026-05-20',
+    readMin: 4,
+    image: '/blog/covers/hero-factory.png',
+    titleEn: 'Basalt Co. Announces Factory Groundbreaking Ceremony for 2026',
+    excerptEn: "Basalt Technology Company marks a historic milestone with the announcement of its factory groundbreaking ceremony, setting the stage for Saudi Arabia's first dedicated basalt materials production facility ahead of the 2028 launch.",
+    bodyEn: [
+      "Basalt Technology Company is proud to announce the groundbreaking ceremony for its state-of-the-art manufacturing facility — a landmark moment in Saudi Arabia's industrial development.",
+      'The facility is designed to produce over 50,000 tonnes of crushed basalt aggregates and 500 tonnes of basalt fiber products annually upon reaching full operational capacity in 2028.',
+      "Chairman Omar Salimin bin Mahfouz commented on the strategic importance of establishing Saudi Arabia's first dedicated basalt materials industrial complex.",
+      'Construction is expected to proceed in phases, with the first production line operational by late 2027.',
+    ],
+    titleAr: 'شركة بازلت تُعلن عن حفل وضع حجر الأساس للمصنع في 2026',
+    excerptAr: 'تُسجّل شركة بازلت للتقنية معلمًا تاريخيًا بالإعلان عن حفل وضع حجر الأساس لمصنعها، في خطوة تمهّد الطريق لأول منشأة سعودية متخصصة في إنتاج مواد البازلت قبيل الانطلاق عام 2028.',
+    bodyAr: [
+      'تُعلن شركة بازلت للتقنية بفخر عن حفل وضع حجر الأساس لمصنعها المتطور — لحظة تاريخية في مسيرة التنمية الصناعية السعودية.',
+      'صُمِّم المصنع ليُنتج أكثر من 50,000 طن من ركام البازلت المكسور و500 طن من منتجات ألياف البازلت سنويًا عند بلوغ الطاقة التشغيلية الكاملة عام 2028.',
+      'علّق رئيس مجلس الإدارة عمر سليمان بن محفوظ على الأهمية الاستراتيجية لإنشاء أول مجمع صناعي سعودي متخصص في مواد البازلت.',
+      'من المتوقع أن تسير أعمال البناء على مراحل، مع تشغيل أول خط إنتاج بحلول أواخر عام 2027.',
+    ],
+  },
+  {
+    id: '2',
+    slug: 'bfrp-rebar-vs-steel-comparison',
+    category: 'tech',
+    date: '2026-04-10',
+    readMin: 6,
+    image: '/blog/covers/product-1-bfrp.jpeg',
+    titleEn: 'BFRP Rebar vs Steel: Why Basalt Fiber Wins in Harsh Saudi Environments',
+    excerptEn: 'A technical deep-dive into why Basalt Fiber Reinforced Polymer (BFRP) rebars outperform conventional steel in the demanding climatic and chemical conditions found across Saudi Arabian construction projects.',
+    bodyEn: ['Saudi Arabia construction environment presents extreme challenges for conventional steel rebar.', 'BFRP rebar offers a compelling alternative with superior tensile strength and zero corrosion.', 'Chemical resistance testing shows BFRP retains over 90% strength in alkaline conditions.', 'For infrastructure projects, BFRP is a structural life-extension strategy.'],
+    titleAr: 'قضبان BFRP مقابل الفولاذ: لماذا يتفوق ألياف البازلت في البيئات السعودية القاسية',
+    excerptAr: 'دراسة تقنية مُعمّقة تكشف لماذا تتفوق قضبان البوليمر المسلّح بألياف البازلت على الفولاذ التقليدي.',
+    bodyAr: ['تُفرز بيئة البناء في المملكة تحديات استثنائية للفولاذ التسليحي التقليدي.', 'يُقدّم قضيب BFRP بديلاً مقنعًا بقوة شد أعلى وعدم قابلية للتآكل.', 'تُظهر اختبارات المقاومة الكيميائية احتفاظ BFRP بأكثر من 90% من قوته.', 'لمشاريع البنية التحتية، يُمثّل BFRP استراتيجية تمديد لعمر المنشأة.'],
+  },
+  {
+    id: '3',
+    slug: 'vision-2030-construction-materials',
+    category: 'industry',
+    date: '2026-03-15',
+    readMin: 5,
+    image: '/blog/covers/sector-infrastructure.jpeg',
+    titleEn: 'How Vision 2030 Is Reshaping Saudi Construction Material Demand',
+    excerptEn: "With over 847 active megaprojects under Vision 2030, Saudi Arabia's appetite for advanced, locally sourced construction materials has never been greater.",
+    bodyEn: ['Vision 2030 has triggered the largest peacetime construction boom in history.', 'Saudi Arabia currently imports 100% of its basalt fiber products.', 'The timing is strategic for high-performance materials.', 'Basalt Co. products are being evaluated for major Vision 2030 projects.'],
+    titleAr: 'كيف تُعيد رؤية 2030 تشكيل الطلب على مواد البناء في السعودية',
+    excerptAr: 'مع أكثر من 847 مشروعًا عملاقًا نشطًا ضمن رؤية 2030، بات الطلب السعودي على مواد البناء المتقدمة في أعلى مستوياته.',
+    bodyAr: ['أطلقت رؤية السعودية 2030 أكبر طفرة بناء في التاريخ في زمن السلم.', 'تستورد المملكة حاليًا 100% من منتجات ألياف البازلت.', 'التوقيت استراتيجي للمواد عالية الأداء.', 'تُقيَّم منتجات شركة بازلت لمشاريع رؤية 2030 الكبرى.'],
+  },
+  {
+    id: '4',
+    slug: 'basalt-fiber-temperature-resistance',
+    category: 'tech',
+    date: '2026-02-28',
+    readMin: 7,
+    image: '/blog/covers/sector-industry.jpeg',
+    titleEn: 'Temperature Resistance of Basalt Fiber: From −260°C to +700°C',
+    excerptEn: 'One of the most remarkable properties of continuous basalt fiber is its extraordinary thermal stability.',
+    bodyEn: ['Basalt fiber thermal performance stems from its geological origin.', 'Continuous basalt fiber maintains properties from −260°C to +700°C.', 'For Saudi industrial applications, the upper thermal range is most relevant.', 'Thermal stability translates directly to structural longevity in Saudi Arabia.'],
+    titleAr: 'مقاومة ألياف البازلت للحرارة: من −260°م إلى +700°م',
+    excerptAr: 'من أبرز خصائص ألياف البازلت المستمرة ثباتها الحراري الاستثنائي.',
+    bodyAr: ['يعود الأداء الحراري لألياف البازلت إلى أصلها الجيولوجي.', 'تحافظ ألياف البازلت على خصائصها من −260°م إلى +700°م.', 'بالنسبة للتطبيقات الصناعية السعودية، النطاق الحراري العلوي هو الأكثر صلة.', 'يُترجم الثبات الحراري مباشرةً إلى طول عمر هيكلي في المملكة.'],
+  },
+  {
+    id: '5',
+    slug: 'strategic-partners-announcement',
+    category: 'news',
+    date: '2026-02-01',
+    readMin: 3,
+    image: '/blog/covers/hero-investments.png',
+    titleEn: 'Basalt Welcomes New Strategic Partners Across the GCC',
+    excerptEn: 'Basalt Technology Company is proud to announce the expansion of its strategic partnership network across the GCC.',
+    bodyEn: ['Basalt has signed MoUs with three new strategic partners across the GCC.', 'Partner network expansion is key to pre-launch strategy.', 'General Manager Salimin Omar bin Mahfouz commented on the partnerships.'],
+    titleAr: 'بازلت ترحّب بشركاء استراتيجيين جدد من دول مجلس التعاون الخليجي',
+    excerptAr: 'تُعلن شركة بازلت للتقنية عن توسيع شبكة شراكاتها الاستراتيجية عبر دول مجلس التعاون الخليجي.',
+    bodyAr: ['وقّعت شركة بازلت مذكرات تفاهم مع ثلاثة شركاء استراتيجيين جدد.', 'يُعدّ توسيع شبكة الشركاء ركيزةً أساسية في الاستراتيجية ما قبل الإطلاق.', 'صرّح المدير العام سليمان عمر بن محفوظ على الشراكات.'],
+  },
+  {
+    id: '6',
+    slug: 'basalt-geogrid-road-reinforcement',
+    category: 'tech',
+    date: '2026-01-12',
+    readMin: 5,
+    image: '/blog/covers/sector-transport.jpeg',
+    titleEn: 'Basalt Geogrid: Extending Road Lifespan by Up to 40 Years',
+    excerptEn: "Basalt geogrid technology offers a proven solution for Saudi Arabia's road network challenges.",
+    bodyEn: ['NIDP has committed SAR 220 billion to road construction through 2030.', 'Basalt geogrid distributes load and reduces stress concentrations.', 'Global deployments show compelling performance results.', 'Benefits are amplified in the Saudi context.'],
+    titleAr: 'الشبكة الجيولوجية من البازلت: إطالة عمر الطرق حتى 40 عامًا',
+    excerptAr: 'تُقدّم تقنية الشبكة الجيولوجية من البازلت حلًا مثبتًا لتحديات شبكة الطرق في المملكة.',
+    bodyAr: ['خصّص برنامج تطوير البنية التحتية 220 مليار ريال لبناء الطرق.', 'توزّع الشبكة الجيولوجية الأحمال وتُقلّل تركّز الإجهادات.', 'نتائج الأداء من النشرات العالمية مقنعة.', 'في السياق السعودي، تتضاعف الفوائد.'],
+  },
+  {
+    id: '7',
+    slug: 'esg-basalt-green-construction',
+    category: 'industry',
+    date: '2025-12-20',
+    readMin: 4,
+    image: '/blog/covers/sector-energy.jpeg',
+    titleEn: "ESG & Green Construction: Basalt's Role in Net-Zero Saudi Infrastructure",
+    excerptEn: 'Basalt fiber products offer a compelling ESG story — 60% lower CO₂ vs steel.',
+    bodyEn: ['Saudi Arabia committed to net-zero by 2060.', 'Basalt fiber products present a strong environmental case.', 'ESG credentials matter for Vision 2030 projects.', 'Basalt Co. is committed to the Saudi Green Initiative.'],
+    titleAr: 'الحوكمة البيئية والبناء الأخضر: دور بازلت في البنية التحتية السعودية المستدامة',
+    excerptAr: 'تُقدّم منتجات ألياف البازلت قصة بيئية مقنعة — انبعاثات CO₂ أقل بـ60% مقارنةً بالفولاذ.',
+    bodyAr: ['التزمت المملكة بالحياد الكربوني بحلول 2060.', 'تُقدّم منتجات ألياف البازلت حجة بيئية قوية.', 'معايير الحوكمة البيئية مهمة لمشاريع رؤية 2030.', 'تلتزم شركة بازلت بمبادرة السعودية الخضراء.'],
+  },
+  {
+    id: '8',
+    slug: 'investment-round-closed',
+    category: 'news',
+    date: '2025-11-05',
+    readMin: 3,
+    image: '/blog/covers/hero-about.png',
+    titleEn: 'Basalt Closes Initial Investment Round, Eyes 2026 Site Selection',
+    excerptEn: 'Basalt Technology Company has successfully closed its initial investment round.',
+    bodyEn: ['Basalt closed its initial investment round with Saudi institutional investors.', 'Proceeds will fund site selection and engineering.', 'Company targets final site selection by Q4 2026.'],
+    titleAr: 'بازلت تُغلق جولة الاستثمار الأولى وتتطلع لاختيار الموقع في 2026',
+    excerptAr: 'أتمّت شركة بازلت للتقنية بنجاح إغلاق جولتها الاستثمارية الأولى.',
+    bodyAr: ['أتمّت شركة بازلت إغلاق جولتها الاستثمارية الأولى.', 'ستُموِّل العائدات اختيار الموقع والهندسة.', 'تستهدف الشركة الاختيار النهائي للموقع بحلول الربع الرابع من 2026.'],
+  },
+];
+
+const events = [
+  {
+    id: 'partnership-signing',
+    slug: 'partnership-signing-largest-basalt-complex',
+    date: '2026-06-08',
+    tabLabelAr: 'توقيع الشراكة',
+    tabLabelEn: 'Partnership signing',
+    titleAr: 'مراسم توقيع عقد الشراكة لإنشاء أكبر مجمع صناعي لصناعة البازلت',
+    titleEn: 'Partnership agreement signing ceremony for the largest basalt manufacturing industrial complex',
+    descAr: 'صور من مراسم توقيع عقد الشراكة بين الشركاء لإنشاء أكبر مجمع صناعي متخصص في صناعة البازلت.',
+    descEn: 'Photos from the partnership signing ceremony between partners to establish the largest basalt manufacturing industrial complex.',
+    cover: '/blog/partnership-signing-01.jpeg',
+    images: gallery,
+    video: '/blog/partnership-signing-video.mp4',
+  },
+];
+
+writeFileSync(join(seedDir, 'blog-posts.json'), JSON.stringify(posts, null, 2));
+writeFileSync(join(seedDir, 'blog-events.json'), JSON.stringify(events, null, 2));
+
+// Copy seed to live data if not exists
+for (const file of ['blog-posts.json', 'blog-events.json']) {
+  const live = join(dataDir, file);
+  const seed = join(seedDir, file);
+  if (!existsSync(live)) {
+    copyFileSync(seed, live);
+  }
+}
+
+console.log('CMS seed exported to data/seed/ and data/');
