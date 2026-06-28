@@ -54,22 +54,61 @@
   background: var(--basalt-black);
 }
 
+.videoFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.videoShieldTop,
+.videoShieldBottom {
+  position: absolute;
+  z-index: 1;
+  pointer-events: auto;
+  background: var(--basalt-black);
+}
+
+.videoShieldTop {
+  top: 0;
+  right: 0;
+  width: 72px;
+  height: 56px;
+}
+
+.videoShieldBottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+}
+
+.videoFrame .videoPlayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .videoPlayer {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
   border: 0;
   background: #000;
+}
+
+video.videoPlayer {
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   pointer-events: none;
   user-select: none;
 }
 
-.videoPlayer::-webkit-media-controls {
+video.videoPlayer::-webkit-media-controls {
   display: none !important;
 }
 
-.videoPlayer::-webkit-media-controls-enclosure {
+video.videoPlayer::-webkit-media-controls-enclosure {
   display: none !important;
 }
 

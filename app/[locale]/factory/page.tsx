@@ -21,6 +21,10 @@ import iconStyles from '@/app/components/icons/icons.module.css';
 import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
 import heroImage from '@/assets/images/heroes/hero-factory.png';
+import {
+  FACTORY_VIDEO_DRIVE_EMBED_SRC,
+  getFactoryVideoSrc,
+} from '@/lib/factory-video';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './factory.module.css';
 
@@ -48,16 +52,13 @@ const locationIcons: SvgIcon[] = [IconLocation, IconMountain, IconRoute, IconAnc
 
 const envIcons: SvgIcon[] = [IconDroplets, IconWind, IconWasteReduction, IconZap];
 
-const FACTORY_VIDEO_SRC =
-  process.env.NEXT_PUBLIC_FACTORY_VIDEO_URL ?? '/factory/factory-tour.mp4';
-
-function FactoryVideo({ title }: { title: string }) {
+function ChromelessVideo({ src, title }: { src: string; title: string }) {
   const lastTimeRef = useRef(0);
 
   return (
     <video
       className={styles.videoPlayer}
-      src={FACTORY_VIDEO_SRC}
+      src={src}
       title={title}
       aria-label={title}
       autoPlay
@@ -80,6 +81,32 @@ function FactoryVideo({ title }: { title: string }) {
       }}
     />
   );
+}
+
+function DriveEmbedVideo({ title }: { title: string }) {
+  return (
+    <div className={styles.videoFrame}>
+      <iframe
+        className={styles.videoPlayer}
+        src={FACTORY_VIDEO_DRIVE_EMBED_SRC}
+        title={title}
+        allow="autoplay; encrypted-media"
+        loading="lazy"
+      />
+      <div className={styles.videoShieldTop} aria-hidden />
+      <div className={styles.videoShieldBottom} aria-hidden />
+    </div>
+  );
+}
+
+function FactoryVideo({ title }: { title: string }) {
+  const src = getFactoryVideoSrc();
+
+  if (src) {
+    return <ChromelessVideo src={src} title={title} />;
+  }
+
+  return <DriveEmbedVideo title={title} />;
 }
 
 export default function FactoryPage() {
