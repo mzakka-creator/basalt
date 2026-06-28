@@ -48,7 +48,8 @@ const locationIcons: SvgIcon[] = [IconLocation, IconMountain, IconRoute, IconAnc
 
 const envIcons: SvgIcon[] = [IconDroplets, IconWind, IconWasteReduction, IconZap];
 
-const FACTORY_VIDEO_SRC = '/factory/factory-tour.mp4';
+const FACTORY_VIDEO_SRC =
+  process.env.NEXT_PUBLIC_FACTORY_VIDEO_URL ?? '/factory/factory-tour.mp4';
 
 function FactoryVideo({ title }: { title: string }) {
   const lastTimeRef = useRef(0);
@@ -97,7 +98,7 @@ export default function FactoryPage() {
 
       <section className={`${styles.videoSection} section`}>
         <div className="container">
-          <div className={`${styles.videoBlock} animate-on-scroll`}>
+          <div className={styles.videoBlock}>
             <h2 className={`sectionTitle ${styles.videoTitle}`}>{f.videoTitle}</h2>
             <div className={styles.videoWrap}>
               <FactoryVideo title={f.videoTitle} />
