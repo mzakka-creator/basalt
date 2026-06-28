@@ -404,6 +404,7 @@ export const ar: Messages = {
     ],
     mapCountry: 'المملكة العربية السعودية',
     mapSub: 'موقع المصنع — يُحدد 2026',
+    videoTitle: 'جولة في مصنع البازلت',
     processLabel: 'عملية الإنتاج',
     processTitle: 'من الصخر إلى المنتج',
     processDesc: 'ست مراحل دقيقة — من استخراج الحجر الخام إلى شحن المنتج المعتمد.',

@@ -1,7 +1,7 @@
 'use client';
 
 import type { ComponentType, SVGProps } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   IconAnchor,
   IconCheck,
@@ -48,6 +48,39 @@ const locationIcons: SvgIcon[] = [IconLocation, IconMountain, IconRoute, IconAnc
 
 const envIcons: SvgIcon[] = [IconDroplets, IconWind, IconWasteReduction, IconZap];
 
+const FACTORY_VIDEO_SRC = '/factory/factory-tour.mp4';
+
+function FactoryVideo({ title }: { title: string }) {
+  const lastTimeRef = useRef(0);
+
+  return (
+    <video
+      className={styles.videoPlayer}
+      src={FACTORY_VIDEO_SRC}
+      title={title}
+      aria-label={title}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+      tabIndex={-1}
+      controlsList="nodownload nofullscreen noremoteplayback"
+      onContextMenu={(event) => event.preventDefault()}
+      onTimeUpdate={(event) => {
+        lastTimeRef.current = event.currentTarget.currentTime;
+      }}
+      onSeeking={(event) => {
+        event.currentTarget.currentTime = lastTimeRef.current;
+      }}
+      onPause={(event) => {
+        void event.currentTarget.play();
+      }}
+    />
+  );
+}
+
 export default function FactoryPage() {
   useScrollAnimation();
   const { messages } = useI18n();
@@ -61,6 +94,17 @@ export default function FactoryPage() {
         subtitle={f.heroSubtitle}
         backgroundImage={heroImage}
       />
+
+      <section className={`${styles.videoSection} section`}>
+        <div className="container">
+          <div className={`${styles.videoBlock} animate-on-scroll`}>
+            <h2 className={`sectionTitle ${styles.videoTitle}`}>{f.videoTitle}</h2>
+            <div className={styles.videoWrap}>
+              <FactoryVideo title={f.videoTitle} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className={`${styles.locationSection} section`}>
         <div className="container">

@@ -405,6 +405,7 @@ export const en = {
     ],
     mapCountry: 'Kingdom of Saudi Arabia',
     mapSub: 'Factory location — TBD 2026',
+    videoTitle: 'Basalt factory tour',
     processLabel: 'Production process',
     processTitle: 'From rock to product',
     processDesc:

@@ -30,6 +30,49 @@
   line-height: 1.8;
 }
 
+/* ==================== FACTORY VIDEO ==================== */
+.videoSection {
+  background: var(--basalt-black);
+  padding-top: 64px;
+  padding-bottom: 48px;
+}
+
+.videoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.videoTitle {
+  margin: 0;
+}
+
+.videoWrap {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--basalt-line);
+  background: var(--basalt-black);
+}
+
+.videoPlayer {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.videoPlayer::-webkit-media-controls {
+  display: none !important;
+}
+
+.videoPlayer::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 /* ==================== LOCATION ==================== */
 .locationSection {
   background: var(--basalt-black);

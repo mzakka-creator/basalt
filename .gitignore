@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# large media (host separately — GitHub limit is 100MB)
+/public/factory/*.mp4
+/public/factory/*.part
+
 # debug
 npm-debug.log*
 yarn-debug.log*
