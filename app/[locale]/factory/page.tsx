@@ -21,11 +21,7 @@ import iconStyles from '@/app/components/icons/icons.module.css';
 import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
 import heroImage from '@/assets/images/heroes/hero-factory.png';
-import {
-  FACTORY_VIDEO_DRIVE_EMBED_SRC,
-  getFactoryVideoSrc,
-  useNativeFactoryVideo,
-} from '@/lib/factory-video';
+import { getFactoryVideoSrc } from '@/lib/factory-video';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './factory.module.css';
 
@@ -53,7 +49,7 @@ const locationIcons: SvgIcon[] = [IconLocation, IconMountain, IconRoute, IconAnc
 
 const envIcons: SvgIcon[] = [IconDroplets, IconWind, IconWasteReduction, IconZap];
 
-function NativeFactoryVideo({ title }: { title: string }) {
+function FactoryVideo({ title }: { title: string }) {
   const lastTimeRef = useRef(0);
 
   return (
@@ -82,32 +78,6 @@ function NativeFactoryVideo({ title }: { title: string }) {
       }}
     />
   );
-}
-
-function DriveFactoryVideo({ title }: { title: string }) {
-  return (
-    <div className={styles.videoFrame}>
-      <iframe
-        className={styles.videoEmbed}
-        src={FACTORY_VIDEO_DRIVE_EMBED_SRC}
-        title={title}
-        allow="autoplay; encrypted-media"
-        loading="lazy"
-        tabIndex={-1}
-      />
-      <div className={styles.videoShieldBottom} aria-hidden />
-      <div className={styles.videoShieldTop} aria-hidden />
-      <div className={styles.videoShieldBlock} aria-hidden />
-    </div>
-  );
-}
-
-function FactoryVideo({ title }: { title: string }) {
-  if (useNativeFactoryVideo()) {
-    return <NativeFactoryVideo title={title} />;
-  }
-
-  return <DriveFactoryVideo title={title} />;
 }
 
 export default function FactoryPage() {
