@@ -27,6 +27,8 @@
 # large media (host separately — GitHub limit is 100MB)
 /public/factory/*.mp4
 /public/factory/*.part
+/public/video/*.mp4
+/assets/video/*.mp4
 
 # debug
 npm-debug.log*
