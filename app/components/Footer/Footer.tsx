@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { IconInstagram, IconLinkedin, IconLocation, IconMail, IconPhone } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
+import logo from '@/assets/logo/logo.png';
 import styles from './Footer.module.css';
 import { useI18n } from '@/lib/i18n/i18n-context';
 
@@ -17,7 +18,7 @@ export default function Footer() {
         <div className={styles.brand}>
           <Link href={href('/')} className={styles.logo}>
             <Image
-              src="/logo.png"
+              src={logo}
               alt="Basalt"
               width={130}
               height={48}

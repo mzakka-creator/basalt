@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Montserrat } from "next/font/google";
 import { defaultLocale, localeDir } from "@/lib/i18n/config";
+import logo from "@/assets/logo/logo.png";
 import "./globals.css";
 
 const cairo = Cairo({
@@ -20,6 +21,13 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Basalt",
   description: "Basalt — construction materials",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: logo.src, type: "image/png" },
+    ],
+    apple: [{ url: logo.src, type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

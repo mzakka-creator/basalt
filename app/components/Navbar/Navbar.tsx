@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import logo from '@/assets/logo/logo.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import { swapLocaleInPathname, stripLocaleFromPathname, type AppPath } from '@/lib/i18n/paths';
 import styles from './Navbar.module.css';
@@ -49,7 +50,7 @@ export default function Navbar() {
         <div className={styles.inner}>
           <Link href={href('/')} className={styles.logo} onClick={() => setMenuOpen(false)}>
             <Image
-              src="/logo.png"
+              src={logo}
               alt="Basalt"
               width={168}
               height={56}
@@ -121,7 +122,7 @@ export default function Navbar() {
         <div className="rock-surface-highlight" aria-hidden />
         <div className={styles.drawerLogo}>
           <Image
-            src="/logo.png"
+            src={logo}
             alt="Basalt"
             width={144}
             height={48}
