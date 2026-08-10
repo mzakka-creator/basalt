@@ -1,7 +1,8 @@
 'use client';
 
 import type { ComponentType, SVGProps } from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import Image from 'next/image';
 import {
   IconAnchor,
   IconCheck,
@@ -21,7 +22,7 @@ import iconStyles from '@/app/components/icons/icons.module.css';
 import HeroHeadline from '@/app/components/PageHero/HeroHeadline';
 import PageHero from '@/app/components/PageHero/PageHero';
 import heroImage from '@/assets/images/heroes/hero-factory.png';
-import { getFactoryVideoSrc } from '@/lib/factory-video';
+import logo from '@/assets/logo/logo.png';
 import { useI18n } from '@/lib/i18n/i18n-context';
 import styles from './factory.module.css';
 
@@ -49,37 +50,6 @@ const locationIcons: SvgIcon[] = [IconLocation, IconMountain, IconRoute, IconAnc
 
 const envIcons: SvgIcon[] = [IconDroplets, IconWind, IconWasteReduction, IconZap];
 
-function FactoryVideo({ title }: { title: string }) {
-  const lastTimeRef = useRef(0);
-
-  return (
-    <video
-      className={styles.videoPlayer}
-      src={getFactoryVideoSrc()}
-      title={title}
-      aria-label={title}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      disablePictureInPicture
-      tabIndex={-1}
-      controlsList="nodownload nofullscreen noremoteplayback"
-      onContextMenu={(event) => event.preventDefault()}
-      onTimeUpdate={(event) => {
-        lastTimeRef.current = event.currentTarget.currentTime;
-      }}
-      onSeeking={(event) => {
-        event.currentTarget.currentTime = lastTimeRef.current;
-      }}
-      onPause={(event) => {
-        void event.currentTarget.play();
-      }}
-    />
-  );
-}
-
 export default function FactoryPage() {
   useScrollAnimation();
   const { messages } = useI18n();
@@ -94,13 +64,19 @@ export default function FactoryPage() {
         backgroundImage={heroImage}
       />
 
-      <section className={`${styles.videoSection} section`}>
+      <section className={`${styles.logoSection} section`} aria-label="Basalt">
         <div className="container">
-          <div className={styles.videoBlock}>
-            <h2 className={`sectionTitle ${styles.videoTitle}`}>{f.videoTitle}</h2>
-            <div className={styles.videoWrap}>
-              <FactoryVideo title={f.videoTitle} />
-            </div>
+          <div className={`${styles.logoStage} animate-on-scroll`}>
+            <div className={styles.logoGlow} aria-hidden />
+            <div className={styles.logoOrb} aria-hidden />
+            <Image
+              src={logo}
+              alt="Basalt"
+              width={520}
+              height={168}
+              className={styles.logoMark}
+              priority
+            />
           </div>
         </div>
       </section>

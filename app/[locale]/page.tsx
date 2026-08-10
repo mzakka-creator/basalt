@@ -12,7 +12,6 @@ import {
   IconLeaf,
   IconLocation,
   IconProducts,
-  IconStrength,
   IconThermometer,
 } from '@/app/components/icons/SiteIcons';
 import iconStyles from '@/app/components/icons/icons.module.css';
@@ -103,7 +102,7 @@ const teaserImages: Record<'/about' | '/products' | '/factory' | '/investments',
   '/investments': heroInvestments,
 };
 
-const featureIcons: SvgIcon[] = [IconThermometer, IconStrength, IconLeaf, IconLocation];
+const featureIcons: SvgIcon[] = [IconThermometer, IconLeaf, IconLocation];
 
 export default function HomePage() {
   useScrollAnimation();

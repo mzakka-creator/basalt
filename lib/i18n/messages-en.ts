@@ -79,7 +79,6 @@ export const en = {
       "Basalt rock — formed from volcanic magma — is one of the earth's most durable natural materials. We are building Saudi Arabia's first dedicated basalt construction materials factory, transforming this ancient stone into next-generation construction solutions: heat-resistant, eco-friendly, and stronger than steel in specific applications.",
     features: [
       { stat: '700°C', label: 'Heat resistance threshold' },
-      { stat: '3×', label: 'Stronger than fiberglass' },
       { stat: '100%', label: 'Natural, non-toxic material' },
       { stat: '2028', label: 'Factory opening, Saudi Arabia' },
     ],
@@ -459,7 +458,7 @@ export const en = {
     capCrushedVal: '50,000+',
     capCrushedUnit: 'Tonnes/year',
     capCrushedLabel: 'Crushed aggregates',
-    capFiberVal: '500',
+    capFiberVal: '45,000+',
     capFiberUnit: 'Tonnes/year',
     capFiberLabel: 'Basalt fiber products',
     capEmpVal: '200+',
