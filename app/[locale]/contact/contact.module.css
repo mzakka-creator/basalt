@@ -58,6 +58,16 @@
   letter-spacing: 0.02em;
 }
 
+.phoneNumber {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+:global([dir='rtl']) .phoneNumber {
+  text-align: right;
+  width: 100%;
+}
+
 .infoSub {
   font-size: 0.8rem;
   color: var(--white);

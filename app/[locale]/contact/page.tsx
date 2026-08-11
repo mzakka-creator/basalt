@@ -125,9 +125,9 @@ export default function ContactPage() {
                 <IconMail className={iconStyles.svgIconLg} aria-hidden />
               </div>
               <h3 className={styles.infoTitle}>{c.emailTitle}</h3>
-              <p className={styles.infoValue}>info@basalt.com.sa</p>
+              <p className={styles.infoValue}>admin@basalt.com.sa</p>
               <p className={styles.infoSub}>{c.emailSub}</p>
-              <a href="mailto:info@basalt.com.sa" className={styles.infoLink}>
+              <a href="mailto:admin@basalt.com.sa" className={styles.infoLink}>
                 {c.emailCta}
                 <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
               </a>
@@ -137,9 +137,11 @@ export default function ContactPage() {
                 <IconPhone className={iconStyles.svgIconLg} aria-hidden />
               </div>
               <h3 className={styles.infoTitle}>{c.phoneTitle}</h3>
-              <p className={styles.infoValue}>+966 XX XXX XXXX</p>
+              <p className={`${styles.infoValue} ${styles.phoneNumber}`}>
+                +966 555 251 338
+              </p>
               <p className={styles.infoSub}>{c.phoneHours}</p>
-              <a href="tel:+966XXXXXXXX" className={styles.infoLink}>
+              <a href="tel:+966555251338" className={styles.infoLink}>
                 {c.phoneCta}
                 <IconArrowRight className={`${iconStyles.svgIcon} ${iconStyles.svgIconSm}`} aria-hidden />
               </a>
@@ -239,6 +241,7 @@ export default function ContactPage() {
                       <input
                         className={styles.fieldInput}
                         type="tel"
+                        dir="ltr"
                         placeholder={c.placeholderPhone}
                         value={form.phone}
                         onChange={(e) => handleChange('phone', e.target.value)}

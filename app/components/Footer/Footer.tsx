@@ -70,13 +70,13 @@ export default function Footer() {
               <span className={styles.contactIcon}>
                 <IconMail className={iconStyles.svgIcon} aria-hidden />
               </span>
-              info@basalt.com.sa
+              admin@basalt.com.sa
             </p>
             <p className={styles.contactItem}>
               <span className={styles.contactIcon}>
                 <IconPhone className={iconStyles.svgIcon} aria-hidden />
               </span>
-              +966 XX XXX XXXX
+              <span className={styles.phoneNumber}>+966 555 251 338</span>
             </p>
             <p className={styles.contactItem}>
               <span className={styles.contactIcon}>

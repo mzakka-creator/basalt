@@ -140,6 +140,16 @@
   line-height: 1.4;
 }
 
+.phoneNumber {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+:global([dir='rtl']) .phoneNumber {
+  text-align: right;
+  flex: 1;
+}
+
 .contactIcon {
   display: flex;
   align-items: center;
